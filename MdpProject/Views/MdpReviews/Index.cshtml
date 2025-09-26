@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MdpProject.Models.MdpReview>
+
+@{
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+    ViewData["Title"] = "Danh sách Review";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">+ Tạo review mới</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.MdpRating)</th>
+            <th>@Html.DisplayNameFor(model => model.MdpComment)</th>
+            <th>@Html.DisplayNameFor(model => model.MdpCreatedAt)</th>
+            <th>@Html.DisplayNameFor(model => model.MdpSanPham)</th>
+            <th>@Html.DisplayNameFor(model => model.MdpUser)</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.MdpRating)</td>
+                <td>@Html.DisplayFor(modelItem => item.MdpComment)</td>
+                <td>
+                    @item.MdpCreatedAt?.ToString("dd/MM/yyyy") <!-- Fix nullable DateTime -->
+                </td>
+                <td>@item.MdpSanPham?.MdpSanPhamId</td>
+                <td>@item.MdpUser?.MdpUserId</td>
+                <td>
+                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@item.MdpReviewId">Sửa</a>
+                    <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item.MdpReviewId">Chi tiết</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.MdpReviewId">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

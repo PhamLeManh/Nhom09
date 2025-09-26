@@ -1,0 +1,429 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = MdpProject
+build_property.RootNamespace = MdpProject
+build_property.ProjectDir = D:\project2\MdpProject\MdpProject\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\project2\MdpProject\MdpProject
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpCameras/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwQ2FtZXJhc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpCameras/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwQ2FtZXJhc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpCameras/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwQ2FtZXJhc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpCameras/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwQ2FtZXJhc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpCameras/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwQ2FtZXJhc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpCarts/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwQ2FydHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpCarts/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwQ2FydHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpCarts/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwQ2FydHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpCarts/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwQ2FydHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpCarts/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwQ2FydHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpCarts/MdpCheckout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwQ2FydHNcTWRwQ2hlY2tvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpCategories/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwQ2F0ZWdvcmllc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpCategories/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwQ2F0ZWdvcmllc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpCategories/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwQ2F0ZWdvcmllc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpCategories/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwQ2F0ZWdvcmllc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpCategories/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwQ2F0ZWdvcmllc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpChatSupports/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwQ2hhdFN1cHBvcnRzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpChatSupports/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwQ2hhdFN1cHBvcnRzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpChatSupports/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwQ2hhdFN1cHBvcnRzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpChatSupports/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwQ2hhdFN1cHBvcnRzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpChatSupports/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwQ2hhdFN1cHBvcnRzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpDonHangs/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwRG9uSGFuZ3NcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpDonHangs/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwRG9uSGFuZ3NcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpDonHangs/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwRG9uSGFuZ3NcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpDonHangs/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwRG9uSGFuZ3NcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpDonHangs/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwRG9uSGFuZ3NcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MDPHome/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTURQSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MDPHome/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTURQSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpKhoHangs/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwS2hvSGFuZ3NcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpKhoHangs/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwS2hvSGFuZ3NcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpKhoHangs/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwS2hvSGFuZ3NcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpKhoHangs/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwS2hvSGFuZ3NcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpKhoHangs/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwS2hvSGFuZ3NcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpKhuyenMais/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwS2h1eWVuTWFpc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpKhuyenMais/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwS2h1eWVuTWFpc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpKhuyenMais/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwS2h1eWVuTWFpc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpKhuyenMais/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwS2h1eWVuTWFpc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpKhuyenMais/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwS2h1eWVuTWFpc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpLaptops/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwTGFwdG9wc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpLaptops/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwTGFwdG9wc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpLaptops/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwTGFwdG9wc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpLaptops/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwTGFwdG9wc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpLaptops/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwTGFwdG9wc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpLaptops/MdpAdminIndex.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwTGFwdG9wc1xNZHBBZG1pbkluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpLinhKiens/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwTGluaEtpZW5zXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpLinhKiens/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwTGluaEtpZW5zXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpLinhKiens/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwTGluaEtpZW5zXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpLinhKiens/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwTGluaEtpZW5zXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpLinhKiens/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwTGluaEtpZW5zXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpMice/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwTWljZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpMice/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwTWljZVxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpMice/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwTWljZVxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpMice/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwTWljZVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpMice/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwTWljZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpMonitors/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwTW9uaXRvcnNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpMonitors/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwTW9uaXRvcnNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpMonitors/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwTW9uaXRvcnNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpMonitors/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwTW9uaXRvcnNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpMonitors/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwTW9uaXRvcnNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpPcs/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwUGNzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpPcs/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwUGNzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpPcs/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwUGNzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpPcs/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwUGNzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpPcs/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwUGNzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpPhones/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwUGhvbmVzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpPhones/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwUGhvbmVzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpPhones/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwUGhvbmVzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpPhones/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwUGhvbmVzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpPhones/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwUGhvbmVzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpPhones/MdpAdminIndex.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwUGhvbmVzXE1kcEFkbWluSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpProductVariants/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwUHJvZHVjdFZhcmlhbnRzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpProductVariants/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwUHJvZHVjdFZhcmlhbnRzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpProductVariants/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwUHJvZHVjdFZhcmlhbnRzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpProductVariants/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwUHJvZHVjdFZhcmlhbnRzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpProductVariants/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwUHJvZHVjdFZhcmlhbnRzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpReviews/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwUmV2aWV3c1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpReviews/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwUmV2aWV3c1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpReviews/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwUmV2aWV3c1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpReviews/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwUmV2aWV3c1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpReviews/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwUmV2aWV3c1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpSanPhams/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwU2FuUGhhbXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpSanPhams/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwU2FuUGhhbXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpSanPhams/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwU2FuUGhhbXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpSanPhams/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwU2FuUGhhbXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpSanPhams/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwU2FuUGhhbXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpUsers/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwVXNlcnNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpUsers/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwVXNlcnNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpUsers/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwVXNlcnNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpUsers/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwVXNlcnNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpUsers/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwVXNlcnNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpUsers/MdpAdminIndex.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwVXNlcnNcTWRwQWRtaW5JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpUsers/MdpLogin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwVXNlcnNcTWRwTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/MdpUsers/MdpRegister.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWRwVXNlcnNcTWRwUmVnaXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/Shared/MdpAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE1kcEFkbWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/Shared/_MdpAdminLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9NZHBBZG1pbkxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/project2/MdpProject/MdpProject/Views/Shared/_MDPLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9NRFBMYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-9d7fcuifz7

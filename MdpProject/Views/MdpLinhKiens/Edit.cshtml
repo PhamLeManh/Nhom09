@@ -1,0 +1,59 @@
+﻿@model MdpProject.Models.MdpLinhKien
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>MdpLinhKien</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MdpLinhKienId" />
+            <div class="form-group">
+                <label asp-for="MdpSanPhamId" class="control-label"></label>
+                <select asp-for="MdpSanPhamId" class="form-control" asp-items="ViewBag.MdpSanPhamId"></select>
+                <span asp-validation-for="MdpSanPhamId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MdpTenLinhKien" class="control-label"></label>
+                <input asp-for="MdpTenLinhKien" class="form-control" />
+                <span asp-validation-for="MdpTenLinhKien" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MdpLoaiLinhKien" class="control-label"></label>
+                <input asp-for="MdpLoaiLinhKien" class="form-control" />
+                <span asp-validation-for="MdpLoaiLinhKien" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MdpThongSoKyThuat" class="control-label"></label>
+                <input asp-for="MdpThongSoKyThuat" class="form-control" />
+                <span asp-validation-for="MdpThongSoKyThuat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MdpCreatedAt" class="control-label"></label>
+                <input asp-for="MdpCreatedAt" class="form-control" />
+                <span asp-validation-for="MdpCreatedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MdpUpdatedAt" class="control-label"></label>
+                <input asp-for="MdpUpdatedAt" class="form-control" />
+                <span asp-validation-for="MdpUpdatedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

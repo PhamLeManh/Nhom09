@@ -1,0 +1,46 @@
+﻿@model MdpProject.Models.MdpReview
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>MdpReview</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MdpSanPhamId" class="control-label"></label>
+                <select asp-for="MdpSanPhamId" class ="form-control" asp-items="ViewBag.MdpSanPhamId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="MdpUserId" class="control-label"></label>
+                <select asp-for="MdpUserId" class ="form-control" asp-items="ViewBag.MdpUserId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="MdpRating" class="control-label"></label>
+                <input asp-for="MdpRating" class="form-control" />
+                <span asp-validation-for="MdpRating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MdpComment" class="control-label"></label>
+                <input asp-for="MdpComment" class="form-control" />
+                <span asp-validation-for="MdpComment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

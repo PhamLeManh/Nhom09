@@ -1,0 +1,78 @@
+﻿@model MdpProject.Models.MdpDonHang
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>MdpDonHang</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MdpNgayDatDonHang)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MdpNgayDatDonHang)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MdpNgayGiaoHang)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MdpNgayGiaoHang)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MdpDiaChiGiaoHang)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MdpDiaChiGiaoHang)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MdpPhuongThucThanhToan)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MdpPhuongThucThanhToan)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MdpTrangThaiThanhToan)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MdpTrangThaiThanhToan)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MdpStatus)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MdpStatus)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MdpTongTien)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MdpTongTien)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MdpGhiChu)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MdpGhiChu)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MdpKhachHang)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MdpKhachHang.MdpUserId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MdpKm)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MdpKm.MdpKmid)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.MdpDonHangId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

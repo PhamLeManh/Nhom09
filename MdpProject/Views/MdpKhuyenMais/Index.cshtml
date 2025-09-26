@@ -1,0 +1,62 @@
+﻿@model IEnumerable<MdpProject.Models.MdpKhuyenMai>
+
+@{
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml"; 
+    ViewData["Title"] = "Danh sách khuyến mãi";
+}
+
+<h1>Danh sách khuyến mãi</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">+ Thêm khuyến mãi mới</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.MdpMaCode)</th>
+            <th>@Html.DisplayNameFor(model => model.MdpMoTa)</th>
+            <th>@Html.DisplayNameFor(model => model.MdpGiaTri)</th>
+            <th>@Html.DisplayNameFor(model => model.MdpPhanTram)</th>
+            <th>@Html.DisplayNameFor(model => model.MdpNgayBatDau)</th>
+            <th>@Html.DisplayNameFor(model => model.MdpNgayKetThuc)</th>
+            <th>@Html.DisplayNameFor(model => model.MdpTrangThai)</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.MdpMaCode)</td>
+                <td>@Html.DisplayFor(modelItem => item.MdpMoTa)</td>
+                <td>@Html.DisplayFor(modelItem => item.MdpGiaTri)</td>
+                <td>@Html.DisplayFor(modelItem => item.MdpPhanTram)</td>
+                <td>@item.MdpNgayBatDau?.ToString("dd/MM/yyyy")</td>
+                <td>@item.MdpNgayKetThuc?.ToString("dd/MM/yyyy")</td>
+
+                <td>
+                    @{
+                        bool trangThai = false;
+                        bool.TryParse(item.MdpTrangThai, out trangThai);
+                    }
+
+                    @if (trangThai)
+                    {
+                        <span class="badge bg-success">Đang áp dụng</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Hết hạn</span>
+                    }
+
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@item.MdpKmid">Sửa</a>
+                    <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item.MdpKmid">Chi tiết</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.MdpKmid">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

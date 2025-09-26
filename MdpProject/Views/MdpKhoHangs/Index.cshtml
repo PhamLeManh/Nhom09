@@ -1,0 +1,61 @@
+﻿@model IEnumerable<MdpProject.Models.MdpKhoHang>
+
+@{
+    ViewData["Title"] = "Quản lý kho hàng";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml"; 
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-primary">📦 Danh sách kho hàng</h2>
+        <a asp-action="Create" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Thêm mới
+        </a>
+    </div>
+
+    <table class="table table-hover table-bordered shadow-sm rounded">
+        <thead class="table-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.MdpSoLuongNhap)</th>
+                <th>@Html.DisplayNameFor(model => model.MdpSoLuongTon)</th>
+                <th>@Html.DisplayNameFor(model => model.MdpNgayNhap)</th>
+                <th>Sản phẩm</th>
+                <th class="text-center">Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="5" class="text-center text-muted">📭 Chưa có dữ liệu kho hàng.</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="fw-bold">@item.MdpSoLuongNhap</td>
+                        <td>@item.MdpSoLuongTon</td>
+                        <td>@item.MdpNgayNhap?.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            @item.MdpSanPham?.MdpTenSanPham
+                        </td>
+                        <td class="text-center">
+                            <a asp-action="Edit" asp-route-id="@item.MdpKhoId" class="btn btn-sm btn-warning me-1">
+                                <i class="bi bi-pencil-square"></i> Sửa
+                            </a>
+                            <a asp-action="Details" asp-route-id="@item.MdpKhoId" class="btn btn-sm btn-info me-1 text-white">
+                                <i class="bi bi-eye"></i> Xem
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@item.MdpKhoId" class="btn btn-sm btn-danger"
+                               onclick="return confirm('Bạn có chắc muốn xóa mục kho hàng này?');">
+                                <i class="bi bi-trash"></i> Xóa
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

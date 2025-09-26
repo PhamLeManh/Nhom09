@@ -1,0 +1,112 @@
+﻿@model IEnumerable<MdpProject.Models.MdpCart>
+
+@{
+    ViewData["Title"] = "Giỏ Hàng";
+
+    var productImages = new Dictionary<int, string>
+    {
+        { 1, "https://example.com/images/laptop1.jpg" },
+        { 2, "https://example.com/images/laptop2.jpg" },
+        { 3, "https://example.com/images/phone1.jpg" }
+    };
+
+    var totalPrice = Model.Sum(x => (x.MdpSoLuong ?? 1) * (x.MdpVariant.MdpGia ?? 0));
+}
+
+<div class="container py-5">
+    <h1 class="mb-4 text-primary fw-bold">🛒 Giỏ Hàng</h1>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">Giỏ hàng của bạn đang trống.</div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                var productId = item.MdpVariant.MdpSanPham.MdpSanPhamId;
+                var imageUrl = productImages.ContainsKey(productId)
+                ? productImages[productId]
+                : "/images/default-product.png";
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm product-card">
+                        <img src="@imageUrl" class="card-img-top" style="object-fit:cover;height:220px;" alt="Ảnh sản phẩm" />
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">@item.MdpVariant.MdpSanPham.MdpTenSanPham</h5>
+                            <p class="card-text text-muted mb-2">
+                                Biến thể: <span class="fw-semibold">@item.MdpVariant.MdpMauSac?.MdpTenMau</span> - <span class="fw-semibold">@item.MdpVariant.MdpDungLuong</span><br />
+                                Số lượng: <span class="fw-semibold">@item.MdpSoLuong</span><br />
+                                Ngày thêm: @item.MdpNgayThem?.ToString("dd/MM/yyyy")
+                            </p>
+                            <h6 class="text-danger fw-bold fs-5">@((item.MdpVariant.MdpGia ?? 0).ToString("N0")) $</h6>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <form asp-action="Remove" method="post" class="d-inline">
+                                <input type="hidden" name="id" value="@item.MdpCartId" />
+                                <button class="btn btn-outline-danger btn-sm">
+                                    <i class="bi bi-trash"></i> Xóa
+                                </button>
+                            </form>
+                            <span class="fw-bold text-secondary">Tổng: @((item.MdpSoLuong ?? 1) * (item.MdpVariant.MdpGia ?? 0)) $</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="mt-4 d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <h4 class="fw-bold text-danger mb-3 mb-md-0">Tổng tiền: @totalPrice.ToString("N0") đ</h4>
+            <a asp-action="MdpCheckout" class="btn btn-success btn-lg px-4 py-2 fw-bold">
+                ✅ Thanh toán ngay
+            </a>
+        </div>
+    }
+
+    @if (ViewBag.LastOrder != null)
+    {
+        <div class="mt-5">
+            <h3 class="fw-bold text-primary">📦 Đơn hàng vừa đặt</h3>
+            <div class="table-responsive shadow-sm rounded-3">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Sản phẩm</th>
+                            <th>Biến thể</th>
+                            <th>Số lượng</th>
+                            <th>Giá</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var o in ViewBag.LastOrder)
+                        {
+                            <tr>
+                                <td>@o.ProductName</td>
+                                <td>@o.Variant</td>
+                                <td>@o.Quantity</td>
+                                <td>@(o.Price?.ToString("N0")) đ</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .product-card {
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+</style>

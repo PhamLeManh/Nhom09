@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Register";
+    Layout = null; // bỏ layout chung để full effect
+}
+
+<link rel="stylesheet" href="~/css/login.css" />
+
+<section class="auth-section">
+    <div class="auth-form signup">
+        <h2>Đăng ký tài khoản</h2>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="error">@ViewBag.Error</div>
+        }
+
+        <form asp-action="MdpRegister" method="post">
+            <div class="inputBox">
+                <input type="text" name="MdpHoTen" required />
+                <label>Họ tên</label>
+            </div>
+            <div class="inputBox">
+                <input type="text" name="MdpTenDangNhap" required />
+                <label>Tài khoản</label>
+            </div>
+            <div class="inputBox">
+                <input type="password" name="MdpMatKhau" required />
+                <label>Mật khẩu</label>
+            </div>
+            <div class="inputBox">
+                <input type="email" name="MdpEmail" required />
+                <label>Email</label>
+            </div>
+            <div class="inputBox">
+                <input type="text" name="MdpSoDienThoai" />
+                <label>Số điện thoại</label>
+            </div>
+            <div class="inputBox">
+                <input type="text" name="MdpDiaChi" />
+                <label>Địa chỉ</label>
+            </div>
+            <div class="inputBox">
+                <input type="date" name="MdpNgaySinh" />
+                <label>Ngày sinh</label>
+            </div>
+            <div class="inputBox">
+                <select name="MdpGioiTinh">
+                    <option value="">Chọn giới tính</option>
+                    <option value="Nam">Nam</option>
+                    <option value="Nữ">Nữ</option>
+                    <option value="Khác">Khác</option>
+                </select>
+                <label>Giới tính</label>
+            </div>
+            <div class="inputBox">
+                <input type="text" name="MdpAvatar" placeholder="URL avatar (tùy chọn)" />
+                <label>Avatar</label>
+            </div>
+
+            <input type="submit" value="Đăng ký" />
+        </form>
+    </div>
+</section>

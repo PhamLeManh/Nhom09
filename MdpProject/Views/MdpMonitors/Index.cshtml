@@ -1,0 +1,189 @@
+﻿@model IEnumerable<MdpProject.Models.MdpMonitor>
+
+@{
+    ViewData["Title"] = "Màn hình - Store";
+
+
+    // map MonitorId -> image URL (thay bằng URL thật hoặc file trong wwwroot)
+    var monitorImages = new Dictionary<int, string>
+    {
+        { 1, Url.Content("~/images/monitors/monitor1.jpg") },
+        { 2, Url.Content("~/images/monitors/monitor2.jpg") },
+        { 3, Url.Content("~/images/monitors/monitor3.jpg") },
+        { 4, Url.Content("~/images/monitors/monitor4.jpg") }
+        // thêm mapping ở đây
+    };
+
+    var defaultImg = Url.Content("~/images/monitors/default.png");
+
+    // deterministic price generator (stable per id)
+    Func<int, (decimal Orig, decimal Sale, int Discount)> GetPrice = id =>
+    {
+        var rnd = new Random(id);
+        var orig = rnd.Next(3_500_000, 12_000_000);
+        var discount = rnd.Next(10, 36); // 10% - 35%
+        var sale = (int)(orig * (100 - discount) / 100.0m);
+        return (Orig: orig, Sale: sale, Discount: discount);
+    };
+
+    var all = Model ?? Enumerable.Empty<MdpProject.Models.MdpMonitor>();
+    var newItems = all.OrderByDescending(p => p.MdpCreatedAt ?? DateTime.MinValue).Take(4).ToList();
+    var hotItems = all.Where(p => (p.MdpCreatedAt ?? DateTime.MinValue) >= DateTime.Now.AddDays(-60))
+                      .OrderByDescending(p => p.MdpCreatedAt ?? DateTime.MinValue).Take(4).ToList();
+    var saleItems = all.Where(p => (p.MdpMonitorId % 3) == 0).Take(4).ToList(); // ví dụ: id%3 => sale
+}
+
+<div class="container py-4">
+    <!-- Hero -->
+    <div class="p-5 mb-4 text-center rounded-4 text-white" style="background: linear-gradient(135deg,#0f1724,#1f3a6a);">
+        <h1 class="display-5 fw-bold">🖥️ Bộ sưu tập Màn hình</h1>
+        <p class="lead">Độ phân giải sắc nét • Tần số quét cao • Giá tốt — Chọn ngay mẫu phù hợp</p>
+    </div>
+
+    <!-- NEW -->
+    <section class="mb-5">
+        <div class="section-banner text-white p-3 rounded mb-3" style="background: linear-gradient(90deg,#396afc,#2948ff);">
+            <h3 class="mb-0"><i class="bi bi-bell-fill me-2"></i>✨ SẢN PHẨM MỚI</h3>
+            <small class="d-block text-white-50">Mẫu mới nhất vừa về kho</small>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            @foreach (var item in newItems)
+            {
+                var img = monitorImages.ContainsKey(item.MdpMonitorId) ? monitorImages[item.MdpMonitorId] : defaultImg;
+                var price = GetPrice(item.MdpMonitorId);
+                <div class="col">
+                    <div class="card h-100 shadow-sm product-card">
+                        <div class="position-relative">
+                            <img src="@img"
+                                 onerror="this.onerror=null;this.src='@defaultImg';"
+                                 class="card-img-top" alt="@item.MdpTenMonitor" style="height:200px;object-fit:cover;" />
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-2">NEW</span>
+                        </div>
+
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title text-truncate">@item.MdpTenMonitor</h5>
+                            <p class="text-muted small mb-2">
+                                <strong>Kích thước:</strong> @item.MdpKichThuoc<br />
+                                <strong>Độ phân giải:</strong> @item.MdpDoPhanGiai<br />
+                                <strong>Tần số quét:</strong> @item.MdpTanSoQuet Hz
+                            </p>
+
+                            <div class="mb-3">
+                                <span class="text-muted text-decoration-line-through me-2">@price.Orig.ToString("N0") ₫</span>
+                                <span class="fw-bold text-primary">@price.Sale.ToString("N0") ₫</span>
+                                <span class="badge bg-success ms-2">-@(price.Discount)%</span>
+                            </div>
+
+                            <div class="mt-auto d-flex gap-2">
+                                <a asp-action="Details" asp-route-id="@item.MdpMonitorId" class="btn btn-outline-primary btn-sm flex-fill">Chi tiết</a>
+                                <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.MdpMonitorId" class="btn btn-success btn-sm flex-fill">Mua ngay</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+    <!-- HOT -->
+    <section class="mb-5">
+        <div class="section-banner text-white p-3 rounded mb-3" style="background: linear-gradient(90deg,#ff416c,#ff4b2b);">
+            <h3 class="mb-0"><i class="bi bi-fire me-2"></i>🔥 SẢN PHẨM HOT</h3>
+            <small class="d-block text-white-50">Được nhiều khách hàng yêu thích</small>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            @foreach (var item in hotItems)
+            {
+                var img = monitorImages.ContainsKey(item.MdpMonitorId) ? monitorImages[item.MdpMonitorId] : defaultImg;
+                var price = GetPrice(item.MdpMonitorId);
+                <div class="col">
+                    <div class="card h-100 shadow-sm product-card">
+                        <div class="position-relative">
+                            <img src="@img"
+                                 onerror="this.onerror=null;this.src='@defaultImg';"
+                                 class="card-img-top" alt="@item.MdpTenMonitor" style="height:200px;object-fit:cover;" />
+                            <span class="badge bg-danger position-absolute top-0 end-0 m-2">HOT</span>
+                        </div>
+
+                        <div class="card-body d-flex flex-column text-center">
+                            <h5 class="card-title text-truncate">@item.MdpTenMonitor</h5>
+
+                            <div class="mb-3">
+                                <span class="text-muted text-decoration-line-through me-2">@price.Orig.ToString("N0") ₫</span>
+                                <span class="fw-bold text-danger">@price.Sale.ToString("N0") ₫</span>
+                                <span class="badge bg-light text-dark ms-2">-@(price.Discount)%</span>
+                            </div>
+
+                            <div class="mt-auto d-flex gap-2">
+                                <a asp-action="Details" asp-route-id="@item.MdpMonitorId" class="btn btn-outline-danger btn-sm flex-fill">Chi tiết</a>
+                                <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.MdpMonitorId" class="btn btn-success btn-sm flex-fill">Mua ngay</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+    <!-- SALE -->
+    <section class="mb-5">
+        <div class="section-banner text-white p-3 rounded mb-3" style="background: linear-gradient(90deg,#11998e,#38ef7d);">
+            <h3 class="mb-0"><i class="bi bi-tag-fill me-2"></i>🎁 KHUYẾN MÃI</h3>
+            <small class="d-block text-white-50">Ưu đãi và giảm giá chọn lọc</small>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            @foreach (var item in saleItems)
+            {
+                var img = monitorImages.ContainsKey(item.MdpMonitorId) ? monitorImages[item.MdpMonitorId] : defaultImg;
+                var price = GetPrice(item.MdpMonitorId);
+                <div class="col">
+                    <div class="card h-100 shadow-sm product-card">
+                        <div class="position-relative">
+                            <img src="@img"
+                                 onerror="this.onerror=null;this.src='@defaultImg';"
+                                 class="card-img-top" alt="@item.MdpTenMonitor" style="height:200px;object-fit:cover;" />
+                            <span class="badge bg-success position-absolute top-0 start-0 m-2">SALE</span>
+                        </div>
+
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title text-truncate">@item.MdpTenMonitor</h5>
+
+                            <div class="mb-3">
+                                <span class="text-muted text-decoration-line-through me-2">@price.Orig.ToString("N0") ₫</span>
+                                <span class="fw-bold text-success">@price.Sale.ToString("N0") ₫</span>
+                                <span class="badge bg-light text-dark ms-2">-@(price.Discount)%</span>
+                            </div>
+
+                            <div class="mt-auto d-flex gap-2">
+                                <a asp-action="Details" asp-route-id="@item.MdpMonitorId" class="btn btn-outline-success btn-sm flex-fill">Chi tiết</a>
+                                <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.MdpMonitorId" class="btn btn-success btn-sm flex-fill">Mua ngay</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+</div>
+
+<style>
+    .product-card {
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform .25s, box-shadow .25s;
+    }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 28px rgba(18,38,63,0.12);
+        }
+
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
+    }
+</style>
+

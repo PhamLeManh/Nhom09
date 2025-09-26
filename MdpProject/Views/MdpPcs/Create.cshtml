@@ -1,0 +1,72 @@
+﻿@model MdpProject.Models.MdpPc
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>MdpPc</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MdpSanPhamId" class="control-label"></label>
+                <select asp-for="MdpSanPhamId" class ="form-control" asp-items="ViewBag.MdpSanPhamId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="MdpTenPc" class="control-label"></label>
+                <input asp-for="MdpTenPc" class="form-control" />
+                <span asp-validation-for="MdpTenPc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MdpCpu" class="control-label"></label>
+                <input asp-for="MdpCpu" class="form-control" />
+                <span asp-validation-for="MdpCpu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MdpGpu" class="control-label"></label>
+                <input asp-for="MdpGpu" class="form-control" />
+                <span asp-validation-for="MdpGpu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MdpRam" class="control-label"></label>
+                <input asp-for="MdpRam" class="form-control" />
+                <span asp-validation-for="MdpRam" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MdpStorage" class="control-label"></label>
+                <input asp-for="MdpStorage" class="form-control" />
+                <span asp-validation-for="MdpStorage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MdpMainboard" class="control-label"></label>
+                <input asp-for="MdpMainboard" class="form-control" />
+                <span asp-validation-for="MdpMainboard" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MdpPsu" class="control-label"></label>
+                <input asp-for="MdpPsu" class="form-control" />
+                <span asp-validation-for="MdpPsu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MdpCaseType" class="control-label"></label>
+                <input asp-for="MdpCaseType" class="form-control" />
+                <span asp-validation-for="MdpCaseType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,36 @@
+﻿@model MdpProject.Models.MdpCart
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>MdpCart</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MdpUserId" class="control-label"></label>
+                <select asp-for="MdpUserId" class ="form-control" asp-items="ViewBag.MdpUserId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="MdpVariantId" class="control-label"></label>
+                <select asp-for="MdpVariantId" class ="form-control" asp-items="ViewBag.MdpVariantId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

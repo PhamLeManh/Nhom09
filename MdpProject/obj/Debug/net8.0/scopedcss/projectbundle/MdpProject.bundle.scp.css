@@ -1,0 +1,42 @@
+/* _content/MdpProject/Views/Shared/_MDPLayout.cshtml.rz.scp.css */
+/* Menu chính */
+.menu-custom .nav-item[b-9d7fcuifz7] {
+    margin-left: 20px;
+}
+
+    .menu-custom .nav-item:first-child[b-9d7fcuifz7] {
+        margin-left: 0;
+    }
+
+.menu-custom .nav-link[b-9d7fcuifz7] {
+    font-weight: 500;
+    font-size: 1rem;
+    color: #212529;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.3s;
+}
+
+    .menu-custom .nav-link:hover[b-9d7fcuifz7] {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+/* Dropdown hover trên desktop */
+@media (min-width: 992px) {
+    .menu-custom .dropdown:hover .dropdown-menu[b-9d7fcuifz7] {
+        display: block;
+    }
+
+    .menu-custom .dropdown-menu[b-9d7fcuifz7] {
+        margin-top: 0;
+    }
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .menu-custom .nav-item[b-9d7fcuifz7] {
+        margin-left: 0;
+        margin-bottom: 8px;
+    }
+}

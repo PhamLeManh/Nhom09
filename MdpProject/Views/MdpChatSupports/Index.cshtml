@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MdpProject.Models.MdpChatSupport>
+
+@{
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+    ViewData["Title"] = "Danh sách Chat Support";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">+ Tạo tin nhắn mới</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.MdpTinNhan)</th>
+            <th>@Html.DisplayNameFor(model => model.MdpSentAt)</th>
+            <th>@Html.DisplayNameFor(model => model.MdpFileDinhKem)</th>
+            <th>@Html.DisplayNameFor(model => model.MdpDaXem)</th>
+            <th>@Html.DisplayNameFor(model => model.MdpDonHang)</th>
+            <th>@Html.DisplayNameFor(model => model.MdpSender)</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.MdpTinNhan)</td>
+                <td>@item.MdpSentAt?.ToString("dd/MM/yyyy HH:mm")</td> <!-- Fix nullable DateTime -->
+                <td>@Html.DisplayFor(modelItem => item.MdpFileDinhKem)</td>
+                <td>@Html.DisplayFor(modelItem => item.MdpDaXem)</td>
+                <td>@item.MdpDonHang?.MdpDonHangId</td> <!-- Tránh null -->
+                <td>@item.MdpSender?.MdpUserId</td>      <!-- Tránh null -->
+                <td>
+                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@item.MdpChatId">Sửa</a>
+                    <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item.MdpChatId">Chi tiết</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.MdpChatId">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

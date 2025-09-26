@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Đăng nhập";
+    Layout = null;
+}
+
+<link rel="stylesheet" href="~/css/login.css" />
+
+<section class="auth-section">
+    <div class="auth-form signin">
+        <h2>Đăng nhập</h2>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="error">@ViewBag.Error</div>
+        }
+
+        <form asp-action="MdpLogin" method="post">
+            <div class="inputBox">
+                <input type="text" name="username" required />
+                <label>Tài khoản</label>
+            </div>
+            <div class="inputBox">
+                <input type="password" name="password" required />
+                <label>Mật khẩu</label>
+            </div>
+            <div class="links">
+                <a asp-action="MdpRegister">Đăng ký</a>
+            </div>
+            <input type="submit" value="Đăng nhập" />
+        </form>
+    </div>
+</section>

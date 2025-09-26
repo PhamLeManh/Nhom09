@@ -1,0 +1,377 @@
+﻿    @{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<!-- Hero Slider -->
+<div id="heroCarousel" class="carousel slide mb-5" data-bs-ride="carousel" data-bs-interval="1600">
+    <div class="carousel-inner">
+        <div class="carousel-item active position-relative">
+            <img src="https://dlcdnwebimgs.asus.com/gain/97BA7948-D027-4342-896E-5D2456336FD0"
+                 class="d-block w-100 hero-img" alt="Slide 1">
+            <div class="carousel-caption d-none d-md-block caption-blur">
+                <h1>Laptop Gaming MDP</h1>
+                <p>Công nghệ mạnh mẽ, trải nghiệm đỉnh cao</p>
+                <a class="btn btn-warning btn-lg" href="/MdpLaptops/Index">Mua ngay</a>
+            </div>
+        </div>
+        <div class="carousel-item position-relative">
+            <img src="https://happyphone.vn/template/assets/images/ldp-iphone17/banner_top_iphone_17.png" class="d-block w-100 hero-img" alt="Slide 2">
+            <div class="carousel-caption d-none d-md-block caption-blur">
+                <h1>Iphone17</h1>
+                <p>Hiệu năng cực nhanh, thiết kế sang trọng</p>
+                <a class="btn btn-warning btn-lg" href="/MdpPhones/Index">Xem chi tiết</a>
+            </div>
+        </div>
+        <div class="carousel-item position-relative">
+            <img src="https://file.hstatic.net/200000053304/article/file_psd_banner_fb__6000018b277c40ec82da58cedf0ee4ea.png" class="d-block w-100 hero-img" alt="Slide 3">
+            <div class="carousel-caption d-none d-md-block caption-blur">
+                <h1>PC Gaming</h1>
+                <p>Hiệu năng cực nhanh, thiết kế sang trọng</p>
+                <a class="btn btn-warning btn-lg" href="/MdpPcs/Index">Xem chi tiết</a>
+            </div>
+        </div>
+        <div class="carousel-item position-relative">
+            <img src="https://i.ytimg.com/vi/eaRk04JievI/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLC_T5I7mCexj6_yG8A4O51gekSGIQ" alt="Slide 2">
+            <div class="carousel-caption d-none d-md-block caption-blur">
+                <h1>Màn Hình BenQ</h1>
+                <p>Hiệu năng cực nhanh, thiết kế sang trọng</p>
+                <a class="btn btn-warning btn-lg" href="/MdpMonitors/Index">Xem chi tiết</a>
+            </div>
+        </div>
+        <div class="carousel-item position-relative">
+            <img src="https://cdn.shopify.com/s/files/1/0463/2539/9719/files/Asus_blog.jpg?v=1736414706" alt="Slide 2">
+            <div class="carousel-caption d-none d-md-block caption-blur">
+                <h1>RTX Super 6077RX</h1>
+                <p>Hiệu năng cực nhanh, thiết kế sang trọng</p>
+                <a class="btn btn-warning btn-lg" href="/MdpLinhkiens/Index">Xem chi tiết</a>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+
+<style>
+    /* Slide full width */
+    #heroCarousel {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .hero-img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+    }
+
+    /* Caption nền mờ mờ */
+    .caption-blur {
+        background: rgba(0, 0, 0, 0.4); /* đen trong suốt */
+        backdrop-filter: blur(4px); /* mờ nhẹ */
+        padding: 20px;
+        border-radius: 12px;
+        color: #fff;
+    }
+
+    /* Banner title */
+    .banner-title {
+        display: inline-block;
+        padding: 12px 30px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #fff;
+        border-radius: 30px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    .section-categories .banner-title {
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+    }
+
+    .section-featured .banner-title {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+    }
+
+    .section-promo .banner-title {
+        background: linear-gradient(135deg, #f7971e, #ffd200);
+        color: #333;
+    }
+
+    .section-bestseller .banner-title {
+        background: linear-gradient(135deg, #11998e, #38ef7d);
+    }
+
+    .section-news .banner-title {
+        background: linear-gradient(135deg, #007bff, #00c6ff);
+    }
+</style>
+
+<!-- Danh mục nổi bật -->
+<section class="container py-5">
+    <h2 class="text-center mb-4 fw-bold">Danh mục nổi bật</h2>
+    <div class="row text-center g-4">
+        <!-- Laptop -->
+        <div class="col-6 col-md-3 col-lg-2">
+            <div class="p-3 shadow-sm rounded bg-white">
+                <i class="fas fa-laptop fa-2x text-primary mb-2"></i>
+                <p class="mb-0">Laptop</p>
+            </div>
+        </div>
+
+        <!-- PC -->
+        <div class="col-6 col-md-3 col-lg-2">
+            <div class="p-3 shadow-sm rounded bg-white">
+                <i class="fas fa-desktop fa-2x text-success mb-2"></i>
+                <p class="mb-0">PC</p>
+            </div>
+        </div>
+
+        <!-- Màn hình -->
+        <div class="col-6 col-md-3 col-lg-2">
+            <div class="p-3 shadow-sm rounded bg-white">
+                <i class="fas fa-tv fa-2x text-danger mb-2"></i>
+                <p class="mb-0">Màn hình</p>
+            </div>
+        </div>
+
+        <!-- Mainboard -->
+        <div class="col-6 col-md-3 col-lg-2">
+            <div class="p-3 shadow-sm rounded bg-white">
+                <i class="fas fa-microchip fa-2x text-warning mb-2"></i>
+                <p class="mb-0">Mainboard</p>
+            </div>
+        </div>
+
+        <!-- CPU -->
+        <div class="col-6 col-md-3 col-lg-2">
+            <div class="p-3 shadow-sm rounded bg-white">
+                <i class="fas fa-memory fa-2x text-info mb-2"></i>
+                <p class="mb-0">CPU</p>
+            </div>
+        </div>
+
+        <!-- VGA -->
+        <div class="col-6 col-md-3 col-lg-2">
+            <div class="p-3 shadow-sm rounded bg-white">
+                <i class="fas fa-project-diagram fa-2x text-secondary mb-2"></i>
+                <p class="mb-0">VGA</p>
+            </div>
+        </div>
+
+        <!-- Điện thoại -->
+        <div class="col-6 col-md-3 col-lg-2">
+            <div class="p-3 shadow-sm rounded bg-white">
+                <i class="fas fa-mobile-alt fa-2x text-pink mb-2"></i>
+                <p class="mb-0">Điện thoại</p>
+            </div>
+        </div>
+
+
+
+        <!-- Máy ảnh -->
+        <div class="col-6 col-md-3 col-lg-2">
+            <div class="p-3 shadow-sm rounded bg-white">
+                <i class="fas fa-camera-retro fa-2x text-dark mb-2"></i>
+                <p class="mb-0">Máy ảnh</p>
+            </div>
+        </div>
+
+        <!-- Chuột -->
+        <div class="col-6 col-md-3 col-lg-2">
+            <div class="p-3 shadow-sm rounded bg-white">
+                <i class="fas fa-mouse fa-2x text-purple mb-2"></i>
+                <p class="mb-0">Chuột</p>
+            </div>
+        </div>
+
+        <!-- Loa -->
+        <div class="col-6 col-md-3 col-lg-2">
+            <div class="p-3 shadow-sm rounded bg-white">
+                <i class="fas fa-volume-up fa-2x text-warning mb-2"></i>
+                <p class="mb-0">Loa</p>
+            </div>
+        </div>
+
+
+        <!-- Phụ kiện -->
+        <div class="col-6 col-md-3 col-lg-2">
+            <div class="p-3 shadow-sm rounded bg-white">
+                <i class="fas fa-headphones fa-2x text-info mb-2"></i>
+                <p class="mb-0">Phụ kiện</p>
+            </div>
+        </div>
+
+        <!-- SSD -->
+        <div class="col-6 col-md-3 col-lg-2">
+            <div class="p-3 shadow-sm rounded bg-white">
+                <i class="fas fa-hdd fa-2x text-success mb-2"></i>
+                <p class="mb-0">SSD</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+
+
+@{
+    // Ảnh sản phẩm nổi bật (URL)
+    var featuredImages = new[] {
+        "https://file.hstatic.net/200000722513/file/gearvn-ban-phim-logitech-3_ed574b5323274d6ba27b9a22e6ce7946_1024x1024.png",
+        "https://cdn.tgdd.vn/hoi-dap/1268895/tai-nghe-logitech-cua-nuoc-nao-co-tot-khong%2014-800x533.jpg",
+        "https://product.hstatic.net/200000637319/product/image_-_2025-02-26t150857.446_0d23624a52f74d6fbb6eed0a0e977b94_master.png",
+        "https://vatvostudio.vn/wp-content/uploads/2022/07/DANH-GIA-ROG-Strix-SCAR-17-SE-Special-Edition-RA-MAT-11.jpg",
+        "https://www.duchuymobile.com/images/companies/1/1-tin-moi/2025/10-9/2/mau-sac-iphone-17-pro-max.jpg"
+    };
+     
+ 
+
+    // Ảnh sản phẩm khuyến mãi (URL)
+    var promoImages = new[] {
+        "https://cohotech.vn/wp-content/uploads/2025/06/Screenshot-2025-06-28-103130-01.jpg",
+        "https://vn-test-11.slatic.net/p/d7e55992b4c5247d8778672eb7f788c4.jpg",
+        "https://img.freepik.com/premium-photo/mechanical-keyboard-with-word-gaming-illuminated-keys-gamer-keyboard-banner_162490-13.jpg",
+        "https://www.nvidia.com/content/nvidiaGDC/vn/vi_VN/geforce/laptops/_jcr_content/root/responsivegrid/nv_container/nv_container/nv_teaser.coreimg.100.1070.jpeg/1737970955598/nvidia-geforce-rtx-50-series-laptop-ari.jpeg",
+        "https://pcngon.vn/wp-content/uploads/2025/05/Card-man-hinh-MSI-GeForce-RTX-5090-32G-VANGUARD-SOC-1.jpg"
+    };
+
+    // Ảnh sản phẩm bán chạy (URL)
+    var bestsellerImages = new[] {
+        "https://storage.googleapis.com/teko-gae.appspot.com/media/image/2024/3/27/613a4f53-8880-4e30-acbd-c7381ba2f731/image.png",
+        "https://file.hstatic.net/200000722513/file/8-gearvn-pc-gvn-rtx-5050-t8.png",
+        "https://sony.scene7.com/is/image/sonyglobalsolutions/Mobile_ZV-1F?$productIntroPlatemobile$&fmt=png-alpha",
+        "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQA5XhCY75b3-DFa_QNGsLVoqCMHK2bFFODNGi0RyqCNRb_4IqsPHbaodpu7tDY8OOcCpVBscQrD6r0LU441ccrh6G6hRNsJmroTVAGnegP3E87FzN96nzr&usqp=CAc",
+        "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTdlelegD__zKwXrl2g31u98Q9tel6-I55Ed2W4ERyygp80jD0C-LNRR1C368RG7dGoCvHIfgvBVMIzwQl43mAVmJPkTGrh9qXPUxXdd4z-ic3kjtcnSqShmUHDhYT2BY9tPIjZrs8&usqp=CAc"
+    };
+}
+
+<!-- Sản phẩm nổi bật -->
+<section class="section-featured py-5">
+    <div class="container">
+        <h2 class="banner-title text-center">SẢN PHẨM NỔI BẬT</h2>
+        <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 g-4 mt-4">
+            @for (int i = 0; i < featuredImages.Length; i++)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm d-flex flex-column">
+                        <img src="@featuredImages[i]" class="card-img-top" alt="Sản phẩm @(i+1)">
+                        <div class="card-body d-flex flex-column">
+                            <h6 class="card-title">Sản phẩm @(i + 1)</h6>
+                            <p class="card-text fw-bold">@(((i + 1) * 8500000).ToString("N0"))₫</p>
+                            <a href="/MdpLaptops/Index/@(i+1)" class="btn btn-light mt-auto w-100">Thêm vào giỏ</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Khuyến mãi -->
+<section class="section-promo py-5">
+    <div class="container">
+        <h2 class="banner-title text-center">KHUYẾN MÃI HOT</h2>
+        <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 g-4 mt-4">
+            @for (int i = 0; i < promoImages.Length; i++)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm d-flex flex-column">
+                        <img src="@promoImages[i]" class="card-img-top" alt="Khuyến mãi @(i+1)">
+                        <div class="card-body d-flex flex-column">
+                            <h6 class="card-title">Sản phẩm KM @(i + 1)</h6>
+                            <p class="card-text text-decoration-line-through text-muted">@(((i + 1) * 8500000).ToString("N0"))₫</p>
+                            <p class="card-text text-warning fw-bold">@(((i + 1) * 6500000).ToString("N0"))₫</p>
+                            <a href="/MdpPhones/Index/@(i+1)" class="btn btn-warning mt-auto w-100">Mua ngay</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Bán chạy -->
+<section class="section-bestseller py-5">
+    <div class="container">
+        <h2 class="banner-title text-center">SẢN PHẨM BÁN CHẠY</h2>
+        <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 g-4 mt-4">
+            @for (int i = 0; i < bestsellerImages.Length; i++)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm d-flex flex-column">
+                        <img src="@bestsellerImages[i]" class="card-img-top" alt="Bán chạy @(i+1)">
+                        <div class="card-body d-flex flex-column">
+                            <h6 class="card-title">Sản phẩm BC @(i + 1)</h6>
+                            <p class="card-text fw-bold">@(((i + 1) * 7500000).ToString("N0"))₫</p>
+                            <a href="/MdpPcs/Index/@(i+1)" class="btn btn-light mt-auto w-100">Thêm vào giỏ</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Tin tức -->
+<section class="section-news py-5">
+    <div class="container">
+        <h2 class="banner-title text-center">TIN TỨC & CÔNG NGHỆ</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+
+            <!-- Bài viết 1 -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="https://cdn.tgdd.vn/2023/11/content/image--9--800x450.jpg"
+                         class="card-img-top" alt="Nhà Vô Địch 2025 ư ?">
+                    <div class="card-body">
+                        <h6 class="card-title">Đội tuyển T1 Bất Bại ?</h6>
+                        <p class="card-text">Chuỗi Thắng vòng loại và tuyển thủ Faker phá vỡ mọi giới hạn và thành tích thi đấu chưa từng có ?.</p>
+                        <a href="https://www.t1.gg/" target="_blank" class="btn btn-outline-primary">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bài viết 2 -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="https://www.apple.com/v/iphone-17-pro/a/images/overview/welcome/hero__bdntboqignj6_xlarge.jpg"
+                         class="card-img-top" alt="Iphone 17">
+                    <div class="card-body">
+                        <h6 class="card-title">Iphone17</h6>
+                        <p class="card-text">Iphone 17 đã được ra mắt tại 2025 thông tin chi tiết tại đường dẫn và mua tại store hoặc book tại web.</p>
+                        <a href="https://www.samsung.com/vn/smartphones/galaxy-z-fold5/" target="_blank" class="btn btn-outline-primary">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bài viết 3 -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="https://i.ytimg.com/vi/rBFXrdO4gY4/maxresdefault.jpg"
+                         class="card-img-top" alt="CS2 Big Update ?">
+                    <div class="card-body">
+                        <h6 class="card-title">Cs2 big update là khắc phục hãy là thảm họa</h6>
+                        <p class="card-text">Hàng loạt những chỉnh sửa và update mới bao gồm những collection vũ khí và trang vũ khí mới tìm hiểu tại link.</p>
+                        <a href="https://www.thegioididong.com/tin-tuc/top-laptop-gaming" target="_blank" class="btn btn-outline-primary">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+

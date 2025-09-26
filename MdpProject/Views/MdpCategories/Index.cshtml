@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MdpProject.Models.MdpCategory>
+
+@{
+    ViewData["Title"] = "Quản lý danh mục";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml"; // hoặc _AdminLayout nếu bạn có
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-primary">📂 Danh sách danh mục</h2>
+        <a asp-action="Create" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Thêm mới
+        </a>
+    </div>
+
+    <table class="table table-hover table-bordered shadow-sm rounded">
+        <thead class="table-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.MdpTenDanhMuc)</th>
+                <th>@Html.DisplayNameFor(model => model.MdpMoTa)</th>
+                <th>@Html.DisplayNameFor(model => model.MdpAnhDanhMuc)</th>
+                <th>@Html.DisplayNameFor(model => model.MdpCreatedAt)</th>
+                <th class="text-center">Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="5" class="text-center text-muted">Không có danh mục nào.</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.MdpTenDanhMuc</td>
+                        <td>@item.MdpMoTa</td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.MdpAnhDanhMuc))
+                            {
+                                <img src="@item.MdpAnhDanhMuc" alt="Ảnh" style="width:80px; height:60px; object-fit:cover; border-radius:6px;" />
+                            }
+                            else
+                            {
+                                <span class="text-muted">Chưa có ảnh</span>
+                            }
+                        </td>
+                        <td>@item.MdpCreatedAt?.ToString("dd/MM/yyyy")</td>
+                        <td class="text-center">
+                            <a asp-action="Edit" asp-route-id="@item.MdpCategoryId" class="btn btn-sm btn-warning me-1">
+                                <i class="bi bi-pencil-square"></i> Sửa
+                            </a>
+                            <a asp-action="Details" asp-route-id="@item.MdpCategoryId" class="btn btn-sm btn-info me-1 text-white">
+                                <i class="bi bi-eye"></i> Xem
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@item.MdpCategoryId" class="btn btn-sm btn-danger"
+                               onclick="return confirm('Bạn có chắc muốn xóa danh mục này?');">
+                                <i class="bi bi-trash"></i> Xóa
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

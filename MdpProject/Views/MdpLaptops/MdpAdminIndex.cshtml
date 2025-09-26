@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MdpProject.Models.MdpLaptop>
+@{
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+    ViewData["Title"] = "Quản lý Laptop";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<!-- Hiển thị thông báo -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<p>
+    <a class="btn btn-success" asp-action="Create">Thêm Laptop mới</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên Laptop</th>
+            <th>Loại Sản Phẩm</th>
+            <th>CPU</th>
+            <th>RAM</th>
+            <th>Storage</th>
+            <th>GPU</th>
+            <th>Màn hình</th>
+            <th>Pin</th>
+            <th>HĐH</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var laptop in Model)
+        {
+            <tr>
+                <td>@laptop.MdpLaptopId</td>
+                <td>@laptop.MdpTenLaptop</td>
+                <td>@(laptop.MdpSanPham != null ? laptop.MdpSanPham.MdpTenSanPham : "Chưa phân loại")</td>
+                <td>@laptop.MdpCpu</td>
+                <td>@laptop.MdpRam</td>
+                <td>@laptop.MdpStorage</td>
+                <td>@laptop.MdpGpu</td>
+                <td>@laptop.MdpManHinh</td>
+                <td>@laptop.MdpPin</td>
+                <td>@laptop.MdpHeDieuHanh</td>
+                <td>
+                    <a class="btn btn-sm btn-primary me-1" asp-action="Edit" asp-route-id="@laptop.MdpLaptopId">Sửa</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@laptop.MdpLaptopId">Xóa</a>
+                </td>
+            </tr>
+        }
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+        }
+
+    </tbody>
+</table>

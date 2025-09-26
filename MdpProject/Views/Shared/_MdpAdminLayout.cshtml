@@ -1,0 +1,126 @@
+﻿@using Microsoft.AspNetCore.Http
+@{
+    Layout = null;
+    var username = Context.Session.GetString("username") ?? "Admin";
+    var role = Context.Session.GetString("role") ?? "Admin";
+    var avatar = Context.Session.GetString("avatar") ?? "https://via.placeholder.com/50";
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .sidebar {
+            height: 100vh;
+            width: 220px;
+            background-color: #343a40;
+            color: #fff;
+            position: fixed;
+            overflow-y: auto;
+        }
+
+            .sidebar a {
+                color: #fff;
+                text-decoration: none;
+                display: block;
+                padding: 8px 12px;
+                border-radius: 4px;
+            }
+
+                .sidebar a:hover {
+                    background-color: #495057;
+                }
+
+            .sidebar .collapse a {
+                padding-left: 24px;
+            }
+
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+
+        .card-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div class="sidebar p-3">
+            <h4 class="text-center mb-4">MDP Admin</h4>
+            <div class="text-center mb-3">
+                <img src="@avatar" class="card-avatar mb-1" />
+                <div>@username (@role)</div>
+            </div>
+
+            <a href="@Url.Action("Index", "MDPHome")"><i class="bi bi-house-door"></i> Trang chủ</a>
+            <hr class="border-secondary" />
+
+            <a href="@Url.Action("MdpAdminIndex", "MdpUsers")"><i class="bi bi-people-fill"></i> Users</a>
+            <a href="@Url.Action("Index", "MdpCategories")"><i class="bi bi-list-ul"></i> Categories</a>
+
+            <a data-bs-toggle="collapse" href="#productsMenu" class="mb-1">
+                <i class="bi bi-box-seam"></i> Products <i class="bi bi-caret-down-fill float-end"></i>
+            </a>
+            <div class="collapse ps-3 mb-2" id="productsMenu">
+                <a href="@Url.Action("Index", "MdpSanPhams")">SanPham</a>
+                <a href="@Url.Action("MdpAdminIndex", "MdpLaptops")">Laptop</a>
+                <a href="@Url.Action("Index", "MdpPhones")">Phone</a>
+                <a href="@Url.Action("Index", "MdpPCs")">PC</a>
+                <a href="@Url.Action("Index", "MdpMonitors")">Monitor</a>
+                <a href="@Url.Action("Index", "MdpCameras")">Camera</a>
+                <a href="@Url.Action("Index", "MdpMice")">Mouse</a>
+                <a href="@Url.Action("Index", "MdpLinhKiens")">Linh Kiện</a>
+                <a href="@Url.Action("Index", "MdpMauSac")">Màu Sắc</a>
+                <a href="@Url.Action("Index", "MdpProductVariant")">Variant</a>
+            </div>
+
+            <a href="@Url.Action("Index", "MdpKhoHangs")"><i class="bi bi-archive-fill"></i> Kho Hàng</a>
+            <a href="@Url.Action("Index", "MdpKhuyenMais")"><i class="bi bi-tag-fill"></i> Khuyến Mãi</a>
+
+            <a data-bs-toggle="collapse" href="#ordersMenu" class="mb-1">
+                <i class="bi bi-basket-fill"></i> Orders & Invoices <i class="bi bi-caret-down-fill float-end"></i>
+            </a>
+            <div class="collapse ps-3 mb-2" id="ordersMenu">
+                <a href="@Url.Action("Index", "MdpDonHangs")">Đơn Hàng</a>
+                <a href="@Url.Action("Index", "MdpChiTietDonHangs")">Chi Tiết Đơn Hàng</a>
+                <a href="@Url.Action("Index", "MdpHoaDons")">Hóa Đơn</a>
+                <a href="@Url.Action("Index", "MdpChiTietHoaDons")">Chi Tiết Hóa Đơn</a>
+            </div>
+
+            <a href="@Url.Action("Index", "MdpCarts")"><i class="bi bi-cart-fill"></i> Cart</a>
+            <a href="@Url.Action("Index", "MdpReviews")"><i class="bi bi-chat-dots-fill"></i> Reviews</a>
+            <a href="@Url.Action("Index", "MdpChatSupports")"><i class="bi bi-chat-text-fill"></i> Chat Support</a>
+            <a href="@Url.Action("Index", "MdpDoanhThuSanPham")"><i class="bi bi-bar-chart-fill"></i> Doanh Thu</a>
+
+            <hr class="border-secondary" />
+            <a href="@Url.Action("MdpLogout", "MdpUsers")"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content flex-fill p-4">
+            @RenderBody()
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false) <!-- Đây đã fix lỗi InvalidOperationException -->
+</body>
+</html>

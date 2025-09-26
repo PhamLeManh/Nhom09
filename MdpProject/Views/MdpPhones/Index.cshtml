@@ -1,0 +1,172 @@
+﻿@model IEnumerable<MdpProject.Models.MdpPhone>
+@{
+    ViewData["Title"] = "Điện thoại Store";
+}
+
+<div class="container py-4">
+
+    <!-- Banner -->
+    <div class="p-5 mb-5 text-center rounded-4" style="background: linear-gradient(to right, #6a11cb, #2575fc); color: white;">
+        <h1 class="display-5 fw-bold">📱 Phone Store</h1>
+        <p class="lead">Tìm kiếm, so sánh và lựa chọn chiếc điện thoại phù hợp với bạn</p>
+    </div>
+
+    <!-- Bộ lọc -->
+    <div class="card shadow-sm mb-5 p-4">
+        <h4 class="mb-3 fw-bold text-center text-primary">🔎 Bộ lọc điện thoại</h4>
+        <form method="get" class="row g-3 align-items-end justify-content-center">
+            <div class="col-12 col-md-3">
+                <label class="form-label fw-semibold">RAM</label>
+                <select class="form-select form-select-sm" name="ram">
+                    <option value="">-- Tất cả --</option>
+                    @foreach (var ram in Model.Where(x => x.MdpRam != null).Select(x => x.MdpRam).Distinct())
+                    {
+                        <option value="@ram">@ram</option>
+                    }
+                </select>
+            </div>
+            <div class="col-12 col-md-3">
+                <label class="form-label fw-semibold">Bộ nhớ</label>
+                <select class="form-select form-select-sm" name="storage">
+                    <option value="">-- Tất cả --</option>
+                    @foreach (var st in Model.Where(x => x.MdpStorage != null).Select(x => x.MdpStorage).Distinct())
+                    {
+                        <option value="@st">@st</option>
+                    }
+                </select>
+            </div>
+            <div class="col-12 col-md-3">
+                <label class="form-label fw-semibold">Chipset</label>
+                <select class="form-select form-select-sm" name="chipset">
+                    <option value="">-- Tất cả --</option>
+                    @foreach (var chip in Model.Where(x => x.MdpChipset != null).Select(x => x.MdpChipset).Distinct())
+                    {
+                        <option value="@chip">@chip</option>
+                    }
+                </select>
+            </div>
+            <div class="col-12 col-md-2 d-grid">
+                <button type="submit" class="btn btn-primary btn-sm fw-bold py-2">
+                    <i class="bi bi-funnel-fill me-1"></i> Lọc
+                </button>
+            </div>
+        </form>
+    </div>
+
+
+    <!-- Danh sách điện thoại -->
+    <h3 class="mb-4">📱 Danh sách điện thoại</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0 hover-card">
+                    <img src="~/images/phones/default.png" class="card-img-top" style="height:200px; object-fit:contain;" />
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title text-truncate">@item.MdpTenPhone</h5>
+
+                        @* Thông số kỹ thuật *@
+                        <div class="text-muted small mb-3">
+                            @if(!string.IsNullOrEmpty(item.MdpManHinh))
+                            {
+                                <div>Màn hình: @item.MdpManHinh</div>
+                            }
+                            @if(!string.IsNullOrEmpty(item.MdpCamera))
+                            {
+                                <div>Camera: @item.MdpCamera</div>
+                            }
+                            @if(!string.IsNullOrEmpty(item.MdpRam) || !string.IsNullOrEmpty(item.MdpStorage))
+                            {
+                                <div>RAM: @item.MdpRam | ROM: @item.MdpStorage</div>
+                            }
+                            @if(!string.IsNullOrEmpty(item.MdpChipset))
+                            {
+                                <div>Chipset: @item.MdpChipset</div>
+                            }
+                            @if(!string.IsNullOrEmpty(item.MdpPin))
+                            {
+                                <div>Pin: @item.MdpPin</div>
+                            }
+                            @if(!string.IsNullOrEmpty(item.MdpHeDieuHanh))
+                            {
+                                <div>HĐH: @item.MdpHeDieuHanh</div>
+                            }
+                        </div>
+
+                        <div class="mt-auto d-flex justify-content-between">
+                            <a asp-action="Details" asp-route-id="@item.MdpPhoneId"
+                               class="btn btn-outline-primary btn-sm flex-fill me-2">Xem chi tiết</a>
+
+                            <a href="@Url.Action("Index", "MdpProductVariants", new { sanPhamId = item.MdpSanPhamId })"
+                               class="btn btn-success btn-sm">Mua</a>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- HOT Section -->
+    <div class="p-3 mb-4 text-center text-white rounded-3" style="background-color:#ff4d4d;">
+        <h3 class="fw-bold">🔥 Điện thoại HOT</h3>
+    </div>
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        @foreach (var hot in Model.OrderByDescending(p => p.MdpCreatedAt).Take(4))
+        {
+            <div class="col">
+                <div class="card h-100 border-danger shadow hover-card position-relative">
+                    <span class="badge bg-danger position-absolute top-0 end-0 m-2">HOT</span>
+                    <img src="https://via.placeholder.com/180x180?text=HOT" class="card-img-top" style="height:180px;object-fit:contain" />
+                    <div class="card-body text-center">
+                        <h6 class="card-title">@hot.MdpTenPhone</h6>
+                        <p class="small text-muted">RAM: @hot.MdpRam</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- SALE Section -->
+    <div class="p-3 mb-4 text-center text-dark rounded-3" style="background-color:#ffd700;">
+        <h3 class="fw-bold">🎁 Khuyến mãi</h3>
+    </div>
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        @foreach (var km in Model.Take(4))
+        {
+            <div class="col">
+                <div class="card h-100 border-success shadow hover-card position-relative">
+                    <span class="badge bg-success position-absolute top-0 start-0 m-2">SALE</span>
+                    <img src="https://via.placeholder.com/180x180?text=SALE" class="card-img-top" style="height:180px;object-fit:contain" />
+                    <div class="card-body text-center">
+                        <h6 class="card-title">@km.MdpTenPhone</h6>
+                        <p class="fw-bold text-danger mb-0">Giá khuyến mãi - Liên hệ</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+
+<style>
+.hover-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+    .btn-success:hover {
+        background: linear-gradient(45deg,#28a745,#20c997) !important;
+        border-color: transparent !important;
+    }
+
+    .btn-outline-primary:hover {
+        background: linear-gradient(45deg,#6a11cb,#2575fc) !important;
+        color: #fff !important;
+        border-color: transparent !important;
+    }
+
+</style>

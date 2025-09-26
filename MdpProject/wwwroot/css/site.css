@@ -1,0 +1,99 @@
+﻿/* =================== BASE =================== */
+body {
+    background-color: #eaeaea; /* nền xám nhẹ */
+    color: #212529;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Khung chính */
+.main-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 0 25px rgba(0,0,0,0.2);
+}
+
+/* =================== CAROUSEL =================== */
+#heroCarousel img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+
+/* =================== Banner Titles =================== */
+.banner-title {
+    display: inline-block;
+    padding: 12px 30px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* Màu riêng từng section */
+.section-categories .banner-title {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+}
+
+.section-featured .banner-title {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.section-promo .banner-title {
+    background: linear-gradient(135deg, #f7971e, #ffd200);
+    color: #333;
+}
+
+.section-bestseller .banner-title {
+    background: linear-gradient(135deg, #11998e, #38ef7d);
+}
+
+.section-news .banner-title {
+    background: linear-gradient(135deg, #007bff, #00c6ff);
+}
+
+/* =================== CARDS =================== */
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .card img {
+        height: 180px;
+        object-fit: cover;
+    }
+
+.card-body {
+    background: transparent;
+    color: #212529;
+}
+
+.card-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* =================== BUTTONS =================== */
+.btn {
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+    .btn:hover {
+        transform: scale(1.05);
+    }

@@ -1,0 +1,81 @@
+﻿@model IEnumerable<MdpProject.Models.MdpProductVariant>
+@{
+    ViewData["Title"] = "Chi tiết sản phẩm";
+    var product = Model.FirstOrDefault()?.MdpSanPham; // Lấy sản phẩm cha
+}
+
+<div class="container py-5">
+    <div class="row g-4">
+        <!-- Hình ảnh sản phẩm -->
+        <div class="col-md-5 text-center">
+            <div class="card shadow-sm p-3">
+                <img src="@(!string.IsNullOrEmpty(Model.FirstOrDefault()?.MdpAnh) ? Model.FirstOrDefault()?.MdpAnh : Url.Content("~/images/default.png"))"
+                     class="img-fluid rounded"
+                     style="max-height:350px; object-fit:contain;" />
+            </div>
+        </div>
+
+        <!-- Thông tin sản phẩm -->
+        <div class="col-md-7">
+            <h2 class="fw-bold text-dark">@product?.MdpTenSanPham</h2>
+            <p class="text-muted">Mã sản phẩm: <span class="fw-semibold">@product?.MdpSanPhamId</span></p>
+            <p class="text-muted">Ngày cập nhật: @product?.MdpUpdatedAt?.ToString("dd/MM/yyyy")</p>
+
+            <div class="border rounded p-3 bg-light mb-3">
+                <form asp-controller="MdpCarts" asp-action="AddToCart" method="post">
+                    <label class="form-label fw-semibold">Chọn biến thể</label>
+                    <div class="input-group mb-3">
+                        <select class="form-select" name="variantId">
+                            @foreach (var v in Model)
+                            {
+                                <option value="@v.MdpVariantId">
+                                    @v.MdpMauSac?.MdpTenMau - @v.MdpDungLuong - @v.MdpGia?.ToString("C0")
+                                </option>
+                            }
+                        </select>
+                        <button type="submit" class="btn btn-success px-4">🛒 Thêm giỏ</button>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="mb-3">
+                <h5 class="fw-bold">Thông tin sản phẩm</h5>
+                <ul class="list-unstyled">
+                    <li><strong>Trạng thái:</strong> <span class="badge bg-success">Còn hàng</span></li>
+                    <li><strong>Bảo hành:</strong> 12 tháng</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Danh sách biến thể -->
+    <div class="mt-5">
+        <h4 class="fw-bold mb-3">Các mẫu mã khác</h4>
+        <div class="row g-4">
+            @foreach (var v in Model)
+            {
+                <div class="col-md-3 col-sm-6">
+                    <div class="card shadow-sm h-100 border-0 hover-shadow">
+                        <img src="@(!string.IsNullOrEmpty(v.MdpAnh) ? v.MdpAnh : Url.Content("~/images/default.png"))"
+                             class="card-img-top p-3 rounded"
+                             style="height:180px; object-fit:contain;" />
+                        <div class="card-body text-center">
+                            <p class="mb-1 fw-semibold">@v.MdpMauSac?.MdpTenMau</p>
+                            <p class="mb-1">Dung lượng: @v.MdpDungLuong</p>
+                            <p class="fw-bold text-danger">@v.MdpGia?.ToString("C0")</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    .hover-shadow:hover {
+        box-shadow: 0 6px 16px rgba(0,0,0,0.15) !important;
+        transform: translateY(-3px);
+        transition: all 0.3s ease-in-out;
+    }
+</style>

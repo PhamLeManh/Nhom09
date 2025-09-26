@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MdpProject.Models.MdpUser>
+@{
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+    ViewData["Title"] = "Users";
+}
+
+<h3>@ViewData["Title"]</h3>
+<a href="@Url.Action("Create", "MdpUsers")" class="btn btn-success mb-3">
+    <i class="bi bi-plus-circle"></i> Thêm User
+</a>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+<div class="table-responsive">
+    <table class="table table-hover align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Avatar</th>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Họ Tên</th>
+                <th>Email</th>
+                <th>SĐT</th>
+                <th>Địa Chỉ</th>
+                <th>Role</th>
+                <th>Ngày Sinh</th>
+                <th>Giới Tính</th>
+                <th>Ngày Tạo</th>
+                <th>Ngày Cập Nhật</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="@(!string.IsNullOrEmpty(user.MdpAvatar) ? user.MdpAvatar : "https://via.placeholder.com/50")"
+                             class="card-avatar" />
+                    </td>
+                    <td>@user.MdpUserId</td>
+                    <td>@user.MdpTenDangNhap</td>
+                    <td>@user.MdpHoTen</td>
+                    <td>@user.MdpEmail</td>
+                    <td>@user.MdpSoDienThoai</td>
+                    <td>@user.MdpDiaChi</td>
+                    <td>@user.MdpRole</td>
+                    <td>@(user.MdpNgaySinh?.ToString("yyyy-MM-dd") ?? "-")</td>
+                    <td>@user.MdpGioiTinh</td>
+                    <td>@(user.MdpCreatedAt.HasValue ? user.MdpCreatedAt.Value.ToString("dd/MM/yyyy HH:mm") : "-")</td>
+                    <td>@(user.MdpUpdatedAt.HasValue ? user.MdpUpdatedAt.Value.ToString("dd/MM/yyyy HH:mm") : "-")</td>
+                    <td>
+                        <a class="btn btn-sm btn-primary mb-1" href="@Url.Action("Edit", "MdpUsers", new { id = user.MdpUserId })">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a class="btn btn-sm btn-danger" href="@Url.Action("Delete", "MdpUsers", new { id = user.MdpUserId })"
+                           onclick="return confirm('Bạn có chắc muốn xóa user này?');">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

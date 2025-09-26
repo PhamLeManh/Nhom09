@@ -1,0 +1,140 @@
+﻿@model IEnumerable<MdpProject.Models.MdpLinhKien>
+
+@{
+    ViewData["Title"] = "Linh kiện Store";
+
+    // Bản đồ Id -> URL ảnh sản phẩm (tạm thời)
+    var imageUrls = new Dictionary<int, string>
+    {
+        {1, "https://example.com/images/linhkien1.jpg"},
+        {2, "https://example.com/images/linhkien2.jpg"},
+        {3, "https://example.com/images/linhkien3.jpg"},
+        {4, "https://example.com/images/linhkien4.jpg"},
+        // Thêm tất cả Id khác...
+    };
+
+    string GetImageUrl(int id)
+    {
+        return imageUrls.ContainsKey(id) ? imageUrls[id] : "https://via.placeholder.com/300x200?text=No+Image";
+    }
+}
+
+<div class="container py-4">
+
+    <!-- Banner chính -->
+    <div class="p-5 mb-5 text-center rounded-4" style="background: linear-gradient(135deg, #ff416c, #ff4b2b); color: white; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
+        <h1 class="display-5 fw-bold">🛠 Linh kiện Store</h1>
+        <p class="lead">Tìm kiếm và lựa chọn linh kiện phù hợp cho PC của bạn</p>
+    </div>
+
+    <!-- HOT -->
+    <div class="mb-5">
+        <div class="p-3 rounded-3 text-white mb-3" style="background: linear-gradient(135deg, #ff4b2b, #ff416c); box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+            <h3 class="mb-0"><i class="bi bi-fire"></i> Linh kiện HOT</h3>
+            <small class="text-light">Những sản phẩm được khách hàng quan tâm nhiều nhất</small>
+        </div>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            @foreach (var hot in Model.OrderByDescending(p => p.MdpCreatedAt).Take(4))
+            {
+                <div class="col">
+                    <div class="card h-100 shadow hover-card border-danger">
+                        <span class="badge bg-danger position-absolute top-0 end-0 m-2">HOT</span>
+                        <img src="@GetImageUrl(hot.MdpLinhKienId)" class="card-img-top" style="height:180px; object-fit:contain;" />
+                        <div class="card-body d-flex flex-column">
+                            <h6 class="card-title text-truncate">@hot.MdpTenLinhKien</h6>
+                            <p class="small text-muted mb-1"><strong>Loại:</strong> @hot.MdpLoaiLinhKien</p>
+                            <p class="small text-muted mb-1"><strong>Thông số:</strong> @hot.MdpThongSoKyThuat</p>
+                            <p class="small text-muted mb-1"><strong>Ngày tạo:</strong> @hot.MdpCreatedAt?.ToString("dd/MM/yyyy")</p>
+                            <p class="small text-muted mb-3"><strong>Ngày cập nhật:</strong> @hot.MdpUpdatedAt?.ToString("dd/MM/yyyy")</p>
+                            <div class="mt-auto d-flex gap-2">
+                                <a asp-action="Details" asp-route-id="@hot.MdpLinhKienId" class="btn btn-outline-primary flex-fill btn-sm">Chi tiết</a>
+                                <a href="#" class="btn btn-success flex-fill btn-sm">Mua</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- SALE -->
+    <div class="mb-5">
+        <div class="p-3 rounded-3 text-white mb-3" style="background: linear-gradient(135deg, #28a745, #20c997); box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+            <h3 class="mb-0"><i class="bi bi-tags"></i> Linh kiện Khuyến mãi</h3>
+            <small class="text-light">Những sản phẩm đang có ưu đãi đặc biệt</small>
+        </div>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            @foreach (var km in Model.Take(4))  @* giả lập sale *@
+            {
+                <div class="col">
+                    <div class="card h-100 shadow hover-card border-success">
+                        <span class="badge bg-success position-absolute top-0 start-0 m-2">SALE</span>
+                        <img src="@GetImageUrl(km.MdpLinhKienId)" class="card-img-top" style="height:180px; object-fit:contain;" />
+                        <div class="card-body d-flex flex-column">
+                            <h6 class="card-title text-truncate">@km.MdpTenLinhKien</h6>
+                            <p class="fw-bold text-danger mb-2">Giá: 500,000đ <span class="text-muted text-decoration-line-through ms-2">700,000đ</span></p>
+                            <p class="small text-muted mb-1"><strong>Loại:</strong> @km.MdpLoaiLinhKien</p>
+                            <p class="small text-muted mb-1"><strong>Thông số:</strong> @km.MdpThongSoKyThuat</p>
+                            <div class="mt-auto d-flex gap-2">
+                                <a asp-action="Details" asp-route-id="@km.MdpLinhKienId" class="btn btn-outline-primary flex-fill btn-sm">Chi tiết</a>
+                                <a href="#" class="btn btn-success flex-fill btn-sm">Mua</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- NEW -->
+    <div class="mb-5">
+        <div class="p-3 rounded-3 text-dark mb-3" style="background: linear-gradient(135deg, #ffc107, #ffdd57); box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+            <h3 class="mb-0"><i class="bi bi-stars"></i> Linh kiện Mới</h3>
+            <small class="text-dark">Những sản phẩm vừa được nhập về</small>
+        </div>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            @foreach (var moi in Model.OrderByDescending(p => p.MdpCreatedAt).Take(4))
+            {
+                <div class="col">
+                    <div class="card h-100 shadow hover-card border-warning">
+                        <span class="badge bg-warning text-dark position-absolute top-0 start-50 translate-middle-x m-2">NEW</span>
+                        <img src="@GetImageUrl(moi.MdpLinhKienId)" class="card-img-top" style="height:180px; object-fit:contain;" />
+                        <div class="card-body d-flex flex-column">
+                            <h6 class="card-title text-truncate">@moi.MdpTenLinhKien</h6>
+                            <p class="small text-muted mb-1"><strong>Loại:</strong> @moi.MdpLoaiLinhKien</p>
+                            <p class="small text-muted mb-1"><strong>Thông số:</strong> @moi.MdpThongSoKyThuat</p>
+                            <p class="small text-muted mb-1"><strong>Ngày tạo:</strong> @moi.MdpCreatedAt?.ToString("dd/MM/yyyy")</p>
+                            <div class="mt-auto d-flex gap-2">
+                                <a asp-action="Details" asp-route-id="@moi.MdpLinhKienId" class="btn btn-outline-primary flex-fill btn-sm">Chi tiết</a>
+                                <a href="#" class="btn btn-success flex-fill btn-sm">Mua</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .hover-card {
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+    .btn-success:hover {
+        background: linear-gradient(45deg, #28a745, #20c997) !important;
+        border-color: transparent !important;
+    }
+
+    .btn-outline-primary:hover {
+        background: linear-gradient(45deg, #ff416c, #ff4b2b) !important;
+        color: #fff !important;
+        border-color: transparent !important;
+    }
+</style>
