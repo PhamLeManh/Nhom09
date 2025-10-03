@@ -1,84 +1,122 @@
 ﻿@model MdpProject.Models.MdpPc
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Chỉnh sửa PC";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
 }
 
-<h1>Edit</h1>
+<div class="container my-4">
+    <div class="card shadow-sm p-4 border-0">
+        <h4 class="text-primary mb-4"><i class="bi bi-pencil-square"></i> Chỉnh sửa PC</h4>
 
-<h4>MdpPc</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
         <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="MdpPcid" />
-            <div class="form-group">
-                <label asp-for="MdpSanPhamId" class="control-label"></label>
-                <select asp-for="MdpSanPhamId" class="form-control" asp-items="ViewBag.MdpSanPhamId"></select>
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="MdpSanPhamId" class="form-label">Danh mục sản phẩm</label>
+                <select asp-for="MdpSanPhamId" class="form-select" asp-items="@(ViewData["MdpSanPhamId"] as SelectList)"></select>
                 <span asp-validation-for="MdpSanPhamId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="MdpTenPc" class="control-label"></label>
+
+            <div class="mb-3">
+                <label asp-for="MdpTenPc" class="form-label">Tên PC</label>
                 <input asp-for="MdpTenPc" class="form-control" />
                 <span asp-validation-for="MdpTenPc" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="MdpCpu" class="control-label"></label>
-                <input asp-for="MdpCpu" class="form-control" />
-                <span asp-validation-for="MdpCpu" class="text-danger"></span>
+
+            <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                    <label asp-for="MdpCpu" class="form-label">CPU</label>
+                    <input asp-for="MdpCpu" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="MdpGpu" class="form-label">GPU</label>
+                    <input asp-for="MdpGpu" class="form-control" />
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="MdpGpu" class="control-label"></label>
-                <input asp-for="MdpGpu" class="form-control" />
-                <span asp-validation-for="MdpGpu" class="text-danger"></span>
+
+            <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                    <label asp-for="MdpRam" class="form-label">RAM</label>
+                    <input asp-for="MdpRam" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="MdpStorage" class="form-label">Bộ nhớ</label>
+                    <input asp-for="MdpStorage" class="form-control" />
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="MdpRam" class="control-label"></label>
-                <input asp-for="MdpRam" class="form-control" />
-                <span asp-validation-for="MdpRam" class="text-danger"></span>
+
+            <div class="row g-3 mb-3">
+                <div class="col-md-4">
+                    <label asp-for="MdpMainboard" class="form-label">Mainboard</label>
+                    <input asp-for="MdpMainboard" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="MdpPsu" class="form-label">PSU</label>
+                    <input asp-for="MdpPsu" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="MdpCaseType" class="form-label">Case</label>
+                    <input asp-for="MdpCaseType" class="form-control" />
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="MdpStorage" class="control-label"></label>
-                <input asp-for="MdpStorage" class="form-control" />
-                <span asp-validation-for="MdpStorage" class="text-danger"></span>
+
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <label asp-for="MdpCreatedAt" class="form-label">Ngày tạo</label>
+                    <input asp-for="MdpCreatedAt" class="form-control" type="datetime-local" />
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="MdpUpdatedAt" class="form-label">Ngày cập nhật</label>
+                    <input asp-for="MdpUpdatedAt" class="form-control" type="datetime-local" />
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="MdpMainboard" class="control-label"></label>
-                <input asp-for="MdpMainboard" class="form-control" />
-                <span asp-validation-for="MdpMainboard" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MdpPsu" class="control-label"></label>
-                <input asp-for="MdpPsu" class="form-control" />
-                <span asp-validation-for="MdpPsu" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MdpCaseType" class="control-label"></label>
-                <input asp-for="MdpCaseType" class="form-control" />
-                <span asp-validation-for="MdpCaseType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MdpCreatedAt" class="control-label"></label>
-                <input asp-for="MdpCreatedAt" class="form-control" />
-                <span asp-validation-for="MdpCreatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MdpUpdatedAt" class="control-label"></label>
-                <input asp-for="MdpUpdatedAt" class="form-control" />
-                <span asp-validation-for="MdpUpdatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-success flex-fill">
+                    <i class="bi bi-save"></i> Lưu thay đổi
+                </button>
+                <a asp-action="MdpAdminIndex" class="btn btn-outline-secondary flex-fill btn-back">
+                    <i class="bi bi-arrow-left-circle"></i> Quay lại
+                </a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }
+
+<style>
+    .card {
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+    .form-control {
+        border-radius: 6px;
+    }
+
+    .btn-success, .btn-outline-secondary {
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+    .btn-back:hover {
+        background-color: #f0f0f0;
+        color: #333;
+        transform: translateY(-2px);
+    }
+</style>

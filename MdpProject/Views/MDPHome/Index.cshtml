@@ -11,7 +11,7 @@
             <div class="carousel-caption d-none d-md-block caption-blur">
                 <h1>Laptop Gaming MDP</h1>
                 <p>Công nghệ mạnh mẽ, trải nghiệm đỉnh cao</p>
-                <a class="btn btn-warning btn-lg" href="/Product/Details/1">Mua ngay</a>
+                <a class="btn btn-warning btn-lg" href="/MdpLaptops/Index">Mua ngay</a>
             </div>
         </div>
         <div class="carousel-item position-relative">
@@ -19,7 +19,7 @@
             <div class="carousel-caption d-none d-md-block caption-blur">
                 <h1>Iphone17</h1>
                 <p>Hiệu năng cực nhanh, thiết kế sang trọng</p>
-                <a class="btn btn-warning btn-lg" href="/Product/Details/2">Xem chi tiết</a>
+                <a class="btn btn-warning btn-lg" href="/MdpPhones/Index">Xem chi tiết</a>
             </div>
         </div>
         <div class="carousel-item position-relative">
@@ -27,7 +27,7 @@
             <div class="carousel-caption d-none d-md-block caption-blur">
                 <h1>PC Gaming</h1>
                 <p>Hiệu năng cực nhanh, thiết kế sang trọng</p>
-                <a class="btn btn-warning btn-lg" href="/Product/Details/2">Xem chi tiết</a>
+                <a class="btn btn-warning btn-lg" href="/MdpPcs/Index">Xem chi tiết</a>
             </div>
         </div>
         <div class="carousel-item position-relative">
@@ -35,7 +35,7 @@
             <div class="carousel-caption d-none d-md-block caption-blur">
                 <h1>Màn Hình BenQ</h1>
                 <p>Hiệu năng cực nhanh, thiết kế sang trọng</p>
-                <a class="btn btn-warning btn-lg" href="/Product/Details/2">Xem chi tiết</a>
+                <a class="btn btn-warning btn-lg" href="/MdpMonitors/Index">Xem chi tiết</a>
             </div>
         </div>
         <div class="carousel-item position-relative">
@@ -43,7 +43,7 @@
             <div class="carousel-caption d-none d-md-block caption-blur">
                 <h1>RTX Super 6077RX</h1>
                 <p>Hiệu năng cực nhanh, thiết kế sang trọng</p>
-                <a class="btn btn-warning btn-lg" href="/Product/Details/2">Xem chi tiết</a>
+                <a class="btn btn-warning btn-lg" href="/MdpLinhkiens/Index">Xem chi tiết</a>
             </div>
         </div>
     </div>
@@ -113,110 +113,147 @@
     }
 </style>
 
-<!-- Danh mục nổi bật -->
-<section class="container py-5">
-    <h2 class="text-center mb-4 fw-bold">Danh mục nổi bật</h2>
-    <div class="row text-center g-4">
+
+<section class="container py-5 section-categories">
+    <h2 class="text-center mb-5 banner-title">Danh mục nổi bật</h2>
+    <div class="row g-4 justify-content-center">
+
         <!-- Laptop -->
-        <div class="col-6 col-md-3 col-lg-2">
-            <div class="p-3 shadow-sm rounded bg-white">
-                <i class="fas fa-laptop fa-2x text-primary mb-2"></i>
-                <p class="mb-0">Laptop</p>
-            </div>
+        <div class="col-6 col-md-4 col-lg-2">
+            <a asp-controller="MdpLaptops" asp-action="Index" class="category-box bg-laptop">
+                <div class="icon-wrapper">
+                    <i class="fas fa-laptop-code"></i>
+                    <span class="sparkle"></span><span class="sparkle"></span>
+                </div>
+                <p class="mt-2">Laptop</p>
+            </a>
         </div>
 
         <!-- PC -->
-        <div class="col-6 col-md-3 col-lg-2">
-            <div class="p-3 shadow-sm rounded bg-white">
-                <i class="fas fa-desktop fa-2x text-success mb-2"></i>
-                <p class="mb-0">PC</p>
-            </div>
-        </div>
-
-        <!-- Màn hình -->
-        <div class="col-6 col-md-3 col-lg-2">
-            <div class="p-3 shadow-sm rounded bg-white">
-                <i class="fas fa-tv fa-2x text-danger mb-2"></i>
-                <p class="mb-0">Màn hình</p>
-            </div>
-        </div>
-
-        <!-- Mainboard -->
-        <div class="col-6 col-md-3 col-lg-2">
-            <div class="p-3 shadow-sm rounded bg-white">
-                <i class="fas fa-microchip fa-2x text-warning mb-2"></i>
-                <p class="mb-0">Mainboard</p>
-            </div>
-        </div>
-
-        <!-- CPU -->
-        <div class="col-6 col-md-3 col-lg-2">
-            <div class="p-3 shadow-sm rounded bg-white">
-                <i class="fas fa-memory fa-2x text-info mb-2"></i>
-                <p class="mb-0">CPU</p>
-            </div>
-        </div>
-
-        <!-- VGA -->
-        <div class="col-6 col-md-3 col-lg-2">
-            <div class="p-3 shadow-sm rounded bg-white">
-                <i class="fas fa-project-diagram fa-2x text-secondary mb-2"></i>
-                <p class="mb-0">VGA</p>
-            </div>
+        <div class="col-6 col-md-4 col-lg-2">
+            <a asp-controller="MdpPcs" asp-action="Index" class="category-box bg-pc">
+                <div class="icon-wrapper">
+                    <i class="fas fa-desktop"></i>
+                    <span class="sparkle"></span><span class="sparkle"></span>
+                </div>
+                <p class="mt-2">PC</p>
+            </a>
         </div>
 
         <!-- Điện thoại -->
-        <div class="col-6 col-md-3 col-lg-2">
-            <div class="p-3 shadow-sm rounded bg-white">
-                <i class="fas fa-mobile-alt fa-2x text-pink mb-2"></i>
-                <p class="mb-0">Điện thoại</p>
-            </div>
+        <div class="col-6 col-md-4 col-lg-2">
+            <a asp-controller="MdpPhones" asp-action="Index" class="category-box bg-phone">
+                <div class="icon-wrapper">
+                    <i class="fas fa-mobile-screen-button"></i>
+                    <span class="sparkle"></span><span class="sparkle"></span>
+                </div>
+                <p class="mt-2">Điện thoại</p>
+            </a>
         </div>
 
-
-
-        <!-- Máy ảnh -->
-        <div class="col-6 col-md-3 col-lg-2">
-            <div class="p-3 shadow-sm rounded bg-white">
-                <i class="fas fa-camera-retro fa-2x text-dark mb-2"></i>
-                <p class="mb-0">Máy ảnh</p>
-            </div>
+        <!-- VGA -->
+        <div class="col-6 col-md-4 col-lg-2">
+            <a asp-controller="MdpLinhKiens" asp-action="Index" class="category-box bg-vga">
+                <div class="icon-wrapper">
+                    <i class="fas fa-video"></i>
+                    <span class="sparkle"></span><span class="sparkle"></span>
+                </div>
+                <p class="mt-2">VGA</p>
+            </a>
         </div>
 
-        <!-- Chuột -->
-        <div class="col-6 col-md-3 col-lg-2">
-            <div class="p-3 shadow-sm rounded bg-white">
-                <i class="fas fa-mouse fa-2x text-purple mb-2"></i>
-                <p class="mb-0">Chuột</p>
-            </div>
-        </div>
-
-        <!-- Loa -->
-        <div class="col-6 col-md-3 col-lg-2">
-            <div class="p-3 shadow-sm rounded bg-white">
-                <i class="fas fa-volume-up fa-2x text-warning mb-2"></i>
-                <p class="mb-0">Loa</p>
-            </div>
-        </div>
-
-
-        <!-- Phụ kiện -->
-        <div class="col-6 col-md-3 col-lg-2">
-            <div class="p-3 shadow-sm rounded bg-white">
-                <i class="fas fa-headphones fa-2x text-info mb-2"></i>
-                <p class="mb-0">Phụ kiện</p>
-            </div>
+        <!-- CPU -->
+        <div class="col-6 col-md-4 col-lg-2">
+            <a asp-controller="MdpLinhKiens" asp-action="Index" class="category-box bg-cpu">
+                <div class="icon-wrapper">
+                    <i class="fas fa-microchip"></i>
+                    <span class="sparkle"></span><span class="sparkle"></span>
+                </div>
+                <p class="mt-2">CPU</p>
+            </a>
         </div>
 
         <!-- SSD -->
-        <div class="col-6 col-md-3 col-lg-2">
-            <div class="p-3 shadow-sm rounded bg-white">
-                <i class="fas fa-hdd fa-2x text-success mb-2"></i>
-                <p class="mb-0">SSD</p>
-            </div>
+        <div class="col-6 col-md-4 col-lg-2">
+            <a asp-controller="MdpLinhKiens" asp-action="Index" class="category-box bg-ssd">
+                <div class="icon-wrapper">
+                    <i class="fas fa-sd-card"></i>
+                    <span class="sparkle"></span><span class="sparkle"></span>
+                </div>
+                <p class="mt-2">SSD</p>
+            </a>
         </div>
+
+        <!-- Phụ kiện -->
+        <div class="col-6 col-md-4 col-lg-2">
+            <a asp-controller="MdpLinhKiens" asp-action="Index" class="category-box bg-accessory">
+                <div class="icon-wrapper">
+                    <i class="fas fa-headphones-alt"></i>
+                    <span class="sparkle"></span><span class="sparkle"></span>
+                </div>
+                <p class="mt-2">Phụ kiện</p>
+            </a>
+        </div>
+
+        <!-- Chuột -->
+        <div class="col-6 col-md-4 col-lg-2">
+            <a asp-controller="MdpMice" asp-action="Index" class="category-box bg-mouse">
+                <div class="icon-wrapper">
+                    <i class="fas fa-computer-mouse"></i>
+                    <span class="sparkle"></span><span class="sparkle"></span>
+                </div>
+                <p class="mt-2">Chuột</p>
+            </a>
+        </div>
+
+        <!-- Loa -->
+        <div class="col-6 col-md-4 col-lg-2">
+            <a asp-controller="MdpLinhKiens" asp-action="Index" class="category-box bg-speaker">
+                <div class="icon-wrapper">
+                    <i class="fas fa-volume-high"></i>
+                    <span class="sparkle"></span><span class="sparkle"></span>
+                </div>
+                <p class="mt-2">Loa</p>
+            </a>
+        </div>
+
+        <!-- Máy ảnh -->
+        <div class="col-6 col-md-4 col-lg-2">
+            <a asp-controller="MdpCameras" asp-action="Index" class="category-box bg-camera">
+                <div class="icon-wrapper">
+                    <i class="fas fa-camera"></i>
+                    <span class="sparkle"></span><span class="sparkle"></span>
+                </div>
+                <p class="mt-2">Máy ảnh</p>
+            </a>
+        </div>
+
+        <!-- Màn hình -->
+        <div class="col-6 col-md-4 col-lg-2">
+            <a asp-controller="MdpMonitors" asp-action="Index" class="category-box bg-monitor">
+                <div class="icon-wrapper">
+                    <i class="fas fa-display"></i>
+                    <span class="sparkle"></span><span class="sparkle"></span>
+                </div>
+                <p class="mt-2">Màn hình</p>
+            </a>
+        </div>
+
+        <!-- Mainboard -->
+        <div class="col-6 col-md-4 col-lg-2">
+            <a asp-controller="MdpLinhKiens" asp-action="Index" class="category-box bg-mainboard">
+                <div class="icon-wrapper">
+                    <i class="fas fa-server"></i>
+                    <span class="sparkle"></span><span class="sparkle"></span>
+                </div>
+                <p class="mt-2">Mainboard</p>
+            </a>
+        </div>
+
     </div>
 </section>
+
+
 
 
 
@@ -271,7 +308,7 @@
                         <div class="card-body d-flex flex-column">
                             <h6 class="card-title">Sản phẩm @(i + 1)</h6>
                             <p class="card-text fw-bold">@(((i + 1) * 8500000).ToString("N0"))₫</p>
-                            <a href="/Cart/Add/@(i+1)" class="btn btn-light mt-auto w-100">Thêm vào giỏ</a>
+                            <a href="/MdpLaptops/Index/@(i+1)" class="btn btn-light mt-auto w-100">Thêm vào giỏ</a>
                         </div>
                     </div>
                 </div>
@@ -294,7 +331,7 @@
                             <h6 class="card-title">Sản phẩm KM @(i + 1)</h6>
                             <p class="card-text text-decoration-line-through text-muted">@(((i + 1) * 8500000).ToString("N0"))₫</p>
                             <p class="card-text text-warning fw-bold">@(((i + 1) * 6500000).ToString("N0"))₫</p>
-                            <a href="/Cart/Add/@(i+1)" class="btn btn-warning mt-auto w-100">Mua ngay</a>
+                            <a href="/MdpPhones/Index/@(i+1)" class="btn btn-warning mt-auto w-100">Mua ngay</a>
                         </div>
                     </div>
                 </div>
@@ -316,7 +353,7 @@
                         <div class="card-body d-flex flex-column">
                             <h6 class="card-title">Sản phẩm BC @(i + 1)</h6>
                             <p class="card-text fw-bold">@(((i + 1) * 7500000).ToString("N0"))₫</p>
-                            <a href="/Cart/Add/@(i+1)" class="btn btn-light mt-auto w-100">Thêm vào giỏ</a>
+                            <a href="/MdpPcs/Index/@(i+1)" class="btn btn-light mt-auto w-100">Thêm vào giỏ</a>
                         </div>
                     </div>
                 </div>

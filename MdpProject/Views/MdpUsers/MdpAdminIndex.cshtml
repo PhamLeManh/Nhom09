@@ -1,22 +1,41 @@
 ﻿@model IEnumerable<MdpProject.Models.MdpUser>
+
 @{
     Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
-    ViewData["Title"] = "Users";
+    ViewData["Title"] = "Quản trị User";
 }
 
-<h3>@ViewData["Title"]</h3>
-<a href="@Url.Action("Create", "MdpUsers")" class="btn btn-success mb-3">
-    <i class="bi bi-plus-circle"></i> Thêm User
-</a>
+<!-- ================= BANNER ================= -->
+<div class="bg-primary text-white py-4 px-3 rounded-3 mb-4 shadow-sm d-flex align-items-center justify-content-between">
+    <h2 class="mb-0">
+        <i class="bi bi-people-fill"></i> @ViewData["Title"]
+    </h2>
+    <a href="@Url.Action("Create", "MdpUsers")" class="btn btn-light btn-lg fw-bold">
+        <i class="bi bi-plus-circle"></i> Thêm User
+    </a>
+</div>
 
+<!-- ================= THÔNG BÁO ================= -->
 @if (TempData["SuccessMessage"] != null)
 {
-    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill"></i> @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 }
 
-<div class="table-responsive">
-    <table class="table table-hover align-middle">
-        <thead class="table-dark">
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle-fill"></i> @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<!-- ================= BẢNG USER ================= -->
+<div class="table-responsive shadow-sm rounded-3">
+    <table class="table table-hover align-middle table-striped">
+        <thead class="table-dark text-center">
             <tr>
                 <th>Avatar</th>
                 <th>ID</th>
@@ -36,10 +55,10 @@
         <tbody>
             @foreach (var user in Model)
             {
-                <tr>
+                <tr class="text-center align-middle">
                     <td>
                         <img src="@(!string.IsNullOrEmpty(user.MdpAvatar) ? user.MdpAvatar : "https://via.placeholder.com/50")"
-                             class="card-avatar" />
+                             class="rounded-circle" style="width:50px; height:50px; object-fit:cover;" />
                     </td>
                     <td>@user.MdpUserId</td>
                     <td>@user.MdpTenDangNhap</td>
@@ -47,13 +66,26 @@
                     <td>@user.MdpEmail</td>
                     <td>@user.MdpSoDienThoai</td>
                     <td>@user.MdpDiaChi</td>
-                    <td>@user.MdpRole</td>
+                    <td>
+                        @if (user.MdpRole == "Admin")
+                        {
+                            <span class="badge bg-danger">@user.MdpRole</span>
+                        }
+                        else if (user.MdpRole == "Manager")
+                        {
+                            <span class="badge bg-warning text-dark">@user.MdpRole</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">@user.MdpRole</span>
+                        }
+                    </td>
                     <td>@(user.MdpNgaySinh?.ToString("yyyy-MM-dd") ?? "-")</td>
                     <td>@user.MdpGioiTinh</td>
                     <td>@(user.MdpCreatedAt.HasValue ? user.MdpCreatedAt.Value.ToString("dd/MM/yyyy HH:mm") : "-")</td>
                     <td>@(user.MdpUpdatedAt.HasValue ? user.MdpUpdatedAt.Value.ToString("dd/MM/yyyy HH:mm") : "-")</td>
-                    <td>
-                        <a class="btn btn-sm btn-primary mb-1" href="@Url.Action("Edit", "MdpUsers", new { id = user.MdpUserId })">
+                    <td class="d-flex justify-content-center gap-2">
+                        <a class="btn btn-sm btn-primary" href="@Url.Action("Edit", "MdpUsers", new { id = user.MdpUserId })">
                             <i class="bi bi-pencil-square"></i>
                         </a>
                         <a class="btn btn-sm btn-danger" href="@Url.Action("Delete", "MdpUsers", new { id = user.MdpUserId })"
@@ -66,3 +98,29 @@
         </tbody>
     </table>
 </div>
+
+<!-- ================= STYLE TÙY CHỈNH ================= -->
+<style>
+    /* Banner đẹp */
+    .bg-primary h2 i {
+        margin-right: 10px;
+    }
+
+    /* Hover row */
+    table tbody tr:hover {
+        background-color: rgba(0,123,255,0.1);
+    }
+
+    /* Button hành động */
+    table .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Avatar */
+    .card-avatar {
+        border-radius: 50%;
+        object-fit: cover;
+    }
+</style>

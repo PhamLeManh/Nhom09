@@ -1,95 +1,165 @@
 ﻿@model IEnumerable<MdpProject.Models.MdpPc>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "PC Store";
+
+    // Giá ảo
+    Random rnd = new Random();
+    Func<int, (decimal giaGoc, decimal giaSale)> fakePrice = (id) =>
+    {
+        var giaGoc = rnd.Next(10000000, 60000000);
+        var giam = rnd.Next(2000000, 10000000);
+        return (giaGoc, giaGoc - giam);
+    };
 }
 
-<h1>Index</h1>
+<div class="container my-5">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.MdpTenPc)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MdpCpu)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MdpGpu)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MdpRam)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MdpStorage)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MdpMainboard)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MdpPsu)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MdpCaseType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MdpCreatedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MdpUpdatedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MdpSanPham)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MdpTenPc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MdpCpu)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MdpGpu)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MdpRam)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MdpStorage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MdpMainboard)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MdpPsu)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MdpCaseType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MdpCreatedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MdpUpdatedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MdpSanPham.MdpSanPhamId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.MdpPcid">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MdpPcid">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MdpPcid">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <!-- 🔥 HOT PC -->
+    <h2 class="banner-title text-danger text-center mb-4">🔥 PC HOT</h2>
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        @foreach (var hot in Model.OrderByDescending(p => p.MdpCreatedAt).Take(4))
+        {
+            var imgUrl = !string.IsNullOrEmpty(hot.MdpAnh) ? Url.Content(hot.MdpAnh) : Url.Content("~/images/pc/default.png");
+            var (giaGoc, giaSale) = fakePrice(hot.MdpPcid);
+            <div class="col">
+                <div class="card h-100 shadow hover-card position-relative">
+                    <span class="badge bg-danger position-absolute top-0 end-0 m-2">HOT</span>
+                    <img src="@imgUrl" class="card-img-top p-3" style="height:200px;object-fit:contain" />
+                    <div class="card-body text-center d-flex flex-column">
+                        <h6 class="card-title fw-bold">@hot.MdpTenPc</h6>
+                        <p class="small text-muted">CPU: @hot.MdpCpu</p>
+                        <p class="small text-muted">GPU: @hot.MdpGpu</p>
+                        <p class="text-muted mb-1"><s>@giaGoc.ToString("N0") ₫</s></p>
+                        <p class="fw-bold text-danger">@giaSale.ToString("N0") ₫</p>
+
+                        <div class="mt-auto d-flex justify-content-between gap-2">
+                            <a asp-action="Details" asp-route-id="@hot.MdpPcid"
+                               class="btn btn-outline-primary btn-sm flex-fill">Chi tiết</a>
+                            <a href="@Url.Action("Index", "MdpProductVariants", new { sanPhamId = hot.MdpSanPhamId })"
+                               class="btn btn-success btn-sm flex-fill">
+                                <i class="bi bi-cart-plus"></i> Mua ngay
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- 🎁 Khuyến mãi PC -->
+    <h2 class="banner-title text-success text-center mt-5 mb-4">🎁 PC Khuyến mãi</h2>
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        @foreach (var km in Model.Take(4))
+        {
+            var imgUrl = !string.IsNullOrEmpty(km.MdpAnh) ? Url.Content(km.MdpAnh) : Url.Content("~/images/pc/default.png");
+            var (giaGoc, giaSale) = fakePrice(km.MdpPcid);
+            <div class="col">
+                <div class="card h-100 shadow hover-card position-relative">
+                    <span class="badge bg-success position-absolute top-0 start-0 m-2">SALE</span>
+                    <img src="@imgUrl" class="card-img-top p-3" style="height:200px;object-fit:contain" />
+                    <div class="card-body text-center d-flex flex-column">
+                        <h6 class="card-title fw-bold">@km.MdpTenPc</h6>
+                        <p class="small text-muted">CPU: @km.MdpCpu</p>
+                        <p class="small text-muted">GPU: @km.MdpGpu</p>
+                        <p class="text-muted mb-1"><s>@giaGoc.ToString("N0") ₫</s></p>
+                        <p class="fw-bold text-success">@giaSale.ToString("N0") ₫</p>
+
+                        <div class="mt-auto d-flex justify-content-between gap-2">
+                            <a asp-action="Details" asp-route-id="@km.MdpPcid"
+                               class="btn btn-outline-primary btn-sm flex-fill">Chi tiết</a>
+                            <a href="@Url.Action("Index", "MdpProductVariants", new { sanPhamId = km.MdpSanPhamId })"
+                               class="btn btn-success btn-sm flex-fill">
+                                <i class="bi bi-cart-plus"></i> Mua ngay
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- 🆕 PC mới -->
+    <h2 class="banner-title text-primary text-center mt-5 mb-4">🆕 PC Mới ra mắt</h2>
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        @foreach (var moi in Model.OrderBy(p => p.MdpCreatedAt).Take(4))
+        {
+            var imgUrl = !string.IsNullOrEmpty(moi.MdpAnh) ? Url.Content(moi.MdpAnh) : Url.Content("~/images/pc/default.png");
+            var (giaGoc, giaSale) = fakePrice(moi.MdpPcid);
+            <div class="col">
+                <div class="card h-100 shadow hover-card position-relative">
+                    <span class="badge bg-primary position-absolute top-0 end-0 m-2">NEW</span>
+                    <img src="@imgUrl" class="card-img-top p-3" style="height:200px;object-fit:contain" />
+                    <div class="card-body text-center d-flex flex-column">
+                        <h6 class="card-title fw-bold">@moi.MdpTenPc</h6>
+                        <p class="small text-muted">CPU: @moi.MdpCpu</p>
+                        <p class="small text-muted">GPU: @moi.MdpGpu</p>
+                        <p class="text-muted mb-1"><s>@giaGoc.ToString("N0") ₫</s></p>
+                        <p class="fw-bold text-primary">@giaSale.ToString("N0") ₫</p>
+
+                        <div class="mt-auto d-flex justify-content-between gap-2">
+                            <a asp-action="Details" asp-route-id="@moi.MdpPcid"
+                               class="btn btn-outline-primary btn-sm flex-fill">Chi tiết</a>
+                            <a href="@Url.Action("Index", "MdpProductVariants", new { sanPhamId = moi.MdpSanPhamId })"
+                               class="btn btn-success btn-sm flex-fill">
+                                <i class="bi bi-cart-plus"></i> Mua ngay
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .banner-title {
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        position: relative;
+        display: inline-block;
+        padding-bottom: 8px;
+    }
+
+        .banner-title::after {
+            content: "";
+            display: block;
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+    .hover-card {
+        transition: transform 0.3s, box-shadow 0.3s;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+        .hover-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        }
+
+    .card-title {
+        font-size: 1rem;
+        color: #222;
+        min-height: 40px;
+    }
+
+    .btn-success {
+        background: linear-gradient(45deg, #28a745, #20c997);
+        border: none;
+    }
+
+        .btn-success:hover {
+            background: linear-gradient(45deg, #20c997, #28a745);
+        }
+
+    .btn-outline-primary:hover {
+        background: #2575fc;
+        color: #fff;
+    }
+</style>

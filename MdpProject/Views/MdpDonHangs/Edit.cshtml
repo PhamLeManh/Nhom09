@@ -1,0 +1,105 @@
+﻿@model MdpProject.Models.MdpDonHang
+@{
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+    ViewData["Title"] = "Chỉnh sửa Đơn Hàng";
+}
+
+<div class="container-fluid my-4">
+    <div class="card shadow-sm border-primary">
+        <div class="card-header bg-primary text-white fw-bold">
+            <i class="bi bi-pencil-square"></i> Chỉnh sửa Đơn Hàng - Mã @Model.MdpDonHangId
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit" method="post">
+                <input type="hidden" asp-for="MdpDonHangId" />
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold"><i class="bi bi-person-circle"></i> Khách Hàng</label>
+                        <select asp-for="MdpKhachHangId" class="form-select" asp-items="ViewBag.MdpKhachHangId">
+                            <option value="">Chọn khách hàng</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold"><i class="bi bi-gift"></i> Khuyến Mãi</label>
+                        <select asp-for="MdpKmid" class="form-select" asp-items="ViewBag.MdpKmid">
+                            <option value="">Không có</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold"><i class="bi bi-geo-alt"></i> Địa Chỉ Giao Hàng</label>
+                    <input asp-for="MdpDiaChiGiaoHang" class="form-control" placeholder="Nhập địa chỉ giao hàng" />
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold"><i class="bi bi-credit-card"></i> Phương Thức Thanh Toán</label>
+                        <input asp-for="MdpPhuongThucThanhToan" class="form-control" placeholder="Ví dụ: Tiền mặt / Thẻ" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold"><i class="bi bi-wallet2"></i> Trạng Thái Thanh Toán</label>
+                        <select asp-for="MdpTrangThaiThanhToan" class="form-select">
+                            <option value="Chưa thanh toán">Chưa thanh toán</option>
+                            <option value="Đã thanh toán">Đã thanh toán</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold"><i class="bi bi-clipboard-check"></i> Trạng Thái Đơn</label>
+                        <select asp-for="MdpStatus" class="form-select">
+                            <option value="Đang chờ">Đang chờ</option>
+                            <option value="Đang giao">Đang giao</option>
+                            <option value="Hoàn thành">Hoàn thành</option>
+                            <option value="Hủy">Hủy</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold"><i class="bi bi-cash-stack"></i> Tổng Tiền</label>
+                        <input asp-for="MdpTongTien" type="number" class="form-control" placeholder="Nhập tổng tiền" />
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold"><i class="bi bi-card-text"></i> Ghi Chú</label>
+                    <textarea asp-for="MdpGhiChu" class="form-control" rows="3" placeholder="Nhập ghi chú thêm nếu cần"></textarea>
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-success me-2">
+                        <i class="bi bi-check-circle"></i> Lưu
+                    </button>
+                    <a asp-action="MdpAdminIndex" class="btn btn-secondary shadow-sm"><i class="bi bi-arrow-left"></i> Quay Lại</a>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 12px;
+    }
+
+    .card-header {
+        font-size: 1.3rem;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .form-label i {
+        margin-right: 5px;
+        color: #0d6efd;
+    }
+
+    .btn i {
+        margin-right: 4px;
+    }
+
+    input.form-control, select.form-select, textarea.form-control {
+        border-radius: 8px;
+    }
+</style>

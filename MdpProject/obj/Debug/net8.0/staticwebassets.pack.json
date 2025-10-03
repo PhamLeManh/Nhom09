@@ -2,7 +2,7 @@
   "Files": [
     {
       "Id": "D:\\project2\\MdpProject\\MdpProject\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\MdpProject.bundle.scp.css",
-      "PackagePath": "staticwebassets\\MdpProject.9e2uyvgmzo.bundle.scp.css"
+      "PackagePath": "staticwebassets\\MdpProject.9l2jukyk9u.bundle.scp.css"
     },
     {
       "Id": "D:\\project2\\MdpProject\\MdpProject\\wwwroot\\css\\login.css",
@@ -15,6 +15,10 @@
     {
       "Id": "D:\\project2\\MdpProject\\MdpProject\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\project2\\MdpProject\\MdpProject\\wwwroot\\images\\bankqr.jpg",
+      "PackagePath": "staticwebassets\\images\\bankqr.jpg"
     },
     {
       "Id": "D:\\project2\\MdpProject\\MdpProject\\wwwroot\\images\\logo.png",

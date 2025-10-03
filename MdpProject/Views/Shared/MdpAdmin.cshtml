@@ -3,39 +3,54 @@
     Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
 }
 
-<h3 class="mb-4">Dashboard Thống Kê</h3>
+<h3 class="mb-4"><i class="bi bi-speedometer2"></i> Dashboard Thống Kê</h3>
 
 <div class="row mb-4">
-    <!-- Thẻ thông số nhanh -->
+    <!-- Users -->
     <div class="col-md-3">
-        <div class="card text-white bg-primary mb-3">
-            <div class="card-body">
-                <h5 class="card-title">Users</h5>
-                <p class="card-text display-6">120</p>
+        <div class="card text-white bg-primary bg-gradient shadow-sm mb-3">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="card-title">Users</h6>
+                    <p class="display-6 fw-bold">120</p>
+                </div>
+                <i class="bi bi-people-fill display-5 opacity-50"></i>
             </div>
         </div>
     </div>
+    <!-- Orders -->
     <div class="col-md-3">
-        <div class="card text-white bg-success mb-3">
-            <div class="card-body">
-                <h5 class="card-title">Orders</h5>
-                <p class="card-text display-6">85</p>
+        <div class="card text-white bg-success bg-gradient shadow-sm mb-3">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="card-title">Orders</h6>
+                    <p class="display-6 fw-bold">85</p>
+                </div>
+                <i class="bi bi-basket-fill display-5 opacity-50"></i>
             </div>
         </div>
     </div>
+    <!-- Revenue -->
     <div class="col-md-3">
-        <div class="card text-white bg-warning mb-3">
-            <div class="card-body">
-                <h5 class="card-title">Revenue</h5>
-                <p class="card-text display-6">$12,300</p>
+        <div class="card text-white bg-warning bg-gradient shadow-sm mb-3">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="card-title">Revenue</h6>
+                    <p class="display-6 fw-bold">$12,300</p>
+                </div>
+                <i class="bi bi-cash-stack display-5 opacity-50"></i>
             </div>
         </div>
     </div>
+    <!-- Products -->
     <div class="col-md-3">
-        <div class="card text-white bg-danger mb-3">
-            <div class="card-body">
-                <h5 class="card-title">Products</h5>
-                <p class="card-text display-6">45</p>
+        <div class="card text-white bg-danger bg-gradient shadow-sm mb-3">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="card-title">Products</h6>
+                    <p class="display-6 fw-bold">45</p>
+                </div>
+                <i class="bi bi-box-seam-fill display-5 opacity-50"></i>
             </div>
         </div>
     </div>
@@ -44,16 +59,16 @@
 <!-- Biểu đồ -->
 <div class="row">
     <div class="col-md-6 mb-4">
-        <div class="card">
-            <div class="card-header">Doanh Thu Theo Tháng</div>
+        <div class="card shadow-sm">
+            <div class="card-header bg-light fw-bold"><i class="bi bi-graph-up"></i> Doanh Thu Theo Tháng</div>
             <div class="card-body">
                 <canvas id="revenueChart"></canvas>
             </div>
         </div>
     </div>
     <div class="col-md-6 mb-4">
-        <div class="card">
-            <div class="card-header">Users Theo Role</div>
+        <div class="card shadow-sm">
+            <div class="card-header bg-light fw-bold"><i class="bi bi-people"></i> Users Theo Role</div>
             <div class="card-body">
                 <canvas id="usersChart"></canvas>
             </div>
@@ -73,11 +88,20 @@
                 datasets: [{
                     label: 'Doanh Thu ($)',
                     data: [1200, 1500, 1800, 2200, 2000, 2500],
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: '#0d6efd',
+                    backgroundColor: 'rgba(13, 110, 253, 0.2)',
                     fill: true,
-                    tension: 0.3
+                    tension: 0.3,
+                    borderWidth: 3,
+                    pointBackgroundColor: '#0d6efd',
+                    pointRadius: 5
                 }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: true, position: 'bottom' }
+                }
             }
         });
 
@@ -91,17 +115,23 @@
                     label: 'Users',
                     data: [5, 15, 100],
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.7)',
-                        'rgba(54, 162, 235, 0.7)',
-                        'rgba(255, 206, 86, 0.7)'
+                        'rgba(220, 53, 69, 0.7)',
+                        'rgba(13, 110, 253, 0.7)',
+                        'rgba(255, 193, 7, 0.7)'
                     ],
                     borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)'
+                        'rgba(220, 53, 69, 1)',
+                        'rgba(13, 110, 253, 1)',
+                        'rgba(255, 193, 7, 1)'
                     ],
                     borderWidth: 1
                 }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
             }
         });
     </script>

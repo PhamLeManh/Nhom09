@@ -1,0 +1,228 @@
+﻿@model IEnumerable<MdpProject.Models.MdpDonHang>
+
+@{
+    ViewData["Title"] = "Quản lý Đơn Hàng";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+}
+
+<div class="container-fluid my-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary fw-bold"><i class="bi bi-bag-check"></i> Quản lý Đơn Hàng</h2>
+    </div>
+
+    <!-- Thông báo -->
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <!-- Thống kê nhanh -->
+    <div class="row mb-4">
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm border-primary p-3 text-center">
+                <h6 class="text-primary">Tổng số đơn hàng</h6>
+                <h3 class="fw-bold">@Model.Count()</h3>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm border-success p-3 text-center">
+                <h6 class="text-success">Mới nhất (5 đơn)</h6>
+                <h3 class="fw-bold">@Model.OrderByDescending(o => o.MdpNgayDatDonHang).Take(5).Count()</h3>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm border-warning p-3 text-center">
+                <h6 class="text-warning">Tổng doanh thu</h6>
+                <h3 class="fw-bold">@String.Format("{0:N0} VNĐ", Model.Sum(o => o.MdpTongTien))</h3>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm border-danger p-3 text-center">
+                <h6 class="text-danger">Chưa thanh toán</h6>
+                <h3 class="fw-bold">@Model.Count(o => o.MdpTrangThaiThanhToan == "Chưa thanh toán")</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Biểu đồ -->
+    <div class="row mb-4">
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-header bg-secondary text-white fw-bold">
+                    <i class="bi bi-bar-chart-line"></i> Đơn hàng theo tháng
+                </div>
+                <div class="card-body">
+                    <canvas id="chartMonth" height="150"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-header bg-secondary text-white fw-bold">
+                    <i class="bi bi-calendar-week"></i> Đơn hàng theo ngày
+                </div>
+                <div class="card-body">
+                    <canvas id="chartDay" height="150"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bảng danh sách đơn hàng -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white fw-bold">
+            <i class="bi bi-table"></i> Danh sách Đơn Hàng
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-hover align-middle text-center">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Khách hàng</th>
+                        <th>Ngày đặt</th>
+                        <th>Ngày giao</th>
+                        <th>Địa chỉ</th>
+                        <th>Phương thức TT</th>
+                        <th>Trạng thái TT</th>
+                        <th>Status</th>
+                        <th>Tổng tiền</th>
+                        <th>Khuyến mãi</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Any())
+                    {
+                        foreach (var order in Model)
+                        {
+                            <tr>
+                                <td>@order.MdpDonHangId</td>
+                                <td>@order.MdpKhachHang?.MdpHoTen</td>
+                                <td>@order.MdpNgayDatDonHang?.ToString("dd/MM/yyyy")</td>
+                                <td>@order.MdpNgayGiaoHang?.ToString("dd/MM/yyyy")</td>
+                                <td>@order.MdpDiaChiGiaoHang</td>
+                                <td>@order.MdpPhuongThucThanhToan</td>
+                                <td>@order.MdpTrangThaiThanhToan</td>
+                                <td>@order.MdpStatus</td>
+                                <td>@String.Format("{0:N0} VNĐ", order.MdpTongTien)</td>
+                                <td>@(order.MdpKm != null ? order.MdpKm.MdpMaCode : "Không")</td>
+                                <td>
+                                    <a asp-action="Details" asp-route-id="@order.MdpDonHangId" class="btn btn-info btn-sm mb-1">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    <a asp-action="Edit" asp-route-id="@order.MdpDonHangId" class="btn btn-warning btn-sm mb-1">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@order.MdpDonHangId" class="btn btn-danger btn-sm mb-1">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="11" class="text-center text-muted py-3">Chưa có dữ liệu</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Chuẩn bị dữ liệu cho biểu đồ
+        const ordersMonth = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(
+        Model
+        .Where(o => o.MdpNgayDatDonHang.HasValue)
+        .GroupBy(o => o.MdpNgayDatDonHang.Value.ToString("MM/yyyy"))
+        .OrderBy(g => g.Key)
+        .Select(g => new { Month = g.Key, Count = g.Count() })
+    ));
+
+        const ordersDay = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(
+        Model
+        .Where(o => o.MdpNgayDatDonHang.HasValue)
+        .GroupBy(o => o.MdpNgayDatDonHang.Value.ToString("dd/MM/yyyy"))
+        .OrderBy(g => g.Key)
+        .Select(g => new { Day = g.Key, Count = g.Count() })
+    ));
+
+        // Biểu đồ theo tháng
+        new Chart(document.getElementById('chartMonth'), {
+            type: 'line',
+            data: {
+                labels: ordersMonth.map(o => o.Month),
+                datasets: [{
+                    label: 'Số đơn hàng',
+                    data: ordersMonth.map(o => o.Count),
+                    fill: true,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    tension: 0.3
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        // Biểu đồ theo ngày
+        new Chart(document.getElementById('chartDay'), {
+            type: 'bar',
+            data: {
+                labels: ordersDay.map(o => o.Day),
+                datasets: [{
+                    label: 'Số đơn hàng',
+                    data: ordersDay.map(o => o.Count),
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: { responsive: true }
+        });
+    </script>
+}
+
+<style>
+    .card {
+        border-radius: 12px;
+    }
+
+    .card-header {
+        font-size: 1.1rem;
+        border-radius: 12px 12px 0 0;
+    }
+
+    table th, table td {
+        vertical-align: middle;
+    }
+
+    .btn-sm {
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+    }
+
+        .btn-sm:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+    .table-hover tbody tr:hover {
+        background-color: #f9f9f9;
+    }
+</style>

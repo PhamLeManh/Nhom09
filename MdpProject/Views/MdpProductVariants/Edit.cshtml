@@ -1,0 +1,101 @@
+﻿@model MdpProject.Models.MdpProductVariant
+
+@{
+    ViewData["Title"] = "Chỉnh sửa Variant";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+}
+
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary fw-bold"><i class="bi bi-pencil-square"></i> @ViewData["Title"]</h2>
+        <a asp-action="MdpAdminIndex" class="btn btn-secondary btn-lg shadow-sm">
+            <i class="bi bi-arrow-left"></i> Quay lại
+        </a>
+    </div>
+
+    <div class="card shadow-sm p-4">
+        <form asp-action="Edit" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="MdpVariantId" />
+
+            <div class="row">
+                <!-- Left column: Inputs -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label asp-for="MdpSanPhamId" class="form-label">Sản phẩm</label>
+                        <select asp-for="MdpSanPhamId" class="form-select" asp-items="ViewBag.MdpSanPhamId"></select>
+                        <span asp-validation-for="MdpSanPhamId" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="MdpMauSacId" class="form-label">Màu sắc</label>
+                        <select asp-for="MdpMauSacId" class="form-select" asp-items="ViewBag.MdpMauSacId"></select>
+                        <span asp-validation-for="MdpMauSacId" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="MdpDungLuong" class="form-label">Dung lượng</label>
+                        <input asp-for="MdpDungLuong" class="form-control" placeholder="VD: 64GB, 128GB..." />
+                        <span asp-validation-for="MdpDungLuong" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="MdpGia" class="form-label">Giá</label>
+                        <input asp-for="MdpGia" class="form-control" placeholder="VD: 15000000" />
+                        <span asp-validation-for="MdpGia" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="MdpSoLuong" class="form-label">Số lượng</label>
+                        <input asp-for="MdpSoLuong" class="form-control" placeholder="Số lượng tồn kho" />
+                        <span asp-validation-for="MdpSoLuong" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Right column: Image preview -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">URL ảnh</label>
+                        <input type="text" name="MdpAnh" class="form-control" placeholder="https://..."
+                               value="@Model.MdpAnh" oninput="previewFromUrl(this.value)" />
+                    </div>
+                    <div class="mb-3 text-center">
+                        <label class="form-label">Preview ảnh:</label>
+                        <div>
+                            <img id="preview" src="@(!string.IsNullOrEmpty(Model.MdpAnh) ? Model.MdpAnh : "https://via.placeholder.com/200")"
+                                 style="max-width:100%; max-height:200px; border-radius:8px; border:1px solid #ddd;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg w-100 mt-3">
+                <i class="bi bi-save"></i> Lưu thay đổi
+            </button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script>
+        function previewFromUrl(url) {
+            document.getElementById('preview').src = url || "https://via.placeholder.com/200";
+        }
+    </script>
+}
+
+<style>
+    .card {
+        border-radius: 12px;
+    }
+
+    .form-control, .btn, .form-select {
+        border-radius: 8px;
+    }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+</style>

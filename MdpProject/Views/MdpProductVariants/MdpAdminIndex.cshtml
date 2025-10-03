@@ -1,0 +1,111 @@
+﻿@model IEnumerable<MdpProject.Models.MdpProductVariant>
+
+@{
+    ViewData["Title"] = "Quản lý Product Variant";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+}
+
+<div class="container my-4">
+
+    <!-- Header + nút Thêm mới -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary fw-bold"><i class="bi bi-phone"></i> @ViewData["Title"]</h2>
+        <a asp-action="Create" class="btn btn-success btn-lg">
+            <i class="bi bi-plus-circle"></i> Thêm Variant
+        </a>
+    </div>
+
+    <!-- Alert -->
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    <!-- Bảng danh sách -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white fw-bold">
+            <i class="bi bi-table"></i> Danh sách Variant
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-hover align-middle text-center">
+                <thead class="table-light">
+                    <tr>
+                        <th>Ảnh</th>
+                        <th>Sản phẩm</th>
+                        <th>Màu sắc</th>
+                        <th>Dung lượng</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="@(!string.IsNullOrEmpty(item.MdpAnh) ? item.MdpAnh : "https://via.placeholder.com/60")"
+                                         style="width:60px;height:60px;object-fit:cover;border-radius:5px;" />
+                                </td>
+                                <td>@item.MdpSanPham.MdpTenSanPham</td>
+                                <td>@item.MdpMauSac?.MdpTenMau</td>
+                                <td>@item.MdpDungLuong</td>
+                                <td>@item.MdpGia?.ToString("N0")</td>
+                                <td>@item.MdpSoLuong</td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.MdpVariantId" class="btn btn-warning btn-sm mb-1">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.MdpVariantId" class="btn btn-danger btn-sm mb-1">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="7" class="text-center text-muted py-3">Chưa có dữ liệu</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 12px;
+    }
+
+    .card-header {
+        font-size: 1.2rem;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .btn-sm {
+        transition: all 0.3s ease;
+    }
+
+        .btn-sm:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+    .table-img {
+        border-radius: 5px;
+        transition: transform 0.3s;
+    }
+
+        .table-img:hover {
+            transform: scale(1.1);
+        }
+</style>

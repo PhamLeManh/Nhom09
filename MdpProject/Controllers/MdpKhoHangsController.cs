@@ -21,123 +21,136 @@ namespace MdpProject.Controllers
         // GET: MdpKhoHangs
         public async Task<IActionResult> Index()
         {
-            var project2Context = _context.MdpKhoHangs.Include(m => m.MdpSanPham);
-            return View(await project2Context.ToListAsync());
+            var kho = _context.MdpKhoHangs.Include(k => k.MdpSanPham);
+            return View(await kho.ToListAsync());
         }
 
         // GET: MdpKhoHangs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
-            var mdpKhoHang = await _context.MdpKhoHangs
-                .Include(m => m.MdpSanPham)
-                .FirstOrDefaultAsync(m => m.MdpKhoId == id);
-            if (mdpKhoHang == null)
-            {
-                return NotFound();
-            }
+            var kho = await _context.MdpKhoHangs
+                .Include(k => k.MdpSanPham)
+                .FirstOrDefaultAsync(k => k.MdpKhoId == id);
 
-            return View(mdpKhoHang);
+            if (kho == null) return NotFound();
+            return View(kho);
         }
 
-        // GET: MdpKhoHangs/Create
+        // GET: KhoHang/Create
         public IActionResult Create()
         {
-            ViewData["MdpSanPhamId"] = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpSanPhamId");
+            ViewBag.MdpSanPhamId = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpTenSanPham");
             return View();
         }
 
-        // POST: MdpKhoHangs/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MdpKhoId,MdpSanPhamId,MdpSoLuongNhap,MdpSoLuongTon,MdpNgayNhap")] MdpKhoHang mdpKhoHang)
+        public async Task<IActionResult> Create(MdpKhoHang khoHang)
         {
+            // Bỏ validation cho navigation property
+            ModelState.Remove("MdpSanPham");
+
+            Console.WriteLine($"SanPhamId = {khoHang.MdpSanPhamId}, Nhap = {khoHang.MdpSoLuongNhap}, Ton = {khoHang.MdpSoLuongTon}");
+
             if (ModelState.IsValid)
             {
-                _context.Add(mdpKhoHang);
+                khoHang.MdpNgayNhap = DateTime.Now;
+                _context.Add(khoHang);
                 await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "✅ Thêm kho hàng thành công!";
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MdpSanPhamId"] = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpSanPhamId", mdpKhoHang.MdpSanPhamId);
-            return View(mdpKhoHang);
+
+            // Debug lỗi
+            foreach (var item in ModelState)
+            {
+                foreach (var err in item.Value.Errors)
+                {
+                    Console.WriteLine($"Lỗi: {item.Key} - {err.ErrorMessage}");
+                }
+            }
+
+            ViewBag.MdpSanPhamId = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpTenSanPham", khoHang.MdpSanPhamId);
+            return View(khoHang);
         }
+
+
+
+
 
         // GET: MdpKhoHangs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
-            var mdpKhoHang = await _context.MdpKhoHangs.FindAsync(id);
-            if (mdpKhoHang == null)
-            {
-                return NotFound();
-            }
-            ViewData["MdpSanPhamId"] = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpSanPhamId", mdpKhoHang.MdpSanPhamId);
-            return View(mdpKhoHang);
+            var kho = await _context.MdpKhoHangs.FindAsync(id);
+            if (kho == null) return NotFound();
+
+            ViewBag.MdpSanPhamId = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpTenSanPham", kho.MdpSanPhamId);
+            return View(kho);
         }
 
         // POST: MdpKhoHangs/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MdpKhoId,MdpSanPhamId,MdpSoLuongNhap,MdpSoLuongTon,MdpNgayNhap")] MdpKhoHang mdpKhoHang)
+        public async Task<IActionResult> Edit(int id, MdpKhoHang khoHang)
         {
-            if (id != mdpKhoHang.MdpKhoId)
-            {
-                return NotFound();
-            }
+            // Xóa validation cho navigation property
+            ModelState.Remove("MdpSanPham");
+
+            if (id != khoHang.MdpKhoId) return NotFound();
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(mdpKhoHang);
+                    // Nếu nhập số âm thì ép về 0
+                    if (khoHang.MdpSoLuongNhap < 0) khoHang.MdpSoLuongNhap = 0;
+                    if (khoHang.MdpSoLuongTon < 0) khoHang.MdpSoLuongTon = 0;
+
+                    // Gán lại ngày cập nhật
+                    khoHang.MdpNgayNhap = khoHang.MdpNgayNhap == default ? DateTime.Now : khoHang.MdpNgayNhap;
+
+                    _context.Update(khoHang);
                     await _context.SaveChangesAsync();
+
+                    TempData["SuccessMessage"] = "✅ Cập nhật kho hàng thành công!";
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MdpKhoHangExists(mdpKhoHang.MdpKhoId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    if (!MdpKhoHangExists(khoHang.MdpKhoId)) return NotFound();
+                    else throw;
                 }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["MdpSanPhamId"] = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpSanPhamId", mdpKhoHang.MdpSanPhamId);
-            return View(mdpKhoHang);
+
+            // Debug lỗi validation nếu có
+            foreach (var item in ModelState)
+            {
+                foreach (var err in item.Value.Errors)
+                {
+                    Console.WriteLine($"Lỗi: {item.Key} - {err.ErrorMessage}");
+                }
+            }
+
+            ViewBag.MdpSanPhamId = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpTenSanPham", khoHang.MdpSanPhamId);
+            return View(khoHang);
         }
 
         // GET: MdpKhoHangs/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
-            var mdpKhoHang = await _context.MdpKhoHangs
-                .Include(m => m.MdpSanPham)
-                .FirstOrDefaultAsync(m => m.MdpKhoId == id);
-            if (mdpKhoHang == null)
-            {
-                return NotFound();
-            }
+            var kho = await _context.MdpKhoHangs
+                .Include(k => k.MdpSanPham)
+                .FirstOrDefaultAsync(k => k.MdpKhoId == id);
 
-            return View(mdpKhoHang);
+            if (kho == null) return NotFound();
+
+            return View(kho);
         }
 
         // POST: MdpKhoHangs/Delete/5
@@ -145,13 +158,27 @@ namespace MdpProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var mdpKhoHang = await _context.MdpKhoHangs.FindAsync(id);
-            if (mdpKhoHang != null)
+            try
             {
-                _context.MdpKhoHangs.Remove(mdpKhoHang);
+                var kho = await _context.MdpKhoHangs.FindAsync(id);
+                if (kho == null)
+                {
+                    TempData["ErrorMessage"] = "❌ Không tìm thấy kho để xóa!";
+                    return RedirectToAction(nameof(Index));
+                }
+
+                _context.MdpKhoHangs.Remove(kho);
+                await _context.SaveChangesAsync();
+
+                TempData["SuccessMessage"] = "✅ Xóa kho hàng thành công!";
+            }
+            catch (DbUpdateException ex)
+            {
+                // Bắt lỗi khóa ngoại (nếu kho đang được tham chiếu bởi bảng khác)
+                TempData["ErrorMessage"] = "❌ Không thể xóa kho vì đang được tham chiếu ở bảng khác!";
+                Console.WriteLine($"Lỗi khi xóa: {ex.Message}");
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
@@ -159,5 +186,6 @@ namespace MdpProject.Controllers
         {
             return _context.MdpKhoHangs.Any(e => e.MdpKhoId == id);
         }
+
     }
 }

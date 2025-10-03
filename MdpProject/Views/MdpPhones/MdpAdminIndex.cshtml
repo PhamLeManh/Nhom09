@@ -1,174 +1,161 @@
 ﻿@model IEnumerable<MdpProject.Models.MdpPhone>
 
 @{
-    ViewData["Title"] = "Phone Store";
-    Layout = "~/Views/Shared/_MDPLayout.cshtml";
-
-    // Giá & ảnh tạm cho điện thoại
-    var phonePrices = new Dictionary<int, (decimal Gia, decimal? GiaKhuyenMai, string ImageUrl)>
-    {
-        {1, (12000000, null, "https://cdn.tgdd.vn/Products/Images/42/329149/iphone-16-pro-max-gold-thumbnew-600x600.jpg")},
-        {2, (15000000, 13500000, "https://cdn.tgdd.vn/Products/Images/42/329148/iphone-16-pro-max-black-thumbnew-600x600.jpg")},
-        {3, (10000000, 9500000, "https://cdn.tgdd.vn/Products/Images/42/329147/iphone-16-pro-max-silver-thumbnew-600x600.jpg")},
-        {4, (20000000, 18000000, "https://cdn.tgdd.vn/Products/Images/42/329150/iphone-16-pro-max-blue-thumbnew-600x600.jpg")},
-        {5, (8000000, null, "https://cdn.tgdd.vn/Products/Images/42/329146/iphone-16-pro-max-pink-thumbnew-600x600.jpg")}
-    };
+    ViewData["Title"] = "Quản lý điện thoại";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
 }
 
-<!-- Banner danh sách điện thoại -->
-<div class="text-center py-3 mb-4" style="background: linear-gradient(to right, #ff416c, #ff4b2b); color: white; border-radius: 8px;">
-    <h2 class="mb-0 fw-bold">DANH SÁCH ĐIỆN THOẠI</h2>
-</div>
+<div class="container-fluid my-4">
+    <!-- Header + Nút Thêm mới -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary fw-bold"><i class="bi bi-phone"></i> Quản lý điện thoại</h2>
+        <a asp-action="Create" class="btn btn-success btn-lg shadow-sm">
+            <i class="bi bi-plus-circle"></i> Thêm điện thoại
+        </a>
 
-<div class="row row-cols-1 row-cols-md-3 g-3">
-    @foreach (var phone in Model)
+    </div>
+
+    <!-- Thông báo -->
+    @if (TempData["Success"] != null)
     {
-        var priceInfo = phonePrices.ContainsKey(phone.MdpPhoneId)
-        ? phonePrices[phone.MdpPhoneId]
-        : (7000000m, null, "https://cdn.tgdd.vn/Products/Images/42/329146/iphone-16-pro-max-pink-thumbnew-600x600.jpg");
-
-        <div class="col">
-            <div class="card h-100 shadow-sm">
-                <img src="@priceInfo.ImageUrl" class="card-img-top" alt="@phone.MdpTenPhone" style="height:180px; object-fit:cover;" />
-                <div class="card-body p-2">
-                    <h6 class="card-title text-truncate" title="@phone.MdpTenPhone">@phone.MdpTenPhone</h6>
-
-                    @if (!string.IsNullOrEmpty(phone.MdpManHinh))
-                    {
-                        <p class="mb-1"><strong>Màn hình:</strong> @phone.MdpManHinh</p>
-                    }
-                    @if (!string.IsNullOrEmpty(phone.MdpCamera))
-                    {
-                        <p class="mb-1"><strong>Camera:</strong> @phone.MdpCamera</p>
-                    }
-                    @if (!string.IsNullOrEmpty(phone.MdpRam))
-                    {
-                        <p class="mb-1"><strong>RAM:</strong> @phone.MdpRam</p>
-                    }
-                    @if (!string.IsNullOrEmpty(phone.MdpStorage))
-                    {
-                        <p class="mb-1"><strong>Bộ nhớ:</strong> @phone.MdpStorage</p>
-                    }
-                    @if (!string.IsNullOrEmpty(phone.MdpChipset))
-                    {
-                        <p class="mb-1"><strong>Chipset:</strong> @phone.MdpChipset</p>
-                    }
-                    @if (!string.IsNullOrEmpty(phone.MdpPin))
-                    {
-                        <p class="mb-1"><strong>Pin:</strong> @phone.MdpPin</p>
-                    }
-                    @if (!string.IsNullOrEmpty(phone.MdpHeDieuHanh))
-                    {
-                        <p class="mb-1"><strong>HĐH:</strong> @phone.MdpHeDieuHanh</p>
-                    }
-
-                    <p class="mt-2 mb-0">
-                        <span class="badge bg-success me-1">Còn hàng</span>
-                        @if (priceInfo.GiaKhuyenMai.HasValue)
-                        {
-                            var giamGia = priceInfo.Gia - priceInfo.GiaKhuyenMai.Value;
-                            var phanTram = (giamGia / priceInfo.Gia) * 100;
-                            <span class="text-muted text-decoration-line-through me-2">@priceInfo.Gia.ToString("N0")₫</span>
-                            <span class="fw-bold text-danger">@priceInfo.GiaKhuyenMai.Value.ToString("N0")₫</span>
-                            <span class="text-success ms-2">-@phanTram.ToString("0")% (@giamGia.ToString("N0")₫)</span>
-                        }
-                        else
-                        {
-                            <span class="fw-bold text-danger">@priceInfo.Gia.ToString("N0")₫</span>
-                        }
-                    </p>
-                </div>
-                <div class="card-footer text-center bg-white border-0 p-2 d-flex justify-content-center gap-2">
-                    <a href="@Url.Action("Details", "MdpPhones", new { id = phone.MdpPhoneId })"
-                       class="btn btn-outline-primary btn-sm btn-hover-gradient fw-bold px-3 py-2">
-                        <i class="bi bi-eye me-1"></i> Xem
-                    </a>
-                    <a href="@Url.Action("AddToCart", "Cart", new { id = phone.MdpPhoneId })"
-                       class="btn btn-success btn-sm btn-hover-gradient fw-bold px-3 py-2">
-                        <i class="bi bi-cart-plus me-1"></i> Mua
-                    </a>
-                </div>
-            </div>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
     }
-</div>
-
-<!-- Banner Sản phẩm mới -->
-<div class="text-center py-3 my-4" style="background-color:#ffd700; color:#000; border-radius:8px;">
-    <h2 class="mb-0 fw-bold">SẢN PHẨM MỚI</h2>
-</div>
-
-<div class="row row-cols-1 row-cols-md-4 g-3">
-    @foreach (var phone in Model.Take(4))
+    @if (TempData["Error"] != null)
     {
-        var priceInfo = phonePrices.ContainsKey(phone.MdpPhoneId)
-        ? phonePrices[phone.MdpPhoneId]
-        : (7000000m, null, "https://cdn.tgdd.vn/Products/Images/42/329146/iphone-16-pro-max-pink-thumbnew-600x600.jpg");
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
 
-        <div class="col">
-            <div class="card h-100 shadow-lg border border-primary position-relative">
-                <span class="badge bg-primary position-absolute top-0 start-0 m-2">New</span>
-                <img src="@priceInfo.ImageUrl" class="card-img-top" style="height:140px; object-fit:cover;" />
-                <div class="card-body p-2 text-center">
-                    <small>@phone.MdpTenPhone</small>
-                    @if (priceInfo.GiaKhuyenMai.HasValue)
+    <!-- Thống kê nhanh -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card shadow-sm border-primary p-3 text-center">
+                <h6 class="text-primary">Tổng số điện thoại</h6>
+                <h3 class="fw-bold">@Model.Count()</h3>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm border-success p-3 text-center">
+                <h6 class="text-success">Mới nhất</h6>
+                <h3 class="fw-bold">@Model.OrderByDescending(p => p.MdpCreatedAt).Take(5).Count()</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bảng danh sách điện thoại -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white fw-bold">
+            <i class="bi bi-table"></i> Danh sách điện thoại
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-hover align-middle text-center">
+                <thead class="table-light">
+                    <tr>
+                        <th>Ảnh</th>
+                        <th>Tên</th>
+                        <th>Màn hình</th>
+                        <th>Camera</th>
+                        <th>RAM</th>
+                        <th>Bộ nhớ</th>
+                        <th>Chipset</th>
+                        <th>Pin</th>
+                        <th>HĐH</th>
+                        <th>Ngày tạo</th>
+                        <th>Ngày cập nhật</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Any())
                     {
-                        <p class="text-muted text-decoration-line-through mb-0">@priceInfo.Gia.ToString("N0")₫</p>
-                        <p class="text-danger fw-bold mb-0">@priceInfo.GiaKhuyenMai.Value.ToString("N0")₫</p>
+                        foreach (var phone in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="@(!string.IsNullOrEmpty(phone.MdpAnh) ? phone.MdpAnh : "https://via.placeholder.com/60")"
+                                         alt="@phone.MdpTenPhone"
+                                         class="table-img" />
+                                </td>
+                                <td>@phone.MdpTenPhone</td>
+                                <td>@phone.MdpManHinh</td>
+                                <td>@phone.MdpCamera</td>
+                                <td>@phone.MdpRam</td>
+                                <td>@phone.MdpStorage</td>
+                                <td>@phone.MdpChipset</td>
+                                <td>@phone.MdpPin</td>
+                                <td>@phone.MdpHeDieuHanh</td>
+                                <td>@phone.MdpCreatedAt?.ToString("dd/MM/yyyy")</td>
+                                <td>@phone.MdpUpdatedAt?.ToString("dd/MM/yyyy")</td>
+                                <td class="text-center">
+                                    <a asp-action="Edit" asp-route-id="@phone.MdpPhoneId" class="btn btn-warning btn-sm mb-1">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@phone.MdpPhoneId" class="btn btn-danger btn-sm mb-1">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
                     }
                     else
                     {
-                        <p class="fw-bold text-danger mb-0">@priceInfo.Gia.ToString("N0")₫</p>
+                        <tr>
+                            <td colspan="12" class="text-center text-muted py-3">Chưa có dữ liệu</td>
+                        </tr>
                     }
-                </div>
-            </div>
+                </tbody>
+            </table>
         </div>
-    }
+    </div>
 </div>
 
-<!-- Banner Khuyến mãi -->
-<div class="text-center py-3 my-4" style="background-color:#ff4d4d; color:white; border-radius:8px;">
-    <h2 class="mb-0 fw-bold">KHUYẾN MÃI</h2>
-</div>
-
-<div class="row row-cols-1 row-cols-md-4 g-3">
-    @foreach (var phone in Model.Where(x => phonePrices.ContainsKey(x.MdpPhoneId) && phonePrices[x.MdpPhoneId].GiaKhuyenMai.HasValue))
-    {
-        var priceInfo = phonePrices[phone.MdpPhoneId];
-        var giamGia = priceInfo.Gia - priceInfo.GiaKhuyenMai.Value;
-        var phanTramGiam = (giamGia / priceInfo.Gia) * 100;
-
-        <div class="col">
-            <div class="card h-100 shadow-lg border border-danger position-relative">
-                <span class="badge bg-danger position-absolute top-0 start-0 m-2">Sale</span>
-                <img src="@priceInfo.ImageUrl" class="card-img-top" style="height:140px; object-fit:cover;" />
-                <div class="card-body p-2 text-center">
-                    <small>@phone.MdpTenPhone</small>
-                    <p class="text-muted text-decoration-line-through mb-0">@priceInfo.Gia.ToString("N0")₫</p>
-                    <p class="text-danger fw-bold mb-0">@priceInfo.GiaKhuyenMai.Value.ToString("N0")₫</p>
-                    <p class="text-success mb-0">Tiết kiệm: @giamGia.ToString("N0")₫ (@phanTramGiam.ToString("0")%)</p>
-                </div>
-            </div>
-        </div>
-    }
-</div>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
 
 <style>
-    .btn-hover-gradient {
+    .card {
+        border-radius: 12px;
+    }
+
+    .card-header {
+        font-size: 1.2rem;
+        border-radius: 12px 12px 0 0;
+    }
+
+    table th, table td {
+        vertical-align: middle;
+    }
+
+    .table-img {
+        height: 60px;
+        width: 60px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        transition: transform 0.3s;
+    }
+
+        .table-img:hover {
+            transform: scale(1.1);
+        }
+
+    .btn-sm {
+        font-size: 0.85rem;
         transition: all 0.3s ease;
     }
 
-        .btn-hover-gradient:hover {
+        .btn-sm:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-            background: linear-gradient(45deg, #6a11cb, #2575fc);
-            color: #fff !important;
-            border-color: transparent !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
-    .btn-success.btn-hover-gradient:hover {
-        background: linear-gradient(45deg, #28a745, #20c997);
-        color: #fff !important;
-        border-color: transparent !important;
+    .table-hover tbody tr:hover {
+        background-color: #f9f9f9;
     }
 </style>

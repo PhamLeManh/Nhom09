@@ -1,0 +1,89 @@
+﻿@model MdpProject.Models.MdpHoaDon
+
+@{
+    ViewData["Title"] = "Chi tiết hóa đơn";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+}
+
+<h2 class="mb-4">Chi tiết hóa đơn</h2>
+
+<div class="card shadow-lg p-4 mb-4">
+    <h4 class="mb-3 text-primary">Thông tin hóa đơn</h4>
+    <dl class="row">
+        <dt class="col-sm-3">Mã hóa đơn</dt>
+        <dd class="col-sm-9">@Model.MdpHoaDonId</dd>
+
+        <dt class="col-sm-3">Ngày xuất</dt>
+        <dd class="col-sm-9">@Model.MdpNgayXuat?.ToString("dd/MM/yyyy")</dd>
+
+        <dt class="col-sm-3">Tổng tiền</dt>
+        <dd class="col-sm-9">@Model.MdpTongTien.ToString("N0") VNĐ</dd>
+
+        <dt class="col-sm-3">Phương thức thanh toán</dt>
+        <dd class="col-sm-9">@Model.MdpPhuongThucThanhToan</dd>
+
+        <dt class="col-sm-3">Trạng thái</dt>
+        <dd class="col-sm-9">@Model.MdpTrangThai</dd>
+    </dl>
+</div>
+
+<div class="card shadow-lg p-4">
+    <h4 class="mb-3 text-success">Chi tiết sản phẩm</h4>
+
+    @if (Model.MdpChiTietHoaDons != null && Model.MdpChiTietHoaDons.Any())
+    {
+        <table class="table table-bordered table-hover text-center align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Sản phẩm</th>
+                    <th>Màu</th>
+                    <th>Dung lượng</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var idx = 1;
+                    foreach (var ct in Model.MdpChiTietHoaDons)
+                    {
+                        var variant = ct.MdpVariant;
+                        var sanpham = variant?.MdpSanPham;
+                        var mausac = variant?.MdpMauSac;
+
+                        var productName = sanpham?.MdpTenSanPham ?? "-";
+                        var colorName = mausac?.MdpTenMau ?? "-";
+                        var dungluong = variant?.MdpDungLuong ?? "-";
+
+                        var qty = ct.MdpSoLuong;
+                        var price = ct.MdpGia;
+                        var total = qty * price;
+
+                        <tr>
+                            <td>@idx</td>
+                            <td>@productName</td>
+                            <td>@colorName</td>
+                            <td>@dungluong</td>
+                            <td>@qty</td>
+                            <td>@price.ToString("N0") VNĐ</td>
+                            <td>@total.ToString("N0") VNĐ</td>
+                        </tr>
+                        idx++;
+                    }
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <span class="text-muted">Không có chi tiết sản phẩm</span>
+    }
+</div>
+
+<div class="mt-4">
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+    <a asp-action="Edit" asp-route-id="@Model.MdpHoaDonId" class="btn btn-warning">Sửa</a>
+    <a asp-action="Delete" asp-route-id="@Model.MdpHoaDonId" class="btn btn-danger">Xóa</a>
+</div>

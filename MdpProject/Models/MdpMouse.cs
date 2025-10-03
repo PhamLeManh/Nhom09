@@ -23,5 +23,7 @@ public partial class MdpMouse
 
     public DateTime? MdpUpdatedAt { get; set; }
 
+    public string? MdpAnh { get; set; }
+
     public virtual MdpSanPham MdpSanPham { get; set; } = null!;
 }

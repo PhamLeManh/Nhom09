@@ -1,42 +1,56 @@
 ﻿@model MdpProject.Models.MdpCategory
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Chi tiết danh mục";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
 }
 
-<h1>Details</h1>
+<div class="container py-4">
+    <!-- Banner -->
+    <div class="d-flex align-items-center mb-4">
+        <i class="bi bi-card-list display-4 text-info me-2"></i>
+        <h2 class="fw-bold text-info">Chi tiết danh mục</h2>
+    </div>
 
-<div>
-    <h4>MdpCategory</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MdpTenDanhMuc)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MdpTenDanhMuc)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MdpMoTa)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MdpMoTa)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MdpAnhDanhMuc)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MdpAnhDanhMuc)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MdpCreatedAt)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MdpCreatedAt)
-        </dd>
-    </dl>
+    <!-- Card chứa thông tin -->
+    <div class="card shadow-sm border-0 p-4">
+        <dl class="row mb-0">
+            <dt class="col-sm-3 fw-semibold">Tên danh mục:</dt>
+            <dd class="col-sm-9">@Model.MdpTenDanhMuc</dd>
+
+            <dt class="col-sm-3 fw-semibold">Mô tả:</dt>
+            <dd class="col-sm-9">@Model.MdpMoTa</dd>
+
+            <dt class="col-sm-3 fw-semibold">Ảnh danh mục:</dt>
+            <dd class="col-sm-9">
+                @if (!string.IsNullOrEmpty(Model.MdpAnhDanhMuc))
+                {
+                    <img src="@Model.MdpAnhDanhMuc" alt="Ảnh danh mục" style="max-width:200px; border-radius:6px;" />
+                }
+                else
+                {
+                    <span class="text-muted">Chưa có ảnh</span>
+                }
+            </dd>
+
+            <dt class="col-sm-3 fw-semibold">Ngày tạo:</dt>
+            <dd class="col-sm-9">@Model.MdpCreatedAt?.ToString("dd/MM/yyyy HH:mm")</dd>
+        </dl>
+
+        <!-- Actions -->
+        <div class="mt-4">
+            <a asp-action="Edit" asp-route-id="@Model.MdpCategoryId" class="btn btn-warning me-2">
+                <i class="bi bi-pencil-square me-1"></i> Sửa
+            </a>
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="bi bi-arrow-left-circle me-1"></i> Quay lại
+            </a>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.MdpCategoryId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+<style>
+    .card {
+        border-radius: 12px;
+    }
+</style>

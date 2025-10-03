@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MdpProject")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+760bd46a42d9271ad3cf6914e756fc5dea18a59c")]
 [assembly: System.Reflection.AssemblyProductAttribute("MdpProject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MdpProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

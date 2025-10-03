@@ -1,0 +1,99 @@
+﻿@model MdpProject.Models.MdpDonHang
+
+@{
+    ViewData["Title"] = "Chi Tiết Đơn Hàng";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+}
+
+<div class="container my-4">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary fw-bold"><i class="bi bi-eye"></i> @ViewData["Title"] - Mã @Model.MdpDonHangId</h2>
+        <a asp-action="MdpAdminIndex" class="btn btn-secondary shadow-sm"><i class="bi bi-arrow-left"></i> Quay Lại</a>
+    </div>
+
+    <!-- Thông tin chính -->
+    <div class="row mb-4">
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-sm border-primary p-3">
+                <h5 class="card-title text-primary"><i class="bi bi-info-circle"></i> Thông tin đơn hàng</h5>
+                <p><strong>Ngày đặt:</strong> @Model.MdpNgayDatDonHang?.ToString("dd/MM/yyyy HH:mm")</p>
+                <p><strong>Địa chỉ giao hàng:</strong> @Model.MdpDiaChiGiaoHang</p>
+                <p><strong>Phương thức thanh toán:</strong> @Model.MdpPhuongThucThanhToan</p>
+                <p><strong>Trạng thái thanh toán:</strong> @Model.MdpTrangThaiThanhToan</p>
+                <p><strong>Trạng thái đơn:</strong> @Model.MdpStatus</p>
+                <p><strong>Khuyến mãi:</strong> @Model.MdpKm?.MdpMaCode ?? "Không"</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-sm border-success p-3">
+                <h5 class="card-title text-success"><i class="bi bi-currency-dollar"></i> Tổng quan thanh toán</h5>
+                <p><strong>Tổng tiền:</strong> @Model.MdpTongTien.ToString("N0")₫</p>
+                <p><strong>Số sản phẩm:</strong> @Model.MdpChiTietDonHangs.Sum(c => c.MdpSoLuong)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bảng chi tiết sản phẩm -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white fw-bold">
+            <i class="bi bi-box-seam"></i> Sản phẩm trong đơn
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-bordered table-hover align-middle text-center">
+                <thead class="table-light">
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Màu</th>
+                        <th>Dung lượng</th>
+                        <th>Đơn giá</th>
+                        <th>Số lượng</th>
+                        <th>Giảm giá</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.MdpChiTietDonHangs)
+                    {
+                        <tr>
+                            <td>@item.MdpVariant.MdpSanPham.MdpTenSanPham</td>
+                            <td>@item.MdpVariant.MdpMauSac?.MdpTenMau ?? "Không"</td>
+                            <td>@item.MdpVariant.MdpDungLuong ?? "Không"</td>
+                            <td>@item.MdpGia.ToString("N0")₫</td>
+                            <td>@item.MdpSoLuong</td>
+                            <td>@(item.MdpGiamGia.HasValue ? item.MdpGiamGia.Value.ToString("N0") + "₫" : "0₫")</td>
+                            <td>@(item.MdpThanhTien.HasValue ? item.MdpThanhTien.Value.ToString("N0") + "₫" : "0₫")</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .card {
+        border-radius: 12px;
+    }
+
+    .card-header {
+        font-size: 1.1rem;
+        border-radius: 12px 12px 0 0;
+    }
+
+    table th, table td {
+        vertical-align: middle;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f9f9f9;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+</style>

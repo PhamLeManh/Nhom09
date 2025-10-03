@@ -1,42 +1,55 @@
 ﻿@model MdpProject.Models.MdpKhoHang
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Thêm kho hàng";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
 }
 
-<h1>Create</h1>
+<div class="container my-4">
+    <h2 class="text-primary fw-bold mb-4">📦 Thêm mới kho hàng</h2>
 
-<h4>MdpKhoHang</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="MdpSanPhamId" class="control-label"></label>
-                <select asp-for="MdpSanPhamId" class ="form-control" asp-items="ViewBag.MdpSanPhamId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="MdpSoLuongNhap" class="control-label"></label>
-                <input asp-for="MdpSoLuongNhap" class="form-control" />
-                <span asp-validation-for="MdpSoLuongNhap" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MdpSoLuongTon" class="control-label"></label>
-                <input asp-for="MdpSoLuongTon" class="form-control" />
-                <span asp-validation-for="MdpSoLuongTon" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
 
-<div>
-    <a asp-action="Index">Back to List</a>
+    <form asp-action="Create" method="post">
+        <div class="mb-3">
+            <label asp-for="MdpSanPhamId" class="form-label">Sản phẩm</label>
+            <select asp-for="MdpSanPhamId" asp-items="ViewBag.MdpSanPhamId" class="form-select">
+                <option value="">-- Chọn sản phẩm --</option>
+            </select>
+            <span asp-validation-for="MdpSanPhamId" class="text-danger"></span>
+
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="MdpSoLuongNhap" class="form-label">Số lượng nhập</label>
+            <input asp-for="MdpSoLuongNhap" type="number" min="0" class="form-control" />
+            <span asp-validation-for="MdpSoLuongNhap" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="MdpSoLuongTon" class="form-label">Số lượng tồn</label>
+            <input asp-for="MdpSoLuongTon" type="number" min="0" class="form-control" />
+            <span asp-validation-for="MdpSoLuongTon" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-success">➕ Thêm kho hàng</button>
+    </form>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }
+
+<style>
+    .form-control, .btn {
+        border-radius: 8px;
+    }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+</style>

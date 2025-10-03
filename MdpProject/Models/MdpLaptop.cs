@@ -29,6 +29,7 @@ public partial class MdpLaptop
 
     public DateTime? MdpUpdatedAt { get; set; }
 
-    public virtual MdpSanPham MdpSanPham { get; set; } = null!;
+    public string? MdpAnh { get; set; }
 
+    public virtual MdpSanPham MdpSanPham { get; set; } = null!;
 }

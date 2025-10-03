@@ -4,175 +4,137 @@
     ViewData["Title"] = "Laptop Store";
     Layout = "~/Views/Shared/_MDPLayout.cshtml";
 
-    // Giá tạm riêng cho từng sản phẩm (có URL ảnh trực tiếp)
-    var productPrices = new Dictionary<int, (decimal Gia, decimal? GiaKhuyenMai, string ImageUrl)>
+    var selectedCpu = Context.Request.Query["cpu"].ToString();
+    var selectedRam = Context.Request.Query["ram"].ToString();
+    var selectedGpu = Context.Request.Query["gpu"].ToString();
+
+    var filteredModel = Model;
+
+    if (!string.IsNullOrEmpty(selectedCpu))
+        filteredModel = filteredModel.Where(x => !string.IsNullOrEmpty(x.MdpCpu) && x.MdpCpu.Contains(selectedCpu)).ToList();
+    if (!string.IsNullOrEmpty(selectedRam))
+        filteredModel = filteredModel.Where(x => !string.IsNullOrEmpty(x.MdpRam) && x.MdpRam.Contains(selectedRam)).ToList();
+    if (!string.IsNullOrEmpty(selectedGpu))
+        filteredModel = filteredModel.Where(x => !string.IsNullOrEmpty(x.MdpGpu) && x.MdpGpu.Contains(selectedGpu)).ToList();
+
+    var random = new Random();
+
+    string GetRandomImage()
     {
-        {1, (15000000, null, "https://laptoptitan.vn/wp-content/uploads/2025/01/Laptop-Gaming-tot-nhat-2025-01.jpg")},
-        {2, (20000000, 18000000, "https://hoangsonstore.com/wp-content/uploads/2023/03/surface-laptop-go-core-i5-1035g1-ram-8gb-ssd-128gb-12-4-inch-fullhd-5039-5.jpg")},
-        {3, (12000000, 11000000, "https://laptopvang.com/wp-content/uploads/2023/10/laptop-gaming.jpeg")},
-        {4, (25000000, 22000000, "https://phongvu.vn/cong-nghe/wp-content/uploads/2024/06/ASUS-ROG-laptopgaming-4-1024x640.jpg")},
-        {5, (17000000, null, "https://phongvu.vn/cong-nghe/wp-content/uploads/2024/04/Tat-tan-tat-ve-laptop-gaming-Asus-ROG-6.jpg")},
-        {6, (30000000, 27000000, "https://cdn.tgdd.vn/Files/2019/06/10/1172221/asus-fx504ge-i5-8300h-8gb-1tb-gtx1050ti-win10-e41-content-thietke_800x444.jpg")}
-    };
+        if (!filteredModel.Any()) return "/images/placeholder.png";
+        var laptop = filteredModel.ElementAt(random.Next(filteredModel.Count()));
+        return string.IsNullOrEmpty(laptop.MdpAnh) ? "/images/placeholder.png" : laptop.MdpAnh;
+    }
 }
 
-<!-- Banner danh sách laptop -->
-<div class="text-center py-3 mb-4" style="background: linear-gradient(to right, #4e54c8, #8f94fb); color: white; border-radius: 8px;">
-    <h2 class="mb-0 fw-bold text-shadow">DANH SÁCH LAPTOP</h2>
+<!-- ================= FILTER FORM ================= -->
+<div class="container my-4">
+    <div class="row g-3 align-items-center">
+        <div class="col-md-5">
+            <input type="text" id="searchLaptop" class="form-control shadow-sm" placeholder="🔍 Tìm laptop theo tên..." onkeyup="filterLaptopsClient()" />
+        </div>
+        <div class="col-md-2">
+            <select id="filterCpuClient" class="form-select shadow-sm" onchange="filterLaptopsClient()">
+                <option value="">CPU</option>
+                <option value="Intel i5">Intel i5</option>
+                <option value="Intel i7">Intel i7</option>
+                <option value="AMD Ryzen 5">AMD Ryzen 5</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <select id="filterRamClient" class="form-select shadow-sm" onchange="filterLaptopsClient()">
+                <option value="">RAM</option>
+                <option value="8GB">8GB</option>
+                <option value="16GB">16GB</option>
+                <option value="32GB">32GB</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <select id="filterGpuClient" class="form-select shadow-sm" onchange="filterLaptopsClient()">
+                <option value="">GPU</option>
+                <option value="GTX 1650">GTX 1650</option>
+                <option value="RTX 3060">RTX 3060</option>
+                <option value="RTX 4070">RTX 4070</option>
+            </select>
+        </div>
+        <div class="col-md-1">
+            <button class="btn btn-outline-secondary w-100 shadow-sm" onclick="resetFilters()">Reset</button>
+        </div>
+    </div>
 </div>
 
-<div class="row row-cols-1 row-cols-md-3 g-3">
-    @foreach (var laptop in Model)
+<!-- ================= DANH SÁCH LAPTOP ================= -->
+<div class="text-center py-3 mb-4" style="background: linear-gradient(to right, #4e54c8, #8f94fb); color: white; border-radius: 8px;">
+    <h2 class="mb-0 fw-bold">💻 DANH SÁCH LAPTOP</h2>
+</div>
+
+<div id="laptopContainer" class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-3">
+    @foreach (var laptop in filteredModel)
     {
-        var priceInfo = productPrices.ContainsKey(laptop.MdpLaptopId)
-        ? productPrices[laptop.MdpLaptopId]
-        : (10000000m, null, "https://hoangsonstore.com/wp-content/uploads/2023/03/surface-laptop-go-core-i5-1035g1-ram-8gb-ssd-128gb-12-4-inch-fullhd-5039-5.jpg");
-
-        <div class="col">
-            <div class="card h-100 shadow-sm">
-                <img src="@priceInfo.ImageUrl" class="card-img-top" alt="@laptop.MdpTenLaptop" style="height:180px; object-fit:cover;" />
-                <div class="card-body p-2">
-                    <h6 class="card-title text-truncate" title="@laptop.MdpTenLaptop">@laptop.MdpTenLaptop</h6>
-
-                    @* Thông tin chi tiết *@
-                    @if (!string.IsNullOrEmpty(laptop.MdpCpu))
-                    {
-                        <p class="mb-1"><strong>CPU:</strong> @laptop.MdpCpu</p>
-                    }
-                    @if (!string.IsNullOrEmpty(laptop.MdpRam))
-                    {
-                        <p class="mb-1"><strong>RAM:</strong> @laptop.MdpRam</p>
-                    }
-                    @if (!string.IsNullOrEmpty(laptop.MdpStorage))
-                    {
-                        <p class="mb-1"><strong>Storage:</strong> @laptop.MdpStorage</p>
-                    }
-                    @if (!string.IsNullOrEmpty(laptop.MdpGpu))
-                    {
-                        <p class="mb-1"><strong>GPU:</strong> @laptop.MdpGpu</p>
-                    }
-                    @if (!string.IsNullOrEmpty(laptop.MdpManHinh))
-                    {
-                        <p class="mb-1"><strong>Màn hình:</strong> @laptop.MdpManHinh</p>
-                    }
-                    @if (!string.IsNullOrEmpty(laptop.MdpPin))
-                    {
-                        <p class="mb-1"><strong>Pin:</strong> @laptop.MdpPin</p>
-                    }
-                    @if (!string.IsNullOrEmpty(laptop.MdpHeDieuHanh))
-                    {
-                        <p class="mb-1"><strong>HĐH:</strong> @laptop.MdpHeDieuHanh</p>
-                    }
-
+        <div class="col laptop-item card-hover" data-cpu="@laptop.MdpCpu" data-ram="@laptop.MdpRam" data-gpu="@laptop.MdpGpu">
+            <div class="card h-100 shadow-lg border-0 rounded-3 overflow-hidden">
+                <img src="@(string.IsNullOrEmpty(laptop.MdpAnh) ? "/images/placeholder.png" : laptop.MdpAnh)"
+                     class="card-img-top" style="height:200px; object-fit:cover;" />
+                <div class="card-body p-3">
+                    <h6 class="card-title text-truncate fw-bold" title="@laptop.MdpTenLaptop">@laptop.MdpTenLaptop</h6>
+                    <p class="mb-1"><strong>CPU:</strong> @laptop.MdpCpu</p>
+                    <p class="mb-1"><strong>RAM:</strong> @laptop.MdpRam</p>
+                    <p class="mb-1"><strong>GPU:</strong> @laptop.MdpGpu</p>
                     <p class="mt-2 mb-0">
                         <span class="badge bg-success me-1">Còn hàng</span>
-                        @if (priceInfo.GiaKhuyenMai.HasValue)
-                        {
-                            var giamGia = priceInfo.Gia - priceInfo.GiaKhuyenMai.Value;
-                            var phanTram = (giamGia / priceInfo.Gia) * 100;
-                            <span class="text-muted text-decoration-line-through me-2">@priceInfo.Gia.ToString("N0")₫</span>
-                            <span class="fw-bold text-danger">@priceInfo.GiaKhuyenMai.Value.ToString("N0")₫</span>
-                            <span class="text-success ms-2">-@phanTram.ToString("0")% (@giamGia.ToString("N0")₫)</span>
-                        }
-                        else
-                        {
-                            <span class="fw-bold text-danger">@priceInfo.Gia.ToString("N0")₫</span>
-                        }
+                        <span class="fw-bold text-danger">Liên hệ</span>
                     </p>
                 </div>
-                <div class="card-footer text-center bg-white border-0 p-2 d-flex justify-content-center gap-2">
+                <div class="card-footer text-center bg-light border-0 p-2 d-flex justify-content-center gap-2">
                     <a href="@Url.Action("Details", "MdpLaptops", new { id = laptop.MdpLaptopId })"
-                       class="btn btn-outline-primary btn-sm btn-hover-gradient fw-bold px-3 py-2">
+                       class="btn btn-outline-primary btn-sm fw-bold px-3 py-2">
                         <i class="bi bi-eye me-1"></i> Xem
                     </a>
-                    <a href="@Url.Action("AddToCart", "Cart", new { id = laptop.MdpLaptopId })"
-                       class="btn btn-success btn-sm btn-hover-gradient fw-bold px-3 py-2">
-                        <i class="bi bi-cart-plus me-1"></i> Mua
-                    </a>
+                    <a href="@Url.Action("Index", "MdpProductVariants", new { sanPhamId = laptop.MdpSanPhamId })"
+                       class="btn btn-success btn-sm fw-bold">Mua</a>
                 </div>
-
             </div>
         </div>
     }
 </div>
 
-<!-- Banner Sản phẩm mới -->
-<div class="text-center py-3 my-4" style="background-color:#ffd700; color:#000; border-radius:8px;">
-    <h2 class="mb-0 fw-bold">SẢN PHẨM MỚI</h2>
+<!-- ================= HOT ================= -->
+<div class="text-center py-3 my-4" style="background: linear-gradient(45deg,#ff9800,#ffc107); color:#fff; border-radius:8px;">
+    <h2 class="mb-0 fw-bold">🔥 SẢN PHẨM HOT</h2>
 </div>
-
 <div class="row row-cols-1 row-cols-md-4 g-3">
-    @foreach (var laptop in Model.Take(4))
+    @for (int i = 0; i < 4; i++)
     {
-        var priceInfo = productPrices.ContainsKey(laptop.MdpLaptopId)
-        ? productPrices[laptop.MdpLaptopId]
-        : (10000000m, null, "https://hoangsonstore.com/wp-content/uploads/2023/03/surface-laptop-go-core-i5-1035g1-ram-8gb-ssd-128gb-12-4-inch-fullhd-5039-5.jpg");
-
-        <div class="col">
-            <div class="card h-100 shadow-lg border border-primary position-relative">
-                <span class="badge bg-primary position-absolute top-0 start-0 m-2">New</span>
-                <img src="@priceInfo.ImageUrl" class="card-img-top" style="height:140px; object-fit:cover;" />
+        <div class="col card-hover">
+            <div class="card h-100 shadow-lg border-0 rounded-3 position-relative">
+                <span class="badge bg-danger position-absolute top-0 start-0 m-2">Hot</span>
+                <img src="@GetRandomImage()" class="card-img-top" style="height:160px; object-fit:cover;" />
                 <div class="card-body p-2 text-center">
-                    <small>@laptop.MdpTenLaptop</small>
-                    @if (priceInfo.GiaKhuyenMai.HasValue)
-                    {
-                        <p class="text-muted text-decoration-line-through mb-0">@priceInfo.Gia.ToString("N0")₫</p>
-                        <p class="text-danger fw-bold mb-0">@priceInfo.GiaKhuyenMai.Value.ToString("N0")₫</p>
-                    }
-                    else
-                    {
-                        <p class="fw-bold text-danger mb-0">@priceInfo.Gia.ToString("N0")₫</p>
-                    }
+                    <small class="fw-bold">Laptop nổi bật</small>
+                    <p class="fw-bold text-danger mb-0">10,000,000₫</p>
                 </div>
             </div>
         </div>
     }
 </div>
 
-<!-- Banner Khuyến mãi -->
-<div class="text-center py-3 my-4" style="background-color:#ff4d4d; color:white; border-radius:8px;">
-    <h2 class="mb-0 fw-bold">KHUYẾN MÃI</h2>
+<!-- ================= KHUYẾN MÃI ================= -->
+<div class="text-center py-3 my-4" style="background: linear-gradient(45deg,#f44336,#e91e63); color:white; border-radius:8px;">
+    <h2 class="mb-0 fw-bold">💥 KHUYẾN MÃI</h2>
 </div>
-
 <div class="row row-cols-1 row-cols-md-4 g-3">
-    @foreach (var laptop in Model.Where(x => productPrices.ContainsKey(x.MdpLaptopId) && productPrices[x.MdpLaptopId].GiaKhuyenMai.HasValue))
+    @for (int i = 0; i < 4; i++)
     {
-        var priceInfo = productPrices[laptop.MdpLaptopId];
-        var giamGia = priceInfo.Gia - priceInfo.GiaKhuyenMai.Value;
-        var phanTramGiam = (giamGia / priceInfo.Gia) * 100;
-
-        <div class="col">
-            <div class="card h-100 shadow-lg border border-danger position-relative">
-                <span class="badge bg-danger position-absolute top-0 start-0 m-2">Sale</span>
-                <img src="@priceInfo.ImageUrl" class="card-img-top" style="height:140px; object-fit:cover;" />
+        <div class="col card-hover">
+            <div class="card h-100 shadow-lg border-0 rounded-3 position-relative">
+                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">Sale</span>
+                <img src="@GetRandomImage()" class="card-img-top" style="height:160px; object-fit:cover;" />
                 <div class="card-body p-2 text-center">
-                    <small>@laptop.MdpTenLaptop</small>
-                    <p class="text-muted text-decoration-line-through mb-0">@priceInfo.Gia.ToString("N0")₫</p>
-                    <p class="text-danger fw-bold mb-0">@priceInfo.GiaKhuyenMai.Value.ToString("N0")₫</p>
-                    <p class="text-success mb-0">Tiết kiệm: @giamGia.ToString("N0")₫ (@phanTramGiam.ToString("0")%)</p>
+                    <small class="fw-bold">Khuyến mãi hot</small>
+                    <p class="text-muted text-decoration-line-through mb-0">12,000,000₫</p>
+                    <p class="text-danger fw-bold mb-0">10,000,000₫</p>
                 </div>
             </div>
         </div>
     }
 </div>
-
-<style>
-    .btn-hover-gradient {
-        transition: all 0.3s ease;
-    }
-
-        .btn-hover-gradient:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-            background: linear-gradient(45deg, #6a11cb, #2575fc);
-            color: #fff !important;
-            border-color: transparent !important;
-        }
-
-    /* Nút mua xanh vẫn đẹp hơn với hover gradient */
-    .btn-success.btn-hover-gradient:hover {
-        background: linear-gradient(45deg, #28a745, #20c997);
-        color: #fff !important;
-        border-color: transparent !important;
-    }
-</style>

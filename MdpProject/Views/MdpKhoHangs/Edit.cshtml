@@ -1,49 +1,68 @@
 ﻿@model MdpProject.Models.MdpKhoHang
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Chỉnh sửa kho hàng";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
 }
 
-<h1>Edit</h1>
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary fw-bold">📦 Chỉnh sửa kho hàng</h2>
+        <a asp-action="Index" class="btn btn-secondary btn-lg shadow-sm">
+            <i class="bi bi-arrow-left"></i> Quay lại
+        </a>
+    </div>
 
-<h4>MdpKhoHang</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="card shadow-sm p-4">
+        <form asp-action="Edit" method="post">
             <input type="hidden" asp-for="MdpKhoId" />
-            <div class="form-group">
-                <label asp-for="MdpSanPhamId" class="control-label"></label>
-                <select asp-for="MdpSanPhamId" class="form-control" asp-items="ViewBag.MdpSanPhamId"></select>
+
+            <div class="mb-3">
+                <label asp-for="MdpSanPhamId" class="form-label">Sản phẩm</label>
+                <select asp-for="MdpSanPhamId" class="form-select" asp-items="ViewBag.MdpSanPhamId"></select>
                 <span asp-validation-for="MdpSanPhamId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="MdpSoLuongNhap" class="control-label"></label>
+
+            <div class="mb-3">
+                <label asp-for="MdpSoLuongNhap" class="form-label">Số lượng nhập</label>
                 <input asp-for="MdpSoLuongNhap" class="form-control" />
                 <span asp-validation-for="MdpSoLuongNhap" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="MdpSoLuongTon" class="control-label"></label>
+
+            <div class="mb-3">
+                <label asp-for="MdpSoLuongTon" class="form-label">Số lượng tồn</label>
                 <input asp-for="MdpSoLuongTon" class="form-control" />
                 <span asp-validation-for="MdpSoLuongTon" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="MdpNgayNhap" class="control-label"></label>
-                <input asp-for="MdpNgayNhap" class="form-control" />
+
+            <div class="mb-3">
+                <label asp-for="MdpNgayNhap" class="form-label">Ngày nhập</label>
+                <input asp-for="MdpNgayNhap" type="date" class="form-control" />
                 <span asp-validation-for="MdpNgayNhap" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg w-100 mt-3">
+                <i class="bi bi-save"></i> Lưu thay đổi
+            </button>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }
+
+<style>
+    .card {
+        border-radius: 12px;
+    }
+
+    .form-control, .btn {
+        border-radius: 8px;
+    }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+</style>

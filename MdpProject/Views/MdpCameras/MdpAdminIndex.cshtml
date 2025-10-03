@@ -1,0 +1,150 @@
+﻿@model IEnumerable<MdpProject.Models.MdpCamera>
+
+@{
+    ViewData["Title"] = "Quản lý Camera";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+}
+
+<div class="container-fluid my-4">
+    <!-- Header + Thêm mới -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary fw-bold"><i class="bi bi-camera"></i> Quản lý Camera</h2>
+        <a asp-action="Create" class="btn btn-success btn-lg shadow-sm">
+            <i class="bi bi-plus-circle"></i> Thêm Camera
+        </a>
+    </div>
+
+    <!-- Thông báo -->
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <!-- Thống kê nhanh -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card shadow-sm border-primary p-3 text-center">
+                <h6 class="text-primary">Tổng số camera</h6>
+                <h3 class="fw-bold">@Model.Count()</h3>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm border-success p-3 text-center">
+                <h6 class="text-success">Mới nhất</h6>
+                <h3 class="fw-bold">@Model.OrderByDescending(c => c.MdpCreatedAt).Take(5).Count()</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bảng danh sách camera -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white fw-bold">
+            <i class="bi bi-table"></i> Danh sách Camera
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-hover align-middle text-center">
+                <thead class="table-light">
+                    <tr>
+                        <th>Ảnh</th>
+                        <th>Tên Camera</th>
+                        <th>Độ phân giải</th>
+                        <th>Cảm biến</th>
+                        <th>Ống kính</th>
+                        <th>Bộ nhớ</th>
+                        <th>Ngày tạo</th>
+                        <th>Ngày cập nhật</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Any())
+                    {
+                        foreach (var cam in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="@(!string.IsNullOrEmpty(cam.MdpAnh) ? cam.MdpAnh : "https://via.placeholder.com/60")"
+                                         alt="@cam.MdpTenCamera"
+                                         class="table-img" />
+                                </td>
+                                <td>@cam.MdpTenCamera</td>
+                                <td>@cam.MdpDoPhanGiai</td>
+                                <td>@cam.MdpCamBien</td>
+                                <td>@cam.MdpOngKinh</td>
+                                <td>@cam.MdpBoNho</td>
+                                <td>@cam.MdpCreatedAt?.ToString("dd/MM/yyyy")</td>
+                                <td>@cam.MdpUpdatedAt?.ToString("dd/MM/yyyy")</td>
+                                <td class="text-center">
+                                    <a asp-action="Edit" asp-route-id="@cam.MdpCameraId" class="btn btn-warning btn-sm mb-1">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@cam.MdpCameraId" class="btn btn-danger btn-sm mb-1">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="9" class="text-center text-muted py-3">Chưa có dữ liệu</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+
+<style>
+    .card {
+        border-radius: 12px;
+    }
+
+    .card-header {
+        font-size: 1.2rem;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .table-img {
+        height: 60px;
+        width: 60px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        transition: transform 0.3s;
+    }
+
+        .table-img:hover {
+            transform: scale(1.1);
+        }
+
+    .btn-sm {
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+    }
+
+        .btn-sm:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+    .table-hover tbody tr:hover {
+        background-color: #f9f9f9;
+    }
+</style>

@@ -1,0 +1,117 @@
+﻿@model IEnumerable<MdpProject.Models.MdpLinhKien>
+
+@{
+    ViewData["Title"] = "Linh kiện Store";
+    var defaultImg = Url.Content("~/images/linhkien/default.png");
+
+    // Giá giả lập
+    Func<int, (decimal Orig, decimal Sale, int Discount)> GetPrice = id =>
+    {
+        var rnd = new Random(id);
+        var orig = rnd.Next(500_000, 3_000_000);
+        var discount = rnd.Next(10, 35);
+        var sale = (int)(orig * (100 - discount) / 100.0m);
+        return (Orig: orig, Sale: sale, Discount: discount);
+    };
+
+    Func<MdpProject.Models.MdpLinhKien, string> GetImage = item =>
+        !string.IsNullOrEmpty(item.MdpAnh) ? item.MdpAnh : defaultImg;
+}
+
+<div class="container py-4">
+
+    <!-- HOT -->
+    <div class="mb-5">
+        <div class="p-3 rounded-3 text-white mb-3" style="background: linear-gradient(135deg, #ff4b2b, #ff416c); box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+            <h3 class="mb-0"><i class="bi bi-fire"></i> Linh kiện HOT</h3>
+            <small class="text-light">Những sản phẩm được khách hàng quan tâm nhiều nhất</small>
+        </div>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            @foreach (var hotItem in Model.OrderByDescending(p => p.MdpCreatedAt).Take(4))
+            {
+                var price = GetPrice(hotItem.MdpLinhKienId);
+                <div class="col">
+                    <div class="card h-100 shadow hover-card border-danger position-relative">
+                        <span class="badge bg-danger position-absolute top-0 end-0 m-2">HOT</span>
+                        <img src="@GetImage(hotItem)" class="card-img-top" style="height:180px; object-fit:cover;" />
+                        <div class="card-body d-flex flex-column">
+                            <h6 class="card-title text-truncate">@hotItem.MdpTenLinhKien</h6>
+                            <p class="small text-muted mb-1"><strong>Loại:</strong> @hotItem.MdpLoaiLinhKien</p>
+                            <p class="small text-muted mb-1"><strong>Thông số:</strong> @hotItem.MdpThongSoKyThuat</p>
+                            <div class="mb-2">
+                                <span class="text-muted text-decoration-line-through me-2">@price.Orig.ToString("N0") ₫</span>
+                                <span class="fw-bold text-primary">@price.Sale.ToString("N0") ₫</span>
+                                <span class="badge bg-success ms-2">-@(price.Discount)%</span>
+                            </div>
+                            <div class="mt-auto d-flex gap-2">
+                                <a asp-action="Details" asp-route-id="@hotItem.MdpLinhKienId" class="btn btn-outline-primary flex-fill btn-sm">Chi tiết</a>
+                                <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@hotItem.MdpLinhKienId" class="btn btn-success flex-fill btn-sm">
+                                    <i class="bi bi-cart-plus"></i> Mua ngay
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- SALE -->
+    <div class="mb-5">
+        <div class="p-3 rounded-3 text-white mb-3" style="background: linear-gradient(135deg, #28a745, #20c997); box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+            <h3 class="mb-0"><i class="bi bi-tags"></i> Linh kiện SALE</h3>
+            <small class="text-light">Những sản phẩm đang có ưu đãi đặc biệt</small>
+        </div>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            @foreach (var saleItem in Model.Where(p => p.MdpLinhKienId % 3 == 0).Take(4))
+            {
+                var price = GetPrice(saleItem.MdpLinhKienId);
+                <div class="col">
+                    <div class="card h-100 shadow hover-card border-success position-relative">
+                        <span class="badge bg-success position-absolute top-0 start-0 m-2">SALE</span>
+                        <img src="@GetImage(saleItem)" class="card-img-top" style="height:180px; object-fit:cover;" />
+                        <div class="card-body d-flex flex-column">
+                            <h6 class="card-title text-truncate">@saleItem.MdpTenLinhKien</h6>
+                            <p class="small text-muted mb-1"><strong>Loại:</strong> @saleItem.MdpLoaiLinhKien</p>
+                            <p class="small text-muted mb-1"><strong>Thông số:</strong> @saleItem.MdpThongSoKyThuat</p>
+                            <div class="mb-2">
+                                <span class="text-muted text-decoration-line-through me-2">@price.Orig.ToString("N0") ₫</span>
+                                <span class="fw-bold text-primary">@price.Sale.ToString("N0") ₫</span>
+                                <span class="badge bg-success ms-2">-@(price.Discount)%</span>
+                            </div>
+                            <div class="mt-auto d-flex gap-2">
+                                <a asp-action="Details" asp-route-id="@saleItem.MdpLinhKienId" class="btn btn-outline-primary flex-fill btn-sm">Chi tiết</a>
+                                <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@saleItem.MdpLinhKienId" class="btn btn-success flex-fill btn-sm">
+                                    <i class="bi bi-cart-plus"></i> Mua ngay
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .hover-card {
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+    .btn-success:hover {
+        background: linear-gradient(45deg,#28a745,#20c997) !important;
+        border-color: transparent !important;
+    }
+
+    .btn-outline-primary:hover {
+        background: linear-gradient(45deg,#ff416c,#ff4b2b) !important;
+        color: #fff !important;
+        border-color: transparent !important;
+    }
+</style>

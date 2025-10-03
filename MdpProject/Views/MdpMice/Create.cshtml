@@ -1,0 +1,107 @@
+﻿@model MdpProject.Models.MdpMouse
+
+@{
+    ViewData["Title"] = "Thêm Mouse";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+}
+
+<div class="container my-4">
+    <div class="card shadow-lg border-0 rounded-4 p-4">
+        <h2 class="text-primary fw-bold mb-3">
+            <i class="bi bi-plus-circle"></i> @ViewData["Title"]
+        </h2>
+        <hr class="mb-4" />
+
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger rounded-3"></div>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label asp-for="MdpSanPhamId" class="form-label">Danh mục sản phẩm</label>
+                    <select asp-for="MdpSanPhamId" class="form-select" asp-items="ViewBag.MdpSanPhamId">
+                        <option value="">-- Chọn danh mục --</option>
+                    </select>
+                    <span asp-validation-for="MdpSanPhamId" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="MdpTenMouse" class="form-label">Tên Mouse</label>
+                    <input asp-for="MdpTenMouse" class="form-control" placeholder="Nhập tên Mouse..." />
+                    <span asp-validation-for="MdpTenMouse" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="MdpKieuKetNoi" class="form-label">Kiểu kết nối</label>
+                    <input asp-for="MdpKieuKetNoi" class="form-control" placeholder="Ví dụ: USB, Wireless..." />
+                    <span asp-validation-for="MdpKieuKetNoi" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="MdpDoPhanGiai" class="form-label">Độ phân giải</label>
+                    <input asp-for="MdpDoPhanGiai" class="form-control" placeholder="Ví dụ: 800 DPI, 1600 DPI..." />
+                    <span asp-validation-for="MdpDoPhanGiai" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="MdpSoNut" class="form-label">Số nút</label>
+                    <input asp-for="MdpSoNut" type="number" class="form-control" placeholder="Ví dụ: 3, 5, 7..." />
+                    <span asp-validation-for="MdpSoNut" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="MdpDenLed" class="form-label">Đèn LED</label>
+                    <select asp-for="MdpDenLed" class="form-select">
+                        <option value="">-- Chọn --</option>
+                        <option value="true">Có</option>
+                        <option value="false">Không</option>
+                    </select>
+                    <span asp-validation-for="MdpDenLed" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="MdpAnh" class="form-label">URL ảnh</label>
+                    <input asp-for="MdpAnh" class="form-control" placeholder="Nhập URL ảnh..." />
+                    <span asp-validation-for="MdpAnh" class="text-danger small"></span>
+                </div>
+            </div>
+
+            <div class="mt-4 d-flex gap-2">
+                <button type="submit" class="btn btn-success flex-fill">
+                    <i class="bi bi-plus-circle"></i> Thêm Mouse
+                </button>
+                <a asp-action="MdpAdminIndex" class="btn btn-secondary flex-fill">
+                    <i class="bi bi-arrow-left"></i> Quay lại
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+
+<style>
+    .form-label {
+        font-weight: 600;
+    }
+
+    .form-control, .form-select {
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .btn {
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+    .card {
+        background: #fff;
+    }
+</style>

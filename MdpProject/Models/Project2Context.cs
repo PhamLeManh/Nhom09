@@ -72,6 +72,9 @@ public partial class Project2Context : DbContext
             entity.ToTable("MDP_Camera");
 
             entity.Property(e => e.MdpCameraId).HasColumnName("MDP_CameraID");
+            entity.Property(e => e.MdpAnh)
+                .HasMaxLength(255)
+                .HasColumnName("MDP_Anh");
             entity.Property(e => e.MdpBoNho)
                 .HasMaxLength(50)
                 .HasColumnName("MDP_BoNho");
@@ -127,7 +130,6 @@ public partial class Project2Context : DbContext
 
             entity.HasOne(d => d.MdpVariant).WithMany(p => p.MdpCarts)
                 .HasForeignKey(d => d.MdpVariantId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Cart_Variant");
         });
 
@@ -411,6 +413,9 @@ public partial class Project2Context : DbContext
             entity.ToTable("MDP_Laptop");
 
             entity.Property(e => e.MdpLaptopId).HasColumnName("MDP_LaptopID");
+            entity.Property(e => e.MdpAnh)
+                .HasMaxLength(255)
+                .HasColumnName("MDP_Anh");
             entity.Property(e => e.MdpCpu)
                 .HasMaxLength(100)
                 .HasColumnName("MDP_CPU");
@@ -458,6 +463,9 @@ public partial class Project2Context : DbContext
             entity.ToTable("MDP_LinhKien");
 
             entity.Property(e => e.MdpLinhKienId).HasColumnName("MDP_LinhKienID");
+            entity.Property(e => e.MdpAnh)
+                .HasMaxLength(255)
+                .HasColumnName("MDP_Anh");
             entity.Property(e => e.MdpCreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
@@ -503,6 +511,9 @@ public partial class Project2Context : DbContext
             entity.ToTable("MDP_Monitor");
 
             entity.Property(e => e.MdpMonitorId).HasColumnName("MDP_MonitorID");
+            entity.Property(e => e.MdpAnh)
+                .HasMaxLength(255)
+                .HasColumnName("MDP_Anh");
             entity.Property(e => e.MdpCongKetNoi)
                 .HasMaxLength(100)
                 .HasColumnName("MDP_CongKetNoi");
@@ -544,6 +555,9 @@ public partial class Project2Context : DbContext
             entity.ToTable("MDP_Mouse");
 
             entity.Property(e => e.MdpMouseId).HasColumnName("MDP_MouseID");
+            entity.Property(e => e.MdpAnh)
+                .HasMaxLength(255)
+                .HasColumnName("MDP_Anh");
             entity.Property(e => e.MdpCreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
@@ -578,6 +592,9 @@ public partial class Project2Context : DbContext
             entity.ToTable("MDP_PC");
 
             entity.Property(e => e.MdpPcid).HasColumnName("MDP_PCID");
+            entity.Property(e => e.MdpAnh)
+                .HasMaxLength(255)
+                .HasColumnName("MDP_Anh");
             entity.Property(e => e.MdpCaseType)
                 .HasMaxLength(100)
                 .HasColumnName("MDP_CaseType");
@@ -625,6 +642,9 @@ public partial class Project2Context : DbContext
             entity.ToTable("MDP_Phone");
 
             entity.Property(e => e.MdpPhoneId).HasColumnName("MDP_PhoneID");
+            entity.Property(e => e.MdpAnh)
+                .HasMaxLength(255)
+                .HasColumnName("MDP_Anh");
             entity.Property(e => e.MdpCamera)
                 .HasMaxLength(100)
                 .HasColumnName("MDP_Camera");

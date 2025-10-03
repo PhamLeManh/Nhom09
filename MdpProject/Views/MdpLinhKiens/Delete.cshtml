@@ -1,0 +1,72 @@
+﻿@model MdpProject.Models.MdpLinhKien
+
+@{
+    ViewData["Title"] = "Xóa Linh Kiện";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+}
+
+<div class="container my-4">
+    <div class="card shadow-lg border-0 rounded-4 p-4">
+        <h2 class="text-danger fw-bold mb-3">
+            <i class="bi bi-trash"></i> @ViewData["Title"]
+        </h2>
+        <hr class="mb-4" />
+
+        <h5>Bạn có chắc chắn muốn xóa linh kiện này không?</h5>
+
+        <dl class="row">
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.MdpTenLinhKien)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.MdpTenLinhKien)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.MdpLoaiLinhKien)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.MdpLoaiLinhKien)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.MdpThongSoKyThuat)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.MdpThongSoKyThuat)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.MdpAnh)</dt>
+            <dd class="col-sm-9">
+                @if (!string.IsNullOrEmpty(Model.MdpAnh))
+                {
+                    <img src="@Model.MdpAnh" alt="@Model.MdpTenLinhKien" style="max-width:150px;" />
+                }
+            </dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.MdpCreatedAt)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.MdpCreatedAt)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.MdpUpdatedAt)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.MdpUpdatedAt)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.MdpSanPham)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.MdpSanPham.MdpSanPhamId)</dd>
+        </dl>
+
+        <form asp-action="Delete" method="post" class="mt-4 d-flex gap-3">
+            <input type="hidden" asp-for="MdpLinhKienId" />
+            <button type="submit" class="btn btn-danger px-4 flex-fill fw-semibold">
+                <i class="bi bi-trash"></i> Xóa
+            </button>
+            <a asp-action="MdpAdminIndex" class="btn btn-outline-secondary px-4 flex-fill fw-semibold">
+                <i class="bi bi-arrow-left"></i> Quay lại
+            </a>
+        </form>
+
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 12px;
+    }
+
+    .btn {
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+</style>

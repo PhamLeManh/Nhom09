@@ -1,84 +1,151 @@
 ﻿@model MdpProject.Models.MdpLaptop
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Chi tiết Laptop";
+    Layout = "~/Views/Shared/_MDPLayout.cshtml";
+
+    var productImages = new List<string>
+    {
+        "https://laptoptitan.vn/wp-content/uploads/2025/01/Laptop-Gaming-tot-nhat-2025-01.jpg",
+        "https://hoangsonstore.com/wp-content/uploads/2023/03/surface-laptop-go-core-i5-1035g1-ram-8gb-ssd-128gb-12-4-inch-fullhd-5039-5.jpg",
+        "https://laptopvang.com/wp-content/uploads/2023/10/laptop-gaming.jpeg",
+        "https://phongvu.vn/cong-nghe/wp-content/uploads/2024/06/ASUS-ROG-laptopgaming-4-1024x640.jpg",
+        "https://phongvu.vn/cong-nghe/wp-content/uploads/2024/04/Tat-tan-tat-ve-laptop-gaming-Asus-ROG-6.jpg",
+        "https://cdn.tgdd.vn/Files/2019/06/10/1172221/asus-fx504ge-i5-8300h-8gb-1tb-gtx1050ti-win10-e41-content-thietke_800x444.jpg"
+    };
+
+    var rnd = new Random();
+    var mainImage = productImages[rnd.Next(productImages.Count)];
+    var additionalImages = productImages.OrderBy(x => rnd.Next()).Take(4).ToList();
 }
 
-<h1>Details</h1>
+<div class="container my-4">
+    <!-- Nút quay lại -->
+    <div class="mb-3">
+        <a asp-action="Index" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Quay lại</a>
+    </div>
 
-<div>
-    <h4>MdpLaptop</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MdpTenLaptop)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MdpTenLaptop)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MdpCpu)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MdpCpu)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MdpRam)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MdpRam)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MdpStorage)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MdpStorage)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MdpGpu)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MdpGpu)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MdpManHinh)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MdpManHinh)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MdpPin)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MdpPin)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MdpHeDieuHanh)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MdpHeDieuHanh)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MdpCreatedAt)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MdpCreatedAt)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MdpUpdatedAt)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MdpUpdatedAt)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MdpSanPham)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MdpSanPham.MdpSanPhamId)
-        </dd>
-    </dl>
+    <div class="row g-4">
+        <!-- Ảnh & carousel -->
+        <div class="col-lg-7">
+            <div class="card shadow-sm p-3 mb-4">
+                <div id="laptopCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="@mainImage" class="d-block w-100 rounded" style="height:400px; object-fit:cover;" />
+                        </div>
+                        @foreach (var img in additionalImages)
+                        {
+                            <div class="carousel-item">
+                                <img src="@img" class="d-block w-100 rounded" style="height:400px; object-fit:cover;" />
+                            </div>
+                        }
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#laptopCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#laptopCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+
+                <!-- Thumbnail -->
+                <div class="d-flex justify-content-center mt-3 gap-2">
+                    <img src="@mainImage" class="thumb-img rounded" data-bs-target="#laptopCarousel" data-bs-slide-to="0" />
+                    @for (int i = 0; i < additionalImages.Count; i++)
+                    {
+                        <img src="@additionalImages[i]" class="thumb-img rounded" data-bs-target="#laptopCarousel" data-bs-slide-to="@(i + 1)" />
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Thông số nổi bật -->
+        <div class="col-lg-5">
+            <div class="card shadow-sm p-4 h-100">
+                <h2 class="fw-bold mb-3">@Model.MdpTenLaptop</h2>
+                <div class="row g-3 mb-4">
+                    <div class="col-6"><strong>CPU:</strong> @Model.MdpCpu</div>
+                    <div class="col-6"><strong>RAM:</strong> @Model.MdpRam</div>
+                    <div class="col-6"><strong>Storage:</strong> @Model.MdpStorage</div>
+                    <div class="col-6"><strong>GPU:</strong> @Model.MdpGpu</div>
+                    <div class="col-6"><strong>Màn hình:</strong> @Model.MdpManHinh</div>
+                    <div class="col-6"><strong>Pin:</strong> @Model.MdpPin</div>
+                    <div class="col-12"><strong>Hệ điều hành:</strong> @Model.MdpHeDieuHanh</div>
+                </div>
+                <a href="@Url.Action("Index", "MdpProductVariants", new { sanPhamId = Model.MdpSanPhamId })" class="btn btn-success btn-lg w-100">
+                    <i class="bi bi-cart-plus"></i> Thêm vào giỏ hàng
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Giới thiệu sản phẩm -->
+    <div class="mt-5 p-4 bg-light rounded-4 shadow-sm">
+        <h4 class="fw-bold mb-3">Giới thiệu sản phẩm</h4>
+        <p>
+            Laptop <strong>@Model.MdpTenLaptop</strong> được thiết kế với hiệu năng mạnh mẽ, CPU <strong>@Model.MdpCpu</strong>, RAM <strong>@Model.MdpRam</strong> và card đồ họa <strong>@Model.MdpGpu</strong> cho phép xử lý mượt mà các tác vụ nặng, chơi game hoặc làm việc đồ họa.
+        </p>
+        <p>
+            Màn hình <strong>@Model.MdpManHinh</strong> hiển thị sắc nét, pin bền lâu, hệ điều hành <strong>@Model.MdpHeDieuHanh</strong> mang đến trải nghiệm thân thiện và tiện lợi cho người dùng.
+        </p>
+    </div>
+
+    <!-- Thông số chi tiết -->
+    <div class="mt-4 p-4 bg-white rounded-4 shadow-sm">
+        <h4 class="fw-bold mb-3">Thông số kỹ thuật chi tiết</h4>
+        <table class="table table-striped">
+            <tbody>
+                <tr><th>Mã Laptop</th><td>@Model.MdpLaptopId</td></tr>
+                <tr><th>Tên Laptop</th><td>@Model.MdpTenLaptop</td></tr>
+                <tr><th>CPU</th><td>@Model.MdpCpu</td></tr>
+                <tr><th>RAM</th><td>@Model.MdpRam</td></tr>
+                <tr><th>Storage</th><td>@Model.MdpStorage</td></tr>
+                <tr><th>GPU</th><td>@Model.MdpGpu</td></tr>
+                <tr><th>Màn hình</th><td>@Model.MdpManHinh</td></tr>
+                <tr><th>Pin</th><td>@Model.MdpPin</td></tr>
+                <tr><th>Hệ điều hành</th><td>@Model.MdpHeDieuHanh</td></tr>
+                <tr><th>Ngày tạo</th><td>@Model.MdpCreatedAt?.ToString("dd/MM/yyyy")</td></tr>
+                <tr><th>Ngày cập nhật</th><td>@Model.MdpUpdatedAt?.ToString("dd/MM/yyyy")</td></tr>
+                <tr><th>Mã sản phẩm cha</th><td>@Model.MdpSanPham.MdpSanPhamId</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Thông tin bổ sung -->
+    <div class="mt-5 p-4 bg-light rounded-4 shadow-sm">
+        <h4 class="fw-bold mb-3">Thông tin bổ sung</h4>
+        <p>iGPU là bộ xử lý đồ họa tích hợp sẵn trong CPU, dùng chung RAM hệ thống...</p>
+        <p>Hiệu năng iGPU phù hợp cho tác vụ văn phòng và giải trí cơ bản...</p>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.MdpLaptopId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+<style>
+    .carousel-inner img {
+        border-radius: 12px;
+    }
+
+    .thumb-img {
+        height: 80px;
+        width: 80px;
+        object-fit: cover;
+        cursor: pointer;
+        border: 2px solid transparent;
+    }
+
+        .thumb-img:hover {
+            border-color: #0d6efd;
+        }
+
+    .btn-lg {
+        min-width: 180px;
+    }
+
+    h4 {
+        color: #333;
+    }
+
+    .shadow-sm {
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+</style>

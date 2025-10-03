@@ -1,0 +1,98 @@
+﻿@model IEnumerable<MdpProject.Models.MdpCart>
+
+@{
+    ViewData["Title"] = "Quản lý Giỏ Hàng";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-gradient bg-primary text-white d-flex align-items-center justify-content-between rounded-top-4">
+            <h4 class="mb-0 fw-bold">
+                <i class="bi bi-cart4 me-2"></i> Quản lý Giỏ Hàng
+            </h4>
+            <span class="badge bg-light text-dark fs-6">
+                Tổng: @Model.Count() mục
+            </span>
+        </div>
+        <div class="card-body p-4">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Người dùng</th>
+                            <th>Sản phẩm</th>
+                            <th>Biến thể</th>
+                            <th>Số lượng</th>
+                            <th>Giá</th>
+                            <th>Thành tiền</th>
+                            <th>Ngày thêm</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            int stt = 1;
+                            foreach (var item in Model)
+                            {
+                                var thanhTien = (item.MdpSoLuong ?? 1) * (item.MdpVariant.MdpGia ?? 0);
+                                <tr>
+                                    <td>@stt</td>
+                                    <td>
+                                        <div class="fw-bold text-primary">@item.MdpUser?.MdpHoTen</div>
+                                        <div class="small text-muted">@item.MdpUser?.MdpEmail</div>
+                                    </td>
+                                    <td class="text-start fw-semibold">@item.MdpVariant.MdpSanPham.MdpTenSanPham</td>
+                                    <td>
+                                        <span class="badge bg-info text-dark px-3 py-2 rounded-pill">
+                                            @item.MdpVariant.MdpMauSac?.MdpTenMau - @item.MdpVariant.MdpDungLuong
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-secondary fs-6 px-3 py-2">@item.MdpSoLuong</span>
+                                    </td>
+                                    <td>
+                                        <span class="text-dark fw-bold">@((item.MdpVariant.MdpGia ?? 0).ToString("N0")) ₫</span>
+                                    </td>
+                                    <td>
+                                        <span class="text-danger fw-bold fs-6">@thanhTien.ToString("N0") ₫</span>
+                                    </td>
+                                    <td>@item.MdpNgayThem?.ToString("dd/MM/yyyy")</td>
+                                    <td>
+                               
+                                </tr>
+                                stt++;
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="9" class="text-center text-muted py-4">
+                                    <i class="bi bi-inbox fs-3 d-block mb-2"></i>
+                                    Không có sản phẩm nào trong giỏ hàng
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 1rem;
+    }
+
+    .table th {
+        vertical-align: middle;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f8f9fa;
+        transform: scale(1.01);
+        transition: all 0.2s ease-in-out;
+    }
+</style>

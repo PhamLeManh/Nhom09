@@ -1,0 +1,160 @@
+﻿@model IEnumerable<MdpProject.Models.MdpPc>
+
+@{
+    ViewData["Title"] = "Quản lý PC";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+}
+
+<div class="container-fluid my-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary fw-bold"><i class="bi bi-pc-display"></i> Quản lý PC</h2>
+        <a asp-action="Create" class="btn btn-success btn-lg shadow-sm">
+            <i class="bi bi-plus-circle"></i> Thêm PC
+        </a>
+    </div>
+
+    <!-- Thông báo -->
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <!-- Thống kê nhanh -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card shadow-sm border-primary p-3 text-center">
+                <h6 class="text-primary">Tổng số PC</h6>
+                <h3 class="fw-bold">@Model.Count()</h3>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm border-success p-3 text-center">
+                <h6 class="text-success">Mới nhất</h6>
+                <h3 class="fw-bold">@Model.OrderByDescending(p => p.MdpCreatedAt).Take(5).Count()</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bảng danh sách PC -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white fw-bold">
+            <i class="bi bi-table"></i> Danh sách PC
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-hover align-middle text-center">
+                <thead class="table-light">
+                    <tr>
+                        <th>Ảnh</th>
+                        <th>Tên PC</th>
+                        <th>CPU</th>
+                        <th>GPU</th>
+                        <th>RAM</th>
+                        <th>Bộ nhớ</th>
+                        <th>Mainboard</th>
+                        <th>PSU</th>
+                        <th>Case</th>
+                        <th>Ngày tạo</th>
+                        <th>Ngày cập nhật</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Any())
+                    {
+                        foreach (var pc in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="@(!string.IsNullOrEmpty(pc.MdpAnh) ? pc.MdpAnh : "https://via.placeholder.com/60")"
+                                         alt="@pc.MdpTenPc"
+                                         class="table-img" />
+                                </td>
+                                <td>@pc.MdpTenPc</td>
+                                <td>@pc.MdpCpu</td>
+                                <td>@pc.MdpGpu</td>
+                                <td>@pc.MdpRam</td>
+                                <td>@pc.MdpStorage</td>
+                                <td>@pc.MdpMainboard</td>
+                                <td>@pc.MdpPsu</td>
+                                <td>@pc.MdpCaseType</td>
+                                <td>@pc.MdpCreatedAt?.ToString("dd/MM/yyyy")</td>
+                                <td>@pc.MdpUpdatedAt?.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@pc.MdpPcid" class="btn btn-warning btn-sm mb-1">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@pc.MdpPcid" class="btn btn-danger btn-sm mb-1">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="12" class="text-center text-muted py-3">Chưa có dữ liệu</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+
+<style>
+    .card {
+        border-radius: 12px;
+    }
+
+    .card-header {
+        font-size: 1.2rem;
+        border-radius: 12px 12px 0 0;
+    }
+
+    table th, table td {
+        vertical-align: middle;
+    }
+
+    .table-img {
+        height: 60px;
+        width: 60px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        transition: transform 0.3s;
+    }
+
+        .table-img:hover {
+            transform: scale(1.1);
+        }
+
+    .btn-sm {
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+    }
+
+        .btn-sm:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+    .table-hover tbody tr:hover {
+        background-color: #f9f9f9;
+    }
+</style>

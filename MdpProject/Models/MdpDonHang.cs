@@ -33,7 +33,7 @@ public partial class MdpDonHang
 
     public virtual ICollection<MdpHoaDon> MdpHoaDons { get; set; } = new List<MdpHoaDon>();
 
-    public virtual MdpUser MdpKhachHang { get; set; } = null!;
+    public virtual MdpUser MdpKhachHang { get; set; } 
 
     public virtual MdpKhuyenMai? MdpKm { get; set; }
 }

@@ -1,62 +1,126 @@
 ﻿@model IEnumerable<MdpProject.Models.MdpKhuyenMai>
 
 @{
-    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml"; 
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
     ViewData["Title"] = "Danh sách khuyến mãi";
 }
 
-<h1>Danh sách khuyến mãi</h1>
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-primary">
+            🎁 Danh sách khuyến mãi
+        </h2>
+        <a class="btn btn-primary btn-lg shadow-sm" asp-action="Create">
+            <i class="bi bi-plus-circle"></i> Thêm khuyến mãi
+        </a>
+    </div>
 
-<p>
-    <a class="btn btn-primary" asp-action="Create">+ Thêm khuyến mãi mới</a>
-</p>
-
-<table class="table table-bordered table-striped">
-    <thead class="table-dark">
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.MdpMaCode)</th>
-            <th>@Html.DisplayNameFor(model => model.MdpMoTa)</th>
-            <th>@Html.DisplayNameFor(model => model.MdpGiaTri)</th>
-            <th>@Html.DisplayNameFor(model => model.MdpPhanTram)</th>
-            <th>@Html.DisplayNameFor(model => model.MdpNgayBatDau)</th>
-            <th>@Html.DisplayNameFor(model => model.MdpNgayKetThuc)</th>
-            <th>@Html.DisplayNameFor(model => model.MdpTrangThai)</th>
-            <th>Thao tác</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => item.MdpMaCode)</td>
-                <td>@Html.DisplayFor(modelItem => item.MdpMoTa)</td>
-                <td>@Html.DisplayFor(modelItem => item.MdpGiaTri)</td>
-                <td>@Html.DisplayFor(modelItem => item.MdpPhanTram)</td>
-                <td>@item.MdpNgayBatDau?.ToString("dd/MM/yyyy")</td>
-                <td>@item.MdpNgayKetThuc?.ToString("dd/MM/yyyy")</td>
-
-                <td>
-                    @{
-                        bool trangThai = false;
-                        bool.TryParse(item.MdpTrangThai, out trangThai);
-                    }
-
-                    @if (trangThai)
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0 align-middle">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Mã Code</th>
+                        <th>Mô tả</th>
+                        <th>Giá trị</th>
+                        <th>Phần trăm</th>
+                        <th>Ngày bắt đầu</th>
+                        <th>Ngày kết thúc</th>
+                        <th>Trạng thái</th>
+                        <th class="text-center">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Any())
                     {
-                        <span class="badge bg-success">Đang áp dụng</span>
+                        <tr>
+                            <td colspan="8" class="text-center text-muted py-4">
+                                <i class="bi bi-inbox fs-3"></i><br />
+                                Chưa có khuyến mãi nào.
+                            </td>
+                        </tr>
                     }
                     else
                     {
-                        <span class="badge bg-secondary">Hết hạn</span>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="fw-bold text-primary">@item.MdpMaCode</td>
+                                <td>@item.MdpMoTa</td>
+                                <td>
+                                    @if (item.MdpGiaTri.HasValue)
+                                    {
+                                        <span class="text-success fw-bold">@item.MdpGiaTri.Value.ToString("N0") ₫</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.MdpPhanTram.HasValue)
+                                    {
+                                        <span class="badge bg-info text-dark">@item.MdpPhanTram% </span>
+                                    }
+                                </td>
+                                <td>@item.MdpNgayBatDau?.ToString("dd/MM/yyyy")</td>
+                                <td>@item.MdpNgayKetThuc?.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    @{
+                                        bool trangThai = false;
+                                        bool.TryParse(item.MdpTrangThai, out trangThai);
+                                    }
+                                    @if (trangThai)
+                                    {
+                                        <span class="badge bg-success">
+                                            <i class="bi bi-check-circle"></i> Đang áp dụng
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">
+                                            <i class="bi bi-x-circle"></i> Hết hạn
+                                        </span>
+                                    }
+                                </td>
+                                <td class="text-center">
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <a class="btn btn-warning text-white" asp-action="Edit" asp-route-id="@item.MdpKmid">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                        <a class="btn btn-info text-white" asp-action="Details" asp-route-id="@item.MdpKmid">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.MdpKmid">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
                     }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-                </td>
-                <td>
-                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@item.MdpKmid">Sửa</a>
-                    <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item.MdpKmid">Chi tiết</a>
-                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.MdpKmid">Xóa</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<style>
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .table th {
+        white-space: nowrap;
+    }
+
+    .btn-group .btn {
+        border-radius: 6px;
+        margin: 0 2px;
+    }
+
+    .card {
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f5f9ff;
+    }
+</style>

@@ -1,4 +1,4 @@
-/* Menu chính */
+/* =================== MENU =================== */
 .menu-custom .nav-item[b-9d7fcuifz7] {
     margin-left: 20px;
 }
@@ -14,11 +14,32 @@
     padding: 8px 12px;
     border-radius: 6px;
     transition: all 0.3s;
+    position: relative;
 }
 
     .menu-custom .nav-link:hover[b-9d7fcuifz7] {
         background-color: #007bff;
         color: #fff;
+    }
+
+    .menu-custom .nav-link.active[b-9d7fcuifz7] {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .menu-custom .nav-link[b-9d7fcuifz7]::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 4px;
+        width: 0;
+        height: 2px;
+        background-color: #007bff;
+        transition: width 0.3s ease;
+    }
+
+    .menu-custom .nav-link:hover[b-9d7fcuifz7]::after {
+        width: 100%;
     }
 
 /* Dropdown hover trên desktop */
@@ -32,10 +53,69 @@
     }
 }
 
-/* Responsive */
 @media (max-width: 992px) {
     .menu-custom .nav-item[b-9d7fcuifz7] {
         margin-left: 0;
         margin-bottom: 8px;
     }
 }
+
+/* =================== DASHBOARD CARDS =================== */
+.dashboard-card[b-9d7fcuifz7] {
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+    .dashboard-card:hover[b-9d7fcuifz7] {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+
+    .dashboard-card .card-body[b-9d7fcuifz7] {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .dashboard-card .card-title[b-9d7fcuifz7] {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .dashboard-card .card-text[b-9d7fcuifz7] {
+        font-size: 1.6rem;
+        font-weight: bold;
+    }
+
+/* =================== CHART =================== */
+.chart-container[b-9d7fcuifz7] {
+    position: relative;
+    height: 350px;
+}
+/* Thanh tìm kiếm - admin */
+.search-bar[b-9d7fcuifz7] {
+    max-width: 300px;
+    margin-left: auto;
+}
+
+    .search-bar input[b-9d7fcuifz7] {
+        border-radius: 6px 0 0 6px;
+        border: 1px solid #ced4da;
+        padding: 8px 12px;
+        font-size: 0.95rem;
+        box-shadow: none;
+    }
+
+    .search-bar button[b-9d7fcuifz7] {
+        border-radius: 0 6px 6px 0;
+        border: 1px solid #007bff;
+        background-color: #007bff;
+        color: #fff;
+        padding: 8px 14px;
+        transition: all 0.3s ease;
+    }
+
+        .search-bar button:hover[b-9d7fcuifz7] {
+            background-color: #0056b3;
+        }

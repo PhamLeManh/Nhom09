@@ -1,0 +1,94 @@
+﻿@model MdpProject.Models.MdpMauSac
+
+@{
+    ViewData["Title"] = "Thêm Màu Sắc";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+}
+
+<div class="container my-4">
+    <div class="card shadow-lg border-0 rounded-4 p-4">
+        <h2 class="text-primary fw-bold mb-3">
+            <i class="bi bi-plus-circle"></i> @ViewData["Title"]
+        </h2>
+        <hr class="mb-4" />
+
+        <!-- Hiển thị TempData Success/Error -->
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @TempData["Success"]?.ToString()
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @TempData["Error"]?.ToString()
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger rounded-3"></div>
+
+            <div class="row g-4">
+                <!-- Tên màu -->
+                <div class="col-md-6">
+                    <label asp-for="MdpTenMau" class="form-label">Tên Màu</label>
+                    <input asp-for="MdpTenMau" class="form-control" placeholder="Nhập tên màu..." />
+                    <span asp-validation-for="MdpTenMau" class="text-danger small"></span>
+                </div>
+
+                <!-- Mã Hex -->
+                <div class="col-md-6">
+                    <label asp-for="MdpMaHex" class="form-label">Mã Hex</label>
+                    <input id="hexInput" asp-for="MdpMaHex" class="form-control" placeholder="#FFFFFF" />
+                    <span asp-validation-for="MdpMaHex" class="text-danger small"></span>
+
+                    <!-- Preview màu -->
+                    <div id="colorPreview" class="mt-2" style="width:40px;height:40px;border:1px solid #ccc;border-radius:5px;background:@Model?.MdpMaHex ?? " #fff";"></div>
+                </div>
+            </div>
+
+            <div class="mt-4 d-flex gap-3">
+                <button type="submit" class="btn btn-primary px-4 flex-fill fw-semibold">
+                    <i class="bi bi-save"></i> Lưu
+                </button>
+                <a asp-action="Index" class="btn btn-outline-secondary px-4 flex-fill fw-semibold">
+                    <i class="bi bi-arrow-left"></i> Quay lại
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+    <script>
+        // Live preview màu khi nhập Hex
+        const input = document.getElementById('hexInput');
+        const preview = document.getElementById('colorPreview');
+
+        input.addEventListener('input', () => {
+            preview.style.background = input.value || '#fff';
+        });
+    </script>
+}
+
+<style>
+    .card {
+        border-radius: 12px;
+    }
+
+    .btn {
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+</style>

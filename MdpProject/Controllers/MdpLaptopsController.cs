@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MdpProject.Models;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,17 +17,19 @@ namespace MdpProject.Controllers
             _context = context;
         }
 
-        // GET: MdpLaptops/MdpAdminIndex
+        // ================= Admin Index =================
         public async Task<IActionResult> MdpAdminIndex()
         {
-            var laptops = await _context.MdpLaptops.Include(l => l.MdpSanPham).ToListAsync();
+            var laptops = await _context.MdpLaptops
+                                        .Include(l => l.MdpSanPham)
+                                        .ToListAsync();
             return View(laptops);
         }
-        // ================= Index =================
+
+        // ================= Index (Client) =================
         public async Task<IActionResult> Index()
         {
-            var laptops = _context.MdpLaptops
-                .Include(l => l.MdpSanPham);
+            var laptops = _context.MdpLaptops.Include(l => l.MdpSanPham);
             return View(await laptops.ToListAsync());
         }
 
@@ -45,16 +48,21 @@ namespace MdpProject.Controllers
         }
 
         // ================= Create =================
+        // GET
         public IActionResult Create()
         {
             ViewData["MdpSanPhamId"] = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpTenSanPham");
             return View();
         }
 
+        // POST
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(MdpLaptop mdpLaptop)
         {
+            // Bỏ validation cho navigation property
+            ModelState.Remove("MdpSanPham");
+
             if (ModelState.IsValid)
             {
                 mdpLaptop.MdpCreatedAt = DateTime.Now;
@@ -63,19 +71,22 @@ namespace MdpProject.Controllers
                 _context.Add(mdpLaptop);
                 await _context.SaveChangesAsync();
 
-                TempData["SuccessMessage"] = "✅ Thêm Laptop thành công!";
-                return RedirectToAction(nameof(Index));
+                TempData["Success"] = "✅ Thêm laptop thành công!";
+                return RedirectToAction(nameof(MdpAdminIndex));
             }
 
-            // Debug lỗi
-            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
-            TempData["ErrorMessage"] = "❌ Thêm Laptop thất bại: " + string.Join(", ", errors);
+            // Nếu ModelState invalid
+            var errors = ModelState.Values.SelectMany(v => v.Errors)
+                                          .Select(e => e.ErrorMessage)
+                                          .ToList();
+            TempData["Error"] = "Lỗi nhập liệu:<br/>" + string.Join("<br/>", errors);
 
             ViewData["MdpSanPhamId"] = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpTenSanPham", mdpLaptop.MdpSanPhamId);
             return View(mdpLaptop);
         }
 
         // ================= Edit =================
+        // GET
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
@@ -87,10 +98,13 @@ namespace MdpProject.Controllers
             return View(laptop);
         }
 
+        // POST
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, MdpLaptop mdpLaptop)
         {
+            ModelState.Remove("MdpSanPham"); // bỏ validation navigation property
+
             if (id != mdpLaptop.MdpLaptopId) return NotFound();
 
             if (ModelState.IsValid)
@@ -101,7 +115,8 @@ namespace MdpProject.Controllers
                     _context.Update(mdpLaptop);
                     await _context.SaveChangesAsync();
 
-                    TempData["SuccessMessage"] = "✅ Cập nhật Laptop thành công!";
+                    TempData["Success"] = "✅ Cập nhật Laptop thành công!";
+                    return RedirectToAction(nameof(MdpAdminIndex));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -110,7 +125,6 @@ namespace MdpProject.Controllers
                     else
                         throw;
                 }
-                return RedirectToAction(nameof(Index));
             }
 
             ViewData["MdpSanPhamId"] = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpTenSanPham", mdpLaptop.MdpSanPhamId);
@@ -118,6 +132,7 @@ namespace MdpProject.Controllers
         }
 
         // ================= Delete =================
+        // GET
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
@@ -131,6 +146,7 @@ namespace MdpProject.Controllers
             return View(laptop);
         }
 
+        // POST
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -140,9 +156,14 @@ namespace MdpProject.Controllers
             {
                 _context.MdpLaptops.Remove(laptop);
                 await _context.SaveChangesAsync();
-                TempData["SuccessMessage"] = "✅ Xóa Laptop thành công!";
+                TempData["Success"] = "✅ Xóa Laptop thành công!";
             }
-            return RedirectToAction(nameof(Index));
+            else
+            {
+                TempData["Error"] = "❌ Laptop không tồn tại!";
+            }
+
+            return RedirectToAction(nameof(MdpAdminIndex));
         }
     }
 }

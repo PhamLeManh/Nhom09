@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MdpProject.Models;
@@ -18,33 +14,61 @@ namespace MdpProject.Controllers
             _context = context;
         }
 
-        // GET: MdpPhones
-        public async Task<IActionResult> Index()
+        // ================= CLIENT =================
+        // Hiển thị danh sách điện thoại cho khách hàng + filter
+        public async Task<IActionResult> Index(string? ram, string? storage, string? chipset)
         {
-            var project2Context = _context.MdpPhones.Include(m => m.MdpSanPham);
-            return View(await project2Context.ToListAsync());
+            var query = _context.MdpPhones
+                .Include(p => p.MdpSanPham)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(ram))
+                query = query.Where(p => p.MdpRam == ram);
+
+            if (!string.IsNullOrEmpty(storage))
+                query = query.Where(p => p.MdpStorage == storage);
+
+            if (!string.IsNullOrEmpty(chipset))
+                query = query.Where(p => p.MdpChipset == chipset);
+
+            return View(await query.ToListAsync());
         }
 
-        // GET: MdpPhones/Details/5
+        // ================= ADMIN =================
+        // Hiển thị danh sách điện thoại trong Admin + filter
+        public async Task<IActionResult> MdpAdminIndex(string? ram, string? storage, string? chipset)
+        {
+            var query = _context.MdpPhones
+                .Include(p => p.MdpSanPham)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(ram))
+                query = query.Where(p => p.MdpRam == ram);
+
+            if (!string.IsNullOrEmpty(storage))
+                query = query.Where(p => p.MdpStorage == storage);
+
+            if (!string.IsNullOrEmpty(chipset))
+                query = query.Where(p => p.MdpChipset == chipset);
+
+            return View(await query.ToListAsync());
+        }
+
+        // ================= DETAILS =================
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
-            var mdpPhone = await _context.MdpPhones
-                .Include(m => m.MdpSanPham)
+            var phone = await _context.MdpPhones
+                .Include(p => p.MdpSanPham)
                 .FirstOrDefaultAsync(m => m.MdpPhoneId == id);
-            if (mdpPhone == null)
-            {
-                return NotFound();
-            }
 
-            return View(mdpPhone);
+            if (phone == null) return NotFound();
+
+            return View(phone);
         }
 
-        // GET: MdpPhones/Create
+        // ================= CREATE =================
         public IActionResult Create()
         {
             ViewData["MdpSanPhamId"] = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpTenSanPham");
@@ -53,114 +77,104 @@ namespace MdpProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MdpLaptopId,MdpSanPhamId,MdpTenLaptop,MdpCpu,MdpRam,MdpStorage,MdpGpu,MdpManHinh,MdpPin,MdpHeDieuHanh")] MdpLaptop mdpLaptop)
+        public async Task<IActionResult> Create(MdpPhone phone, string? imageUrl)
         {
+            ModelState.Remove("MdpSanPham");
+
             if (ModelState.IsValid)
             {
-                mdpLaptop.MdpCreatedAt = DateTime.Now;
-                _context.Add(mdpLaptop);
+                phone.MdpCreatedAt = DateTime.Now;
+                if (!string.IsNullOrEmpty(imageUrl))
+                    phone.MdpAnh = imageUrl;
+
+                _context.Add(phone);
                 await _context.SaveChangesAsync();
 
-                TempData["SuccessMessage"] = "✅ Thêm Laptop thành công!";
-                return RedirectToAction("MdpAdminIndex");
+                TempData["Success"] = "✅ Thêm điện thoại thành công!";
+                return RedirectToAction(nameof(MdpAdminIndex));
             }
 
-            TempData["ErrorMessage"] = "❌ Thêm Laptop thất bại!";
-            ViewData["MdpSanPhamId"] = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpTenSanPham", mdpLaptop.MdpSanPhamId);
-            return View(mdpLaptop);
+            ViewData["MdpSanPhamId"] = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpTenSanPham", phone.MdpSanPhamId);
+            return View(phone);
         }
 
-
-        // GET: MdpPhones/Edit/5
+        // ================= EDIT =================
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
-            var mdpPhone = await _context.MdpPhones.FindAsync(id);
-            if (mdpPhone == null)
-            {
-                return NotFound();
-            }
-            ViewData["MdpSanPhamId"] = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpSanPhamId", mdpPhone.MdpSanPhamId);
-            return View(mdpPhone);
+            var phone = await _context.MdpPhones.FindAsync(id);
+            if (phone == null) return NotFound();
+
+            ViewData["MdpSanPhamId"] = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpTenSanPham", phone.MdpSanPhamId);
+            return View(phone);
         }
 
-        // POST: MdpPhones/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MdpPhoneId,MdpSanPhamId,MdpTenPhone,MdpManHinh,MdpCamera,MdpPin,MdpRam,MdpStorage,MdpChipset,MdpHeDieuHanh,MdpCreatedAt,MdpUpdatedAt")] MdpPhone mdpPhone)
+        public async Task<IActionResult> Edit(int id, MdpPhone phone, string? imageUrl)
         {
-            if (id != mdpPhone.MdpPhoneId)
-            {
-                return NotFound();
-            }
+            ModelState.Remove("MdpSanPham");
+
+            if (id != phone.MdpPhoneId) return NotFound();
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(mdpPhone);
+                    phone.MdpUpdatedAt = DateTime.Now;
+                    if (!string.IsNullOrEmpty(imageUrl))
+                        phone.MdpAnh = imageUrl;
+
+                    _context.Update(phone);
                     await _context.SaveChangesAsync();
+
+                    TempData["Success"] = "✅ Cập nhật điện thoại thành công!";
+                    return RedirectToAction(nameof(MdpAdminIndex));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MdpPhoneExists(mdpPhone.MdpPhoneId))
-                    {
+                    if (!_context.MdpPhones.Any(e => e.MdpPhoneId == id))
                         return NotFound();
-                    }
                     else
-                    {
                         throw;
-                    }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["MdpSanPhamId"] = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpSanPhamId", mdpPhone.MdpSanPhamId);
-            return View(mdpPhone);
+
+            ViewData["MdpSanPhamId"] = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpTenSanPham", phone.MdpSanPhamId);
+            return View(phone);
         }
 
-        // GET: MdpPhones/Delete/5
+        // ================= DELETE =================
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
-            var mdpPhone = await _context.MdpPhones
-                .Include(m => m.MdpSanPham)
+            var phone = await _context.MdpPhones
+                .Include(p => p.MdpSanPham)
                 .FirstOrDefaultAsync(m => m.MdpPhoneId == id);
-            if (mdpPhone == null)
-            {
-                return NotFound();
-            }
 
-            return View(mdpPhone);
+            if (phone == null) return NotFound();
+
+            return View(phone);
         }
 
-        // POST: MdpPhones/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var mdpPhone = await _context.MdpPhones.FindAsync(id);
-            if (mdpPhone != null)
+            var phone = await _context.MdpPhones.FindAsync(id);
+            if (phone != null)
             {
-                _context.MdpPhones.Remove(mdpPhone);
+                _context.MdpPhones.Remove(phone);
+                await _context.SaveChangesAsync();
+                TempData["Success"] = "✅ Xóa điện thoại thành công!";
             }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool MdpPhoneExists(int id)
-        {
-            return _context.MdpPhones.Any(e => e.MdpPhoneId == id);
+            else
+            {
+                TempData["Error"] = "❌ Điện thoại không tồn tại!";
+            }
+            return RedirectToAction(nameof(MdpAdminIndex));
         }
     }
 }

@@ -1,0 +1,88 @@
+﻿@model MdpProject.Models.MdpCamera
+
+@{
+    ViewData["Title"] = "Thêm mới Camera";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-header bg-primary text-white text-center py-3">
+                    <h3 class="mb-0">📷 Thêm mới Camera</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Create" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <!-- Dropdown sản phẩm -->
+                        <div class="mb-3">
+                            <label asp-for="MdpSanPhamId" class="form-label fw-bold"></label>
+                            <select asp-for="MdpSanPhamId" class="form-select" asp-items="ViewBag.MdpSanPhamId">
+                                <option value="">-- Chọn sản phẩm --</option>
+                            </select>
+                            <span asp-validation-for="MdpSanPhamId" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Tên camera -->
+                        <div class="mb-3">
+                            <label asp-for="MdpTenCamera" class="form-label fw-bold"></label>
+                            <input asp-for="MdpTenCamera" class="form-control" placeholder="Nhập tên camera..." />
+                            <span asp-validation-for="MdpTenCamera" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Độ phân giải -->
+                        <div class="mb-3">
+                            <label asp-for="MdpDoPhanGiai" class="form-label fw-bold"></label>
+                            <input asp-for="MdpDoPhanGiai" class="form-control" placeholder="Ví dụ: 1080p, 4K..." />
+                            <span asp-validation-for="MdpDoPhanGiai" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Cảm biến -->
+                        <div class="mb-3">
+                            <label asp-for="MdpCamBien" class="form-label fw-bold"></label>
+                            <input asp-for="MdpCamBien" class="form-control" placeholder="Loại cảm biến..." />
+                            <span asp-validation-for="MdpCamBien" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Ống kính -->
+                        <div class="mb-3">
+                            <label asp-for="MdpOngKinh" class="form-label fw-bold"></label>
+                            <input asp-for="MdpOngKinh" class="form-control" placeholder="Ống kính sử dụng..." />
+                            <span asp-validation-for="MdpOngKinh" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Bộ nhớ -->
+                        <div class="mb-3">
+                            <label asp-for="MdpBoNho" class="form-label fw-bold"></label>
+                            <input asp-for="MdpBoNho" class="form-control" placeholder="Dung lượng bộ nhớ..." />
+                            <span asp-validation-for="MdpBoNho" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Ảnh -->
+                        <div class="mb-3">
+                            <label asp-for="MdpAnh" class="form-label fw-bold"></label>
+                            <input asp-for="MdpAnh" class="form-control" placeholder="https://example.com/image.jpg" />
+                            <span asp-validation-for="MdpAnh" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="d-flex justify-content-between mt-4">
+                            <a asp-action="MdpAdminIndex" class="btn btn-outline-secondary px-4">
+                                ⬅ Quay lại
+                            </a>
+                            <button type="submit" class="btn btn-success px-4">
+                                💾 Lưu
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

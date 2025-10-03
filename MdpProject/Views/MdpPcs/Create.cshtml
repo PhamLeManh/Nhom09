@@ -1,72 +1,116 @@
 ﻿@model MdpProject.Models.MdpPc
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Thêm PC mới";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
 }
 
-<h1>Create</h1>
+<div class="container my-4">
+    <div class="card shadow-sm p-4">
+        <h4 class="text-primary mb-3"><i class="bi bi-plus-circle"></i> Thêm PC mới</h4>
 
-<h4>MdpPc</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="MdpSanPhamId" class="control-label"></label>
-                <select asp-for="MdpSanPhamId" class ="form-control" asp-items="ViewBag.MdpSanPhamId"></select>
+        <!-- Hiển thị lỗi nếu ModelState invalid -->
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach (var modelState in ViewData.ModelState.Values)
+                    {
+                        foreach (var error in modelState.Errors)
+                        {
+                            <li>@error.ErrorMessage</li>
+                        }
+                    }
+                </ul>
             </div>
-            <div class="form-group">
-                <label asp-for="MdpTenPc" class="control-label"></label>
+        }
+
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label asp-for="MdpSanPhamId" class="form-label">Danh mục sản phẩm</label>
+                <select asp-for="MdpSanPhamId" class="form-select" asp-items="@(ViewData["MdpSanPhamId"] as SelectList)">
+                    <option value="">-- Chọn danh mục --</option>
+                </select>
+                <span asp-validation-for="MdpSanPhamId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="MdpTenPc" class="form-label">Tên PC</label>
                 <input asp-for="MdpTenPc" class="form-control" />
                 <span asp-validation-for="MdpTenPc" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="MdpCpu" class="control-label"></label>
+
+            <div class="mb-3">
+                <label asp-for="MdpCpu" class="form-label">CPU</label>
                 <input asp-for="MdpCpu" class="form-control" />
                 <span asp-validation-for="MdpCpu" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="MdpGpu" class="control-label"></label>
+
+            <div class="mb-3">
+                <label asp-for="MdpGpu" class="form-label">GPU</label>
                 <input asp-for="MdpGpu" class="form-control" />
-                <span asp-validation-for="MdpGpu" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="MdpRam" class="control-label"></label>
+
+            <div class="mb-3">
+                <label asp-for="MdpRam" class="form-label">RAM</label>
                 <input asp-for="MdpRam" class="form-control" />
-                <span asp-validation-for="MdpRam" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="MdpStorage" class="control-label"></label>
+
+            <div class="mb-3">
+                <label asp-for="MdpStorage" class="form-label">Bộ nhớ</label>
                 <input asp-for="MdpStorage" class="form-control" />
-                <span asp-validation-for="MdpStorage" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="MdpMainboard" class="control-label"></label>
+
+            <div class="mb-3">
+                <label asp-for="MdpMainboard" class="form-label">Mainboard</label>
                 <input asp-for="MdpMainboard" class="form-control" />
-                <span asp-validation-for="MdpMainboard" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="MdpPsu" class="control-label"></label>
+
+            <div class="mb-3">
+                <label asp-for="MdpPsu" class="form-label">PSU</label>
                 <input asp-for="MdpPsu" class="form-control" />
-                <span asp-validation-for="MdpPsu" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="MdpCaseType" class="control-label"></label>
+
+            <div class="mb-3">
+                <label asp-for="MdpCaseType" class="form-label">Case</label>
                 <input asp-for="MdpCaseType" class="form-control" />
-                <span asp-validation-for="MdpCaseType" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+
+            <div class="mb-3">
+                <label class="form-label">URL ảnh</label>
+                <input type="text" name="imageUrl" class="form-control" placeholder="https://..." />
             </div>
+
+            <button type="submit" class="btn btn-success w-100">
+                <i class="bi bi-plus-circle"></i> Thêm PC
+            </button>
         </form>
+
+        <a asp-action="MdpAdminIndex" class="btn btn-secondary mt-3">Quay lại</a>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }
+
+<style>
+    .card {
+        border-radius: 12px;
+    }
+
+    .form-control {
+        border-radius: 6px;
+    }
+
+    .btn-success {
+        font-size: 1rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+</style>

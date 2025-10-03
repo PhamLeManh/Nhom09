@@ -1,62 +1,98 @@
 ﻿@using Microsoft.AspNetCore.Http
 @{
     Layout = null;
-    var username = Context.Session.GetString("username") ?? "Admin";
-    var role = Context.Session.GetString("role") ?? "Admin";
-    var avatar = Context.Session.GetString("avatar") ?? "https://via.placeholder.com/50";
+
+    // Lấy session an toàn, nếu null sẽ dùng giá trị mặc định
+    var username = Context?.Session?.GetString("username") ?? "admin";
+    var role = Context?.Session?.GetString("role") ?? "admin";
+    var avatar = Context?.Session?.GetString("avatar") ?? "https://via.placeholder.com/50";
 }
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]</title>
+    <title>@ViewData["Title"] - MDP Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         body {
             background-color: #f8f9fa;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         .sidebar {
             height: 100vh;
-            width: 220px;
-            background-color: #343a40;
+            width: 240px;
+            background: linear-gradient(180deg, #212529, #343a40);
             color: #fff;
             position: fixed;
             overflow-y: auto;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 3px 0 8px rgba(0, 0, 0, 0.2);
         }
 
-            .sidebar a {
-                color: #fff;
-                text-decoration: none;
-                display: block;
-                padding: 8px 12px;
-                border-radius: 4px;
+            .sidebar h4 {
+                font-weight: bold;
+                letter-spacing: 1px;
             }
 
+            .sidebar a {
+                color: #ced4da;
+                text-decoration: none;
+                display: block;
+                padding: 10px 14px;
+                border-radius: 8px;
+                margin-bottom: 4px;
+                font-size: 15px;
+                transition: all 0.2s;
+            }
+
+                .sidebar a i {
+                    margin-right: 8px;
+                }
+
                 .sidebar a:hover {
-                    background-color: #495057;
+                    background: #495057;
+                    color: #fff;
+                    transform: translateX(4px);
                 }
 
             .sidebar .collapse a {
-                padding-left: 24px;
+                padding-left: 36px;
+                font-size: 14px;
             }
 
         .content {
-            margin-left: 220px;
-            padding: 20px;
+            margin-left: 240px;
+            padding: 25px;
+            min-height: 100vh;
         }
 
         .card-avatar {
-            width: 50px;
-            height: 50px;
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
             object-fit: cover;
+            border: 2px solid #fff;
+        }
+
+        .sidebar .user-info {
+            font-size: 14px;
+            color: #dee2e6;
         }
 
         table tbody tr:hover {
             background-color: #f1f1f1;
+        }
+
+        .menu-badge {
+            background: #dc3545;
+            color: white;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 12px;
+            margin-left: 6px;
         }
     </style>
 </head>
@@ -64,32 +100,33 @@
     <div class="d-flex">
         <!-- Sidebar -->
         <div class="sidebar p-3">
-            <h4 class="text-center mb-4">MDP Admin</h4>
-            <div class="text-center mb-3">
-                <img src="@avatar" class="card-avatar mb-1" />
-                <div>@username (@role)</div>
+            <h4 class="text-center mb-4"><i class="bi bi-cpu-fill"></i> MDP HeadQuarters</h4>
+            <div class="text-center mb-4">
+                <img src="@avatar" class="card-avatar mb-2" />
+                <div class="fw-bold">@username</div>
+                <div class="user-info">(@role)</div>
             </div>
 
-            <a href="@Url.Action("Index", "MDPHome")"><i class="bi bi-house-door"></i> Trang chủ</a>
+            <a href="@Url.Action("Index", "MDPHome")"><i class="bi bi-house-door-fill"></i> Trang chủ</a>
             <hr class="border-secondary" />
 
             <a href="@Url.Action("MdpAdminIndex", "MdpUsers")"><i class="bi bi-people-fill"></i> Users</a>
-            <a href="@Url.Action("Index", "MdpCategories")"><i class="bi bi-list-ul"></i> Categories</a>
+            <a href="@Url.Action("Index", "MdpCategories")"><i class="bi bi-grid-fill"></i> Categories</a>
 
             <a data-bs-toggle="collapse" href="#productsMenu" class="mb-1">
-                <i class="bi bi-box-seam"></i> Products <i class="bi bi-caret-down-fill float-end"></i>
+                <i class="bi bi-box-seam-fill"></i> Products <i class="bi bi-caret-down-fill float-end"></i>
             </a>
-            <div class="collapse ps-3 mb-2" id="productsMenu">
-                <a href="@Url.Action("Index", "MdpSanPhams")">SanPham</a>
-                <a href="@Url.Action("MdpAdminIndex", "MdpLaptops")">Laptop</a>
-                <a href="@Url.Action("Index", "MdpPhone")">Phone</a>
-                <a href="@Url.Action("Index", "MdpPC")">PC</a>
-                <a href="@Url.Action("Index", "MdpMonitor")">Monitor</a>
-                <a href="@Url.Action("Index", "MdpCamera")">Camera</a>
-                <a href="@Url.Action("Index", "MdpMouse")">Mouse</a>
-                <a href="@Url.Action("Index", "MdpLinhKien")">Linh Kiện</a>
-                <a href="@Url.Action("Index", "MdpMauSac")">Màu Sắc</a>
-                <a href="@Url.Action("Index", "MdpProductVariant")">Variant</a>
+            <div class="collapse ps-2 mb-2" id="productsMenu">
+                <a href="@Url.Action("Index", "MdpSanPhams")"><i class="bi bi-bag"></i> Sản Phẩm</a>
+                <a href="@Url.Action("MdpAdminIndex", "MdpLaptops")"><i class="bi bi-laptop"></i> Laptop</a>
+                <a href="@Url.Action("MdpAdminIndex", "MdpPhones")"><i class="bi bi-phone"></i> Phone</a>
+                <a href="@Url.Action("MdpAdminIndex", "MdpPCs")"><i class="bi bi-pc-display"></i> PC</a>
+                <a href="@Url.Action("MdpAdminIndex", "MdpMonitors")"><i class="bi bi-display"></i> Monitor</a>
+                <a href="@Url.Action("MdpAdminIndex", "MdpCameras")"><i class="bi bi-camera-video"></i> Camera</a>
+                <a href="@Url.Action("MdpAdminIndex", "MdpMice")"><i class="bi bi-mouse"></i> Mouse</a>
+                <a href="@Url.Action("MdpAdminIndex", "MdpLinhKiens")"><i class="bi bi-tools"></i> Linh Kiện</a>
+                <a href="@Url.Action("Index", "MdpMauSacs")"><i class="bi bi-palette"></i> Màu Sắc</a>
+                <a href="@Url.Action("MdpAdminIndex", "MdpProductVariants")"><i class="bi bi-diagram-3"></i> Variant</a>
             </div>
 
             <a href="@Url.Action("Index", "MdpKhoHangs")"><i class="bi bi-archive-fill"></i> Kho Hàng</a>
@@ -98,29 +135,29 @@
             <a data-bs-toggle="collapse" href="#ordersMenu" class="mb-1">
                 <i class="bi bi-basket-fill"></i> Orders & Invoices <i class="bi bi-caret-down-fill float-end"></i>
             </a>
-            <div class="collapse ps-3 mb-2" id="ordersMenu">
-                <a href="@Url.Action("Index", "MdpDonHang")">Đơn Hàng</a>
-                <a href="@Url.Action("Index", "MdpChiTietDonHang")">Chi Tiết Đơn Hàng</a>
-                <a href="@Url.Action("Index", "MdpHoaDon")">Hóa Đơn</a>
-                <a href="@Url.Action("Index", "MdpChiTietHoaDon")">Chi Tiết Hóa Đơn</a>
+            <div class="collapse ps-2 mb-2" id="ordersMenu">
+                <a href="@Url.Action("MdpAdminIndex", "MdpDonHangs")"><i class="bi bi-receipt"></i> Đơn Hàng</a>
+                <a href="@Url.Action("Index", "MdpChiTietDonHangs")"><i class="bi bi-file-earmark-text"></i> Chi Tiết Đơn Hàng</a>
+                <a href="@Url.Action("Index", "MdpHoaDons")"><i class="bi bi-file-text-fill"></i> Hóa Đơn</a>
+                <a href="@Url.Action("Index", "MdpChiTietHoaDons")"><i class="bi bi-journal-text"></i> Chi Tiết Hóa Đơn</a>
             </div>
 
-            <a href="@Url.Action("Index", "MdpCart")"><i class="bi bi-cart-fill"></i> Cart</a>
+            <a href="@Url.Action("MdpAdminIndex", "MdpCarts")"><i class="bi bi-cart-fill"></i> Cart</a>
             <a href="@Url.Action("Index", "MdpReviews")"><i class="bi bi-chat-dots-fill"></i> Reviews</a>
-            <a href="@Url.Action("Index", "MdpChatSupports")"><i class="bi bi-chat-text-fill"></i> Chat Support</a>
+            <a href="@Url.Action("Index", "MdpChatSupports")"><i class="bi bi-headset"></i> Chat Support</a>
             <a href="@Url.Action("Index", "MdpDoanhThuSanPham")"><i class="bi bi-bar-chart-fill"></i> Doanh Thu</a>
 
             <hr class="border-secondary" />
-            <a href="@Url.Action("MdpLogout", "MdpUsers")"><i class="bi bi-box-arrow-right"></i> Logout</a>
+            <a href="@Url.Action("MdpLogout", "MdpUsers")" class="text-danger"><i class="bi bi-box-arrow-right"></i> Logout</a>
         </div>
 
         <!-- Main Content -->
-        <div class="content flex-fill p-4">
+        <div class="content flex-fill p-4 bg-white rounded shadow-sm">
             @RenderBody()
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    @RenderSection("Scripts", required: false) <!-- Đây đã fix lỗi InvalidOperationException -->
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

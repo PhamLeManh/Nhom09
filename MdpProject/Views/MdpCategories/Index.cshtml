@@ -2,67 +2,106 @@
 
 @{
     ViewData["Title"] = "Quản lý danh mục";
-    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml"; // hoặc _AdminLayout nếu bạn có
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
 }
 
-<div class="container mt-4">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="text-primary">📂 Danh sách danh mục</h2>
-        <a asp-action="Create" class="btn btn-success">
-            <i class="bi bi-plus-circle"></i> Thêm mới
+<div class="container py-4">
+    <!-- Banner & Title -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-folder-fill display-4 text-primary me-2"></i>
+            <h2 class="fw-bold text-primary">Quản lý danh mục</h2>
+        </div>
+        <a asp-action="Create" class="btn btn-success btn-lg">
+            <i class="bi bi-plus-circle"></i> Thêm danh mục mới
         </a>
     </div>
 
-    <table class="table table-hover table-bordered shadow-sm rounded">
-        <thead class="table-dark">
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.MdpTenDanhMuc)</th>
-                <th>@Html.DisplayNameFor(model => model.MdpMoTa)</th>
-                <th>@Html.DisplayNameFor(model => model.MdpAnhDanhMuc)</th>
-                <th>@Html.DisplayNameFor(model => model.MdpCreatedAt)</th>
-                <th class="text-center">Thao tác</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (!Model.Any())
-            {
-                <tr>
-                    <td colspan="5" class="text-center text-muted">Không có danh mục nào.</td>
-                </tr>
-            }
-            else
-            {
-                foreach (var item in Model)
-                {
+    <!-- Thông báo -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success shadow-sm">
+            <i class="bi bi-check-circle-fill me-2"></i> @TempData["SuccessMessage"]
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger shadow-sm">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i> @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <!-- Bảng danh mục -->
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-0">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-dark">
                     <tr>
-                        <td>@item.MdpTenDanhMuc</td>
-                        <td>@item.MdpMoTa</td>
-                        <td>
-                            @if (!string.IsNullOrEmpty(item.MdpAnhDanhMuc))
-                            {
-                                <img src="@item.MdpAnhDanhMuc" alt="Ảnh" style="width:80px; height:60px; object-fit:cover; border-radius:6px;" />
-                            }
-                            else
-                            {
-                                <span class="text-muted">Chưa có ảnh</span>
-                            }
-                        </td>
-                        <td>@item.MdpCreatedAt?.ToString("dd/MM/yyyy")</td>
-                        <td class="text-center">
-                            <a asp-action="Edit" asp-route-id="@item.MdpCategoryId" class="btn btn-sm btn-warning me-1">
-                                <i class="bi bi-pencil-square"></i> Sửa
-                            </a>
-                            <a asp-action="Details" asp-route-id="@item.MdpCategoryId" class="btn btn-sm btn-info me-1 text-white">
-                                <i class="bi bi-eye"></i> Xem
-                            </a>
-                            <a asp-action="Delete" asp-route-id="@item.MdpCategoryId" class="btn btn-sm btn-danger"
-                               onclick="return confirm('Bạn có chắc muốn xóa danh mục này?');">
-                                <i class="bi bi-trash"></i> Xóa
-                            </a>
-                        </td>
+                        <th>Ảnh</th>
+                        <th>Tên danh mục</th>
+                        <th>Mô tả</th>
+                        <th>Ngày tạo</th>
+                        <th class="text-center">Thao tác</th>
                     </tr>
-                }
-            }
-        </tbody>
-    </table>
+                </thead>
+                <tbody>
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center text-muted py-3">Không có danh mục nào.</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(item.MdpAnhDanhMuc))
+                                    {
+                                        <img src="@item.MdpAnhDanhMuc" alt="Ảnh"
+                                             class="rounded" style="width:80px;height:60px;object-fit:cover;" />
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Chưa có ảnh</span>
+                                    }
+                                </td>
+                                <td class="fw-semibold">@item.MdpTenDanhMuc</td>
+                                <td>@item.MdpMoTa</td>
+                                <td>@item.MdpCreatedAt?.ToString("dd/MM/yyyy")</td>
+                                <td class="text-center">
+                                    <a asp-action="Edit" asp-route-id="@item.MdpCategoryId"
+                                       class="btn btn-sm btn-warning me-1">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a asp-action="Details" asp-route-id="@item.MdpCategoryId"
+                                       class="btn btn-sm btn-info me-1 text-white">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.MdpCategoryId"
+                                       class="btn btn-sm btn-danger"
+                                       onclick="return confirm('Bạn có chắc muốn xóa danh mục này?');">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+
+<style>
+    /* Highlight row hover */
+    table.table-hover tbody tr:hover {
+        background-color: #f1f5f9;
+    }
+    /* Avatar / image thumbnail */
+    img {
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+</style>

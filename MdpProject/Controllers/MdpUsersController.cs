@@ -7,7 +7,6 @@ using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
-using MdpProject.Models;
 
 namespace project2.Controllers
 {
@@ -176,7 +175,7 @@ namespace project2.Controllers
                 user.MdpRole = model.MdpRole; // admin/manager mới được chỉnh role
             }
 
-            // Avatar
+            // Avatar là URL hoặc file
             if (avatarFile != null && avatarFile.Length > 0)
             {
                 var fileName = $"{Guid.NewGuid()}_{Path.GetFileName(avatarFile.FileName)}";
@@ -189,6 +188,11 @@ namespace project2.Controllers
 
                 user.MdpAvatar = "/uploads/avatars/" + fileName;
             }
+            else
+            {
+                // nếu user nhập URL trong model, lưu URL
+                user.MdpAvatar = string.IsNullOrEmpty(model.MdpAvatar) ? user.MdpAvatar : model.MdpAvatar;
+            }
 
             user.MdpUpdatedAt = DateTime.Now;
             _context.Update(user);
@@ -199,7 +203,7 @@ namespace project2.Controllers
 
             TempData["SuccessMessage"] = "✅ Thông tin đã được cập nhật!";
             return role == "admin" || role == "manager"
-                ? View("~/Views/Shared/MdpAdmin.cshtml")
+                ? RedirectToAction("MdpAdminIndex")
                 : RedirectToAction("Index");
         }
 
@@ -208,15 +212,13 @@ namespace project2.Controllers
         {
             var role = HttpContext.Session.GetString("role");
             if (role != "admin" && role != "manager")
-                return Unauthorized(); // chỉ admin/manager mới vào được
+                return Unauthorized();
 
-            // Lấy toàn bộ user
             var users = await _context.MdpUsers.ToListAsync();
-
-            // Trả về view MdpAdminIndex với danh sách user
             return View(users);
         }
-        // GET: hiển thị form thêm user
+
+        // ===================== THÊM USER =====================
         [HttpGet]
         public IActionResult Create()
         {
@@ -225,47 +227,29 @@ namespace project2.Controllers
             return View();
         }
 
-        // POST: xử lý thêm user
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(MdpUser model, IFormFile? avatarFile)
+        public async Task<IActionResult> Create(MdpUser model)
         {
             var role = HttpContext.Session.GetString("role");
             if (role != "admin" && role != "manager") return Unauthorized();
 
-            // Kiểm tra trùng username
             if (_context.MdpUsers.Any(u => u.MdpTenDangNhap == model.MdpTenDangNhap))
             {
                 ViewBag.Error = "Tên đăng nhập đã tồn tại!";
                 return View(model);
             }
 
-            // Khởi tạo các giá trị mặc định
             model.MdpCreatedAt = DateTime.Now;
             model.MdpRole = model.MdpRole ?? "User";
-
-            // Xử lý avatar
-            if (avatarFile != null && avatarFile.Length > 0)
-            {
-                var fileName = $"{Guid.NewGuid()}_{Path.GetFileName(avatarFile.FileName)}";
-                var uploadPath = Path.Combine(_env.WebRootPath, "uploads/avatars");
-                if (!Directory.Exists(uploadPath)) Directory.CreateDirectory(uploadPath);
-                var filePath = Path.Combine(uploadPath, fileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                    await avatarFile.CopyToAsync(stream);
-
-                model.MdpAvatar = "/uploads/avatars/" + fileName;
-            }
+            model.MdpAvatar = string.IsNullOrEmpty(model.MdpAvatar) ? null : model.MdpAvatar;
 
             _context.Add(model);
             await _context.SaveChangesAsync();
 
-            TempData["SuccessMessage"] = "✅ User mới đã được thêm!";
+            TempData["SuccessMessage"] = "✅ User mới đã được thêm thành công!";
             return RedirectToAction("MdpAdminIndex");
         }
-
-
 
         // ===================== XÓA USER =====================
         public async Task<IActionResult> Delete(int id)

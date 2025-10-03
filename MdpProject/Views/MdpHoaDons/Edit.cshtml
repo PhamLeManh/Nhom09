@@ -1,0 +1,53 @@
+﻿@model MdpProject.Models.MdpHoaDon
+
+@{
+    ViewData["Title"] = "Cập nhật hóa đơn";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+}
+
+<h2 class="mb-4">Cập nhật hóa đơn</h2>
+
+<div class="card shadow p-4">
+    <form asp-action="Edit">
+        <input type="hidden" asp-for="MdpHoaDonId" />
+
+        <div class="mb-3">
+            <label asp-for="MdpDonHangId" class="form-label"></label>
+            <select asp-for="MdpDonHangId" class="form-control" asp-items="ViewBag.MdpDonHangId"></select>
+            <span asp-validation-for="MdpDonHangId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="MdpNgayXuat" class="form-label"></label>
+            <input asp-for="MdpNgayXuat" class="form-control" type="date" />
+            <span asp-validation-for="MdpNgayXuat" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="MdpTongTien" class="form-label"></label>
+            <input asp-for="MdpTongTien" class="form-control" type="number" step="1000" />
+            <span asp-validation-for="MdpTongTien" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="MdpPhuongThucThanhToan" class="form-label"></label>
+            <select asp-for="MdpPhuongThucThanhToan" class="form-control" asp-items="ViewBag.PaymentMethods"></select>
+            <span asp-validation-for="MdpPhuongThucThanhToan" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="MdpTrangThai" class="form-label"></label>
+            <select asp-for="MdpTrangThai" class="form-control" asp-items="ViewBag.StatusList"></select>
+            <span asp-validation-for="MdpTrangThai" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+        <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

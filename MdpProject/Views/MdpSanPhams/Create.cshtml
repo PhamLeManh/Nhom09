@@ -1,38 +1,53 @@
 ﻿@model MdpProject.Models.MdpSanPham
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Thêm sản phẩm mới";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
 }
 
-<h1>Create</h1>
+<div class="container py-4">
+    <div class="d-flex align-items-center mb-4">
+        <i class="bi bi-bag-plus-fill display-4 text-success me-2"></i>
+        <h2 class="fw-bold text-success">🛒 Thêm sản phẩm mới</h2>
+    </div>
 
-<h4>MdpSanPham</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="MdpTenSanPham" class="control-label"></label>
-                <input asp-for="MdpTenSanPham" class="form-control" />
-                <span asp-validation-for="MdpTenSanPham" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MdpMoTa" class="control-label"></label>
-                <input asp-for="MdpMoTa" class="form-control" />
-                <span asp-validation-for="MdpMoTa" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="MdpTenSanPham" class="form-label fw-semibold"></label>
+                    <input asp-for="MdpTenSanPham" class="form-control" placeholder="Nhập tên sản phẩm" />
+                    <span asp-validation-for="MdpTenSanPham" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="MdpMoTa" class="form-label fw-semibold"></label>
+                    <textarea asp-for="MdpMoTa" class="form-control" rows="3" placeholder="Mô tả sản phẩm"></textarea>
+                    <span asp-validation-for="MdpMoTa" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <input type="submit" value="Thêm sản phẩm" class="btn btn-success" />
+                    <a asp-action="Index" class="btn btn-secondary ms-2">Hủy</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
+
+<style>
+    .fw-semibold {
+        font-weight: 600;
+    }
+
+    textarea.form-control {
+        resize: none;
+    }
+</style>

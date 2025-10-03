@@ -1,0 +1,82 @@
+﻿@model MdpProject.Models.MdpMonitor
+
+@{
+    ViewData["Title"] = "Xóa Monitor";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+}
+
+<div class="container my-4">
+    <div class="card shadow-sm p-4">
+        <h4 class="text-danger mb-3"><i class="bi bi-trash"></i> Xác nhận xóa Monitor</h4>
+
+        <p>Bạn có chắc chắn muốn xóa monitor này không?</p>
+
+        <dl class="row mb-3">
+            <dt class="col-sm-3">Tên Monitor</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.MdpTenMonitor)</dd>
+
+            <dt class="col-sm-3">Kích thước</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.MdpKichThuoc)</dd>
+
+            <dt class="col-sm-3">Độ phân giải</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.MdpDoPhanGiai)</dd>
+
+            <dt class="col-sm-3">Tần số quét</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.MdpTanSoQuet)</dd>
+
+            <dt class="col-sm-3">Cổng kết nối</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.MdpCongKetNoi)</dd>
+
+            <dt class="col-sm-3">Tấm nền</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.MdpTamNen)</dd>
+
+            <dt class="col-sm-3">Ngày tạo</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.MdpCreatedAt)</dd>
+
+            <dt class="col-sm-3">Ngày cập nhật</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.MdpUpdatedAt)</dd>
+
+            <dt class="col-sm-3">Danh mục sản phẩm</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.MdpSanPham.MdpTenSanPham)</dd>
+        </dl>
+
+        <form asp-action="Delete" method="post" class="d-flex gap-2">
+            <input type="hidden" asp-for="MdpMonitorId" />
+            <button type="submit" class="btn btn-danger flex-fill">
+                <i class="bi bi-trash"></i> Xóa Monitor
+            </button>
+            <a asp-action="MdpAdminIndex" class="btn btn-secondary flex-fill">
+                <i class="bi bi-arrow-left"></i> Quay lại
+            </a>
+        </form>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 12px;
+    }
+
+    .btn-danger, .btn-secondary {
+        font-weight: 500;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+        .btn-danger:hover, .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+    dl.row {
+        margin-bottom: 0;
+    }
+
+    dt {
+        font-weight: 500;
+    }
+
+    dd {
+        margin-bottom: 8px;
+    }
+</style>

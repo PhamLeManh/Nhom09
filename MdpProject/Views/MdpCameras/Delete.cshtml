@@ -1,0 +1,83 @@
+﻿@model MdpProject.Models.MdpCamera
+
+@{
+    ViewData["Title"] = "Xóa Camera";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+}
+
+<div class="container my-4">
+    <div class="card shadow-sm p-4">
+        <h4 class="text-danger mb-3">
+            <i class="bi bi-trash"></i> Xác nhận xóa Camera
+        </h4>
+
+        <p>Bạn có chắc chắn muốn xóa camera này không?</p>
+
+        <dl class="row">
+            <dt class="col-sm-3">Tên Camera</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.MdpTenCamera)</dd>
+
+            <dt class="col-sm-3">Độ phân giải</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.MdpDoPhanGiai)</dd>
+
+            <dt class="col-sm-3">Cảm biến</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.MdpCamBien)</dd>
+
+            <dt class="col-sm-3">Ống kính</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.MdpOngKinh)</dd>
+
+            <dt class="col-sm-3">Bộ nhớ</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.MdpBoNho)</dd>
+
+            <dt class="col-sm-3">Ngày tạo</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.MdpCreatedAt)</dd>
+
+            <dt class="col-sm-3">Ngày cập nhật</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.MdpUpdatedAt)</dd>
+
+            <dt class="col-sm-3">Danh mục sản phẩm</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.MdpSanPham.MdpTenSanPham)</dd>
+        </dl>
+
+        <form asp-action="Delete" method="post" class="mt-3">
+            <input type="hidden" asp-for="MdpCameraId" />
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-danger flex-fill">
+                    <i class="bi bi-trash"></i> Xóa Camera
+                </button>
+                <a asp-action="MdpAdminIndex" class="btn btn-secondary flex-fill">
+                    <i class="bi bi-arrow-left"></i> Quay lại
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 12px;
+    }
+
+    .btn-danger, .btn-secondary {
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+    dl.row {
+        margin-bottom: 0;
+    }
+
+    dt {
+        font-weight: 500;
+    }
+</style>

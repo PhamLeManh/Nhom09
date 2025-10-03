@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MdpProject.Models;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MdpProject.Controllers
 {
@@ -18,146 +17,151 @@ namespace MdpProject.Controllers
             _context = context;
         }
 
-        // GET: MdpPcs
+        // ================= Admin Index =================
+        public async Task<IActionResult> MdpAdminIndex()
+        {
+            var pcs = await _context.MdpPcs
+                                    .Include(p => p.MdpSanPham)
+                                    .ToListAsync();
+
+            return View(pcs);
+        }
+        // ================= Index (Client) =================
         public async Task<IActionResult> Index()
         {
-            var project2Context = _context.MdpPcs.Include(m => m.MdpSanPham);
-            return View(await project2Context.ToListAsync());
+            var laptops = _context.MdpPcs.Include(l => l.MdpSanPham);
+            return View(await laptops.ToListAsync());
         }
 
-        // GET: MdpPcs/Details/5
+
+        // ================= Details =================
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
-            var mdpPc = await _context.MdpPcs
-                .Include(m => m.MdpSanPham)
-                .FirstOrDefaultAsync(m => m.MdpPcid == id);
-            if (mdpPc == null)
-            {
-                return NotFound();
-            }
+            var pc = await _context.MdpPcs
+                                   .Include(p => p.MdpSanPham) // lấy luôn thông tin danh mục
+                                   .FirstOrDefaultAsync(p => p.MdpPcid == id);
 
-            return View(mdpPc);
+            if (pc == null) return NotFound();
+
+            return View(pc); // trả về View Details.cshtml
         }
 
-        // GET: MdpPcs/Create
+
+        // ================= Create =================
+        [HttpGet]
         public IActionResult Create()
         {
-            ViewData["MdpSanPhamId"] = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpSanPhamId");
+            ViewData["MdpSanPhamId"] = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpTenSanPham");
             return View();
         }
 
-        // POST: MdpPcs/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MdpPcid,MdpSanPhamId,MdpTenPc,MdpCpu,MdpGpu,MdpRam,MdpStorage,MdpMainboard,MdpPsu,MdpCaseType,MdpCreatedAt,MdpUpdatedAt")] MdpPc mdpPc)
+        public async Task<IActionResult> Create([Bind("MdpSanPhamId,MdpTenPc,MdpCpu,MdpGpu,MdpRam,MdpStorage,MdpMainboard,MdpPsu,MdpCaseType")] MdpPc pc, string? imageUrl)
         {
+            ModelState.Remove("MdpSanPham"); // Bỏ validate navigation property
+
             if (ModelState.IsValid)
             {
-                _context.Add(mdpPc);
+                pc.MdpCreatedAt = DateTime.Now;
+                if (!string.IsNullOrEmpty(imageUrl))
+                    pc.MdpAnh = imageUrl;
+
+                _context.Add(pc);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                TempData["Success"] = "✅ Thêm PC thành công!";
+                return RedirectToAction(nameof(MdpAdminIndex));
             }
-            ViewData["MdpSanPhamId"] = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpSanPhamId", mdpPc.MdpSanPhamId);
-            return View(mdpPc);
+
+            ViewData["MdpSanPhamId"] = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpTenSanPham", pc.MdpSanPhamId);
+            return View(pc);
         }
 
-        // GET: MdpPcs/Edit/5
+
+
+
+
+
+        // ================= Edit =================
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
-            var mdpPc = await _context.MdpPcs.FindAsync(id);
-            if (mdpPc == null)
-            {
-                return NotFound();
-            }
-            ViewData["MdpSanPhamId"] = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpSanPhamId", mdpPc.MdpSanPhamId);
-            return View(mdpPc);
+            var pc = await _context.MdpPcs.FindAsync(id);
+            if (pc == null) return NotFound();
+
+            ViewData["MdpSanPhamId"] = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpTenSanPham", pc.MdpSanPhamId);
+            return View(pc);
         }
 
-        // POST: MdpPcs/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MdpPcid,MdpSanPhamId,MdpTenPc,MdpCpu,MdpGpu,MdpRam,MdpStorage,MdpMainboard,MdpPsu,MdpCaseType,MdpCreatedAt,MdpUpdatedAt")] MdpPc mdpPc)
+        public async Task<IActionResult> Edit(int id, MdpPc pc, string? imageUrl)
         {
-            if (id != mdpPc.MdpPcid)
-            {
-                return NotFound();
-            }
+            ModelState.Remove("MdpSanPham"); // tránh lỗi dynamic
+
+            if (id != pc.MdpPcid) return NotFound();
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(mdpPc);
+                    pc.MdpUpdatedAt = DateTime.Now;
+                    if (!string.IsNullOrEmpty(imageUrl))
+                        pc.MdpAnh = imageUrl;
+
+                    _context.Entry(pc).State = EntityState.Modified;
                     await _context.SaveChangesAsync();
+
+                    TempData["Success"] = "✅ Cập nhật PC thành công!";
+                    return RedirectToAction(nameof(MdpAdminIndex));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MdpPcExists(mdpPc.MdpPcid))
-                    {
+                    if (!_context.MdpPcs.Any(e => e.MdpPcid == id))
                         return NotFound();
-                    }
                     else
-                    {
                         throw;
-                    }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["MdpSanPhamId"] = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpSanPhamId", mdpPc.MdpSanPhamId);
-            return View(mdpPc);
+
+            ViewData["MdpSanPhamId"] = new SelectList(_context.MdpSanPhams, "MdpSanPhamId", "MdpTenSanPham", pc.MdpSanPhamId);
+            return View(pc);
         }
 
-        // GET: MdpPcs/Delete/5
+        // ================= Delete =================
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
-            var mdpPc = await _context.MdpPcs
-                .Include(m => m.MdpSanPham)
-                .FirstOrDefaultAsync(m => m.MdpPcid == id);
-            if (mdpPc == null)
-            {
-                return NotFound();
-            }
+            var pc = await _context.MdpPcs
+                                   .Include(p => p.MdpSanPham)
+                                   .FirstOrDefaultAsync(m => m.MdpPcid == id);
 
-            return View(mdpPc);
+            if (pc == null) return NotFound();
+
+            return View(pc);
         }
 
-        // POST: MdpPcs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var mdpPc = await _context.MdpPcs.FindAsync(id);
-            if (mdpPc != null)
+            var pc = await _context.MdpPcs.FindAsync(id);
+            if (pc != null)
             {
-                _context.MdpPcs.Remove(mdpPc);
+                _context.MdpPcs.Remove(pc);
+                await _context.SaveChangesAsync();
+                TempData["Success"] = "✅ Xóa PC thành công!";
             }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool MdpPcExists(int id)
-        {
-            return _context.MdpPcs.Any(e => e.MdpPcid == id);
+            else
+            {
+                TempData["Error"] = "❌ PC không tồn tại!";
+            }
+            return RedirectToAction(nameof(MdpAdminIndex));
         }
     }
 }

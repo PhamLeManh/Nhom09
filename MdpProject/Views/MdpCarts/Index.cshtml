@@ -1,53 +1,70 @@
 ﻿@model IEnumerable<MdpProject.Models.MdpCart>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Giỏ Hàng";
+    var totalPrice = Model.Sum(x => (x.MdpSoLuong ?? 1) * (x.MdpVariant.MdpGia ?? 0));
 }
 
-<h1>Index</h1>
+<div class="container py-5">
+    <h1 class="mb-4 text-primary fw-bold">🛒 Giỏ Hàng</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.MdpSoLuong)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MdpNgayThem)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MdpUser)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MdpVariant)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MdpSoLuong)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MdpNgayThem)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MdpUser.MdpUserId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MdpVariant.MdpVariantId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.MdpCartId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MdpCartId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MdpCartId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">Giỏ hàng của bạn đang trống.</div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                var imgUrl = !string.IsNullOrEmpty(item.MdpVariant.MdpAnh)
+                ? item.MdpVariant.MdpAnh
+                : Url.Content("~/images/default-product.png");
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm product-card">
+                        <img src="@imgUrl" class="card-img-top" style="object-fit:cover;height:220px;" alt="Ảnh sản phẩm" />
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">@item.MdpVariant.MdpSanPham.MdpTenSanPham</h5>
+                            <p class="card-text text-muted mb-2">
+                                Biến thể: <span class="fw-semibold">@item.MdpVariant.MdpMauSac?.MdpTenMau</span> - <span class="fw-semibold">@item.MdpVariant.MdpDungLuong</span><br />
+                                Số lượng: <span class="fw-semibold">@item.MdpSoLuong</span><br />
+                                Ngày thêm: @item.MdpNgayThem?.ToString("dd/MM/yyyy")
+                            </p>
+                            <h6 class="text-danger fw-bold fs-5">@((item.MdpVariant.MdpGia ?? 0).ToString("N0")) ₫</h6>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <form asp-action="Remove" method="post" class="d-inline">
+                                <input type="hidden" name="id" value="@item.MdpCartId" />
+                                <button class="btn btn-outline-danger btn-sm">
+                                    <i class="bi bi-trash"></i> Xóa
+                                </button>
+                            </form>
+                            <span class="fw-bold text-secondary">
+                                Tổng: @(((item.MdpSoLuong ?? 1) * (item.MdpVariant.MdpGia ?? 0)).ToString("N0")) ₫
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="mt-4 d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <h4 class="fw-bold text-danger mb-3 mb-md-0">Tổng tiền: @totalPrice.ToString("N0") ₫</h4>
+            <a asp-action="MdpCheckout" class="btn btn-success btn-lg px-4 py-2 fw-bold">
+                ✅ Thanh toán ngay
+            </a>
+        </div>
+    }
+</div>
+
+<style>
+    .product-card {
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+</style>

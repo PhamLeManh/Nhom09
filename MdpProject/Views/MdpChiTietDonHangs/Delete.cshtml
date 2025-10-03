@@ -1,0 +1,75 @@
+﻿@model MdpProject.Models.MdpChiTietDonHang
+
+@{
+    ViewData["Title"] = "Delete Chi Tiết Đơn Hàng";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+}
+
+<div class="container py-4">
+    <h1 class="mb-4 text-danger"><i class="bi bi-trash"></i> Xóa chi tiết đơn hàng</h1>
+
+    <div class="card shadow-sm border-0 rounded-4">
+        <div class="card-body">
+            <h5 class="card-title">Thông tin chi tiết đơn hàng</h5>
+            <hr />
+
+            <dl class="row">
+                <dt class="col-sm-3">Sản phẩm</dt>
+                <dd class="col-sm-9">
+                    <i class="bi bi-box-seam me-1"></i>
+                    @Model.MdpVariant?.MdpSanPham?.MdpTenSanPham ?? "N/A"
+                </dd>
+
+                <dt class="col-sm-3">Màu</dt>
+                <dd class="col-sm-9">
+                    @if (!string.IsNullOrEmpty(Model.MdpVariant?.MdpMauSac?.MdpTenMau))
+                    {
+                        <span class="badge" style="background-color:@Model.MdpVariant.MdpMauSac.MdpMaHex; color:#fff;">
+                            @Model.MdpVariant.MdpMauSac.MdpTenMau
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="text-muted">—</span>
+                    }
+                </dd>
+
+                <dt class="col-sm-3">Dung lượng</dt>
+                <dd class="col-sm-9">@Model.MdpVariant?.MdpDungLuong ?? "—"</dd>
+
+                <dt class="col-sm-3">Số lượng</dt>
+                <dd class="col-sm-9">@Model.MdpSoLuong</dd>
+
+                <dt class="col-sm-3">Giá</dt>
+                <dd class="col-sm-9">@Model.MdpGia.ToString("N0")₫</dd>
+
+                <dt class="col-sm-3">Giảm giá</dt>
+                <dd class="col-sm-9">@Model.MdpGiamGia?.ToString("N0")₫ ?? "0₫"</dd>
+
+                <dt class="col-sm-3">Thành tiền</dt>
+                <dd class="col-sm-9">
+                    @{
+                        var thanhTien = Model.MdpThanhTien ?? (Model.MdpSoLuong * Model.MdpGia - (Model.MdpGiamGia ?? 0m));
+                    }
+                    @thanhTien.ToString("N0")₫
+                </dd>
+
+                <dt class="col-sm-3">Đơn hàng</dt>
+                <dd class="col-sm-9">#@Model.MdpDonHang.MdpDonHangId</dd>
+
+                <dt class="col-sm-3">Variant ID</dt>
+                <dd class="col-sm-9">@Model.MdpVariant.MdpVariantId</dd>
+            </dl>
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="MdpChiTietDonHangId" />
+                <button type="submit" class="btn btn-danger">
+                    <i class="bi bi-trash me-1"></i> Xóa
+                </button>
+                <a asp-action="Index" class="btn btn-secondary ms-2">
+                    <i class="bi bi-arrow-left me-1"></i> Quay lại
+                </a>
+            </form>
+        </div>
+    </div>
+</div>

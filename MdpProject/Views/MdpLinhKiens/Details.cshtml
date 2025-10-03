@@ -1,0 +1,58 @@
+﻿@model MdpProject.Models.MdpLinhKien
+
+@{
+    ViewData["Title"] = "Chi tiết linh kiện";
+    var defaultImg = Url.Content("~/images/linhkien/default.png");
+}
+
+<div class="container py-4">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a asp-controller="LinhKien" asp-action="Index">Linh kiện</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@Model.MdpTenLinhKien</li>
+        </ol>
+    </nav>
+
+    <div class="row mb-5">
+        <!-- Ảnh sản phẩm -->
+        <div class="col-md-5">
+            <img src="@(string.IsNullOrEmpty(Model.MdpAnh) ? defaultImg : Model.MdpAnh)"
+                 class="img-fluid rounded shadow-sm" alt="@Model.MdpTenLinhKien" />
+        </div>
+
+        <!-- Thông tin chi tiết -->
+        <div class="col-md-7">
+            <h2>@Model.MdpTenLinhKien</h2>
+            <p class="text-muted mb-1"><strong>Loại:</strong> @Model.MdpLoaiLinhKien</p>
+            <p class="text-muted mb-1"><strong>Thông số kỹ thuật:</strong> @Model.MdpThongSoKyThuat</p>
+            <p class="text-muted mb-1"><strong>Ngày tạo:</strong> @Model.MdpCreatedAt?.ToString("dd/MM/yyyy")</p>
+            <p class="text-muted mb-3"><strong>Ngày cập nhật:</strong> @Model.MdpUpdatedAt?.ToString("dd/MM/yyyy")</p>
+
+            <div class="d-flex gap-2">
+                <!-- Nút Mua giống index -->
+                <a href="@Url.Action("Index", "MdpProductVariants", new { sanPhamId = Model.MdpSanPhamId })"
+                   class="btn btn-success flex-fill">
+                    <i class="bi bi-cart-plus"></i> Mua ngay
+                </a>
+                <a asp-controller="LinhKien" asp-action="Index" class="btn btn-outline-secondary flex-fill">Quay lại</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .btn-success:hover {
+        background: linear-gradient(45deg, #28a745, #20c997) !important;
+        border-color: transparent !important;
+    }
+
+    .btn-outline-secondary:hover {
+        background: #6c757d !important;
+        color: #fff !important;
+        border-color: transparent !important;
+    }
+</style>

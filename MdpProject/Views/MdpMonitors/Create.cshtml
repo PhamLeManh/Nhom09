@@ -1,0 +1,77 @@
+﻿@model MdpProject.Models.MdpMonitor
+
+@{
+    ViewData["Title"] = "Thêm Monitor mới";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+}
+
+<div class="container my-4">
+    <div class="card shadow-sm p-4">
+        <h4 class="text-primary mb-3"><i class="bi bi-plus-circle"></i> Thêm Monitor mới</h4>
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="MdpSanPhamId" class="form-label">Danh mục sản phẩm</label>
+                <select asp-for="MdpSanPhamId" class="form-select" asp-items="@(ViewData["MdpSanPhamId"] as SelectList)">
+                    <option value="">-- Chọn danh mục --</option>
+                </select>
+                <span asp-validation-for="MdpSanPhamId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="MdpTenMonitor" class="form-label">Tên Monitor</label>
+                <input asp-for="MdpTenMonitor" class="form-control" />
+                <span asp-validation-for="MdpTenMonitor" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="col-md-6">
+                    <label asp-for="MdpKichThuoc" class="form-label">Kích thước</label>
+                    <input asp-for="MdpKichThuoc" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="MdpDoPhanGiai" class="form-label">Độ phân giải</label>
+                    <input asp-for="MdpDoPhanGiai" class="form-control" />
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="col-md-6">
+                    <label asp-for="MdpTanSoQuet" class="form-label">Tần số quét</label>
+                    <input asp-for="MdpTanSoQuet" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="MdpCongKetNoi" class="form-label">Cổng kết nối</label>
+                    <input asp-for="MdpCongKetNoi" class="form-control" />
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="MdpTamNen" class="form-label">Tấm nền</label>
+                <input asp-for="MdpTamNen" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">URL ảnh</label>
+                <input type="text" name="imageUrl" class="form-control" placeholder="https://..." />
+            </div>
+
+            <button type="submit" class="btn btn-success w-100 mb-2">
+                <i class="bi bi-plus-circle"></i> Thêm Monitor
+            </button>
+            <a asp-action="MdpAdminIndex" class="btn btn-secondary mt-3">Quay lại</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+
+<style>
+    .card { border-radius: 12px; }
+    .form-control, .form-select { border-radius: 6px; }
+    .btn-success, .btn-secondary { border-radius: 6px; font-weight: 500; transition: all 0.3s ease; }
+    .btn-success:hover, .btn-secondary:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+</style>

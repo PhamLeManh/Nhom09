@@ -3,108 +3,40 @@
   "WorkspaceRootPath": "D:\\project2\\MdpProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\controllers\\mdppcscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\controllers\\mdppcscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{50EB0568-3B9C-48E0-9756-7C33EDB6D938}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\views\\mdpphones\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{50EB0568-3B9C-48E0-9756-7C33EDB6D938}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\views\\mdpphones\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\views\\mdpphones\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\views\\mdpphones\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{50EB0568-3B9C-48E0-9756-7C33EDB6D938}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\controllers\\mdpphonescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50EB0568-3B9C-48E0-9756-7C33EDB6D938}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\controllers\\mdpphonescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\views\\mdpphones\\mdpadminindex.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\views\\mdpphones\\mdpadminindex.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{50EB0568-3B9C-48E0-9756-7C33EDB6D938}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\controllers\\mdpcartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50EB0568-3B9C-48E0-9756-7C33EDB6D938}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\controllers\\mdpcartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\views\\mdplaptops\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\views\\mdplaptops\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{50EB0568-3B9C-48E0-9756-7C33EDB6D938}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\views\\mdpcarts\\mdpadminindex.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{50EB0568-3B9C-48E0-9756-7C33EDB6D938}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\views\\mdpcarts\\mdpadminindex.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\views\\shared\\_mdplayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\views\\shared\\_mdplayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{50EB0568-3B9C-48E0-9756-7C33EDB6D938}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\views\\shared\\_mdpadminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{50EB0568-3B9C-48E0-9756-7C33EDB6D938}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\views\\shared\\_mdpadminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\models\\mdpphone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\models\\mdpphone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{50EB0568-3B9C-48E0-9756-7C33EDB6D938}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\views\\mdpcarts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{50EB0568-3B9C-48E0-9756-7C33EDB6D938}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\views\\mdpcarts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\views\\mdphome\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\views\\mdphome\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{50EB0568-3B9C-48E0-9756-7C33EDB6D938}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\models\\mdpcart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50EB0568-3B9C-48E0-9756-7C33EDB6D938}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\models\\mdpcart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\views\\shared\\_mdplayout.cshtml.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\views\\shared\\_mdplayout.cshtml.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{50EB0568-3B9C-48E0-9756-7C33EDB6D938}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\models\\mdpuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50EB0568-3B9C-48E0-9756-7C33EDB6D938}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\models\\mdpuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\views\\shared\\_mdpadminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\views\\shared\\_mdpadminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\wwwroot\\css\\login.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\wwwroot\\css\\login.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\views\\mdpchatsupports\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\views\\mdpchatsupports\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\controllers\\mdpchatsupportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\controllers\\mdpchatsupportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\views\\mdpreviews\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\views\\mdpreviews\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\controllers\\mdpreviewscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\controllers\\mdpreviewscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\views\\mdpkhuyenmais\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\views\\mdpkhuyenmais\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\controllers\\mdpkhuyenmaiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\controllers\\mdpkhuyenmaiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\views\\mdpkhohangs\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\views\\mdpkhohangs\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\controllers\\mdpkhohangscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\controllers\\mdpkhohangscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\views\\mdpsanphams\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\views\\mdpsanphams\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\views\\mdpcategories\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\views\\mdpcategories\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\controllers\\mdpcategoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\controllers\\mdpcategoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\views\\shared\\mdpadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\views\\shared\\mdpadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\controllers\\mdpsanphamscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\controllers\\mdpsanphamscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\views\\mdplaptops\\mdpadminindex.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3B48E456-AB2B-4816-AE09-C186F34552AC}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\views\\mdplaptops\\mdpadminindex.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{50EB0568-3B9C-48E0-9756-7C33EDB6D938}|MdpProject\\MdpProject.csproj|d:\\project2\\mdpproject\\mdpproject\\controllers\\mdpchitiethoadonscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50EB0568-3B9C-48E0-9756-7C33EDB6D938}|MdpProject\\MdpProject.csproj|solutionrelative:mdpproject\\controllers\\mdpchitiethoadonscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -114,344 +46,123 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MdpPcsController.cs",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Controllers\\MdpPcsController.cs",
-              "RelativeDocumentMoniker": "MdpProject\\Controllers\\MdpPcsController.cs",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Controllers\\MdpPcsController.cs",
-              "RelativeToolTip": "MdpProject\\Controllers\\MdpPcsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-18T09:18:16.31Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MdpPhone.cs",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Models\\MdpPhone.cs",
-              "RelativeDocumentMoniker": "MdpProject\\Models\\MdpPhone.cs",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Models\\MdpPhone.cs",
-              "RelativeToolTip": "MdpProject\\Models\\MdpPhone.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-18T09:14:23.198Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MdpAdminIndex.cshtml",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpPhones\\MdpAdminIndex.cshtml",
-              "RelativeDocumentMoniker": "MdpProject\\Views\\MdpPhones\\MdpAdminIndex.cshtml",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpPhones\\MdpAdminIndex.cshtml",
-              "RelativeToolTip": "MdpProject\\Views\\MdpPhones\\MdpAdminIndex.cshtml",
-              "ViewState": "AgIAAHUAAAAAAAAAAAAQwK4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-18T09:13:45.102Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "MdpPhonesController.cs",
+              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Controllers\\MdpPhonesController.cs",
+              "RelativeDocumentMoniker": "MdpProject\\Controllers\\MdpPhonesController.cs",
+              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Controllers\\MdpPhonesController.cs",
+              "RelativeToolTip": "MdpProject\\Controllers\\MdpPhonesController.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAAwwJ0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-03T07:59:57.39Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpPhones\\Index.cshtml",
               "RelativeDocumentMoniker": "MdpProject\\Views\\MdpPhones\\Index.cshtml",
               "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpPhones\\Index.cshtml",
               "RelativeToolTip": "MdpProject\\Views\\MdpPhones\\Index.cshtml",
-              "ViewState": "AgIAAGkAAAAAAAAAAAAAwHwAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAHYAAAAAAAAAAAAUwI4AAABiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-18T09:12:58.62Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "login.css",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\wwwroot\\css\\login.css",
-              "RelativeDocumentMoniker": "MdpProject\\wwwroot\\css\\login.css",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\wwwroot\\css\\login.css",
-              "RelativeToolTip": "MdpProject\\wwwroot\\css\\login.css",
-              "ViewState": "AgIAADwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-09-18T08:30:59.685Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "_MDPLayout.cshtml.css",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Views\\Shared\\_MDPLayout.cshtml.css",
-              "RelativeDocumentMoniker": "MdpProject\\Views\\Shared\\_MDPLayout.cshtml.css",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Views\\Shared\\_MDPLayout.cshtml.css",
-              "RelativeToolTip": "MdpProject\\Views\\Shared\\_MDPLayout.cshtml.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-09-18T08:17:30.915Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "MdpAdmin.cshtml",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Views\\Shared\\MdpAdmin.cshtml",
-              "RelativeDocumentMoniker": "MdpProject\\Views\\Shared\\MdpAdmin.cshtml",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Views\\Shared\\MdpAdmin.cshtml",
-              "RelativeToolTip": "MdpProject\\Views\\Shared\\MdpAdmin.cshtml",
-              "ViewState": "AgIAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-18T07:34:54.605Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "MdpCategoriesController.cs",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Controllers\\MdpCategoriesController.cs",
-              "RelativeDocumentMoniker": "MdpProject\\Controllers\\MdpCategoriesController.cs",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Controllers\\MdpCategoriesController.cs",
-              "RelativeToolTip": "MdpProject\\Controllers\\MdpCategoriesController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-18T07:34:16.2Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "site.css",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\wwwroot\\css\\site.css",
-              "RelativeDocumentMoniker": "MdpProject\\wwwroot\\css\\site.css",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\wwwroot\\css\\site.css",
-              "RelativeToolTip": "MdpProject\\wwwroot\\css\\site.css",
-              "ViewState": "AgIAADkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-09-18T08:17:40.599Z",
+              "WhenOpened": "2025-10-03T07:55:02.563Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "_MDPLayout.cshtml",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Views\\Shared\\_MDPLayout.cshtml",
-              "RelativeDocumentMoniker": "MdpProject\\Views\\Shared\\_MDPLayout.cshtml",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Views\\Shared\\_MDPLayout.cshtml",
-              "RelativeToolTip": "MdpProject\\Views\\Shared\\_MDPLayout.cshtml",
-              "ViewState": "AgIAAFcAAAAAAAAAAAAUwBwAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-18T06:23:40.924Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpLaptops\\Index.cshtml",
-              "RelativeDocumentMoniker": "MdpProject\\Views\\MdpLaptops\\Index.cshtml",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpLaptops\\Index.cshtml",
-              "RelativeToolTip": "MdpProject\\Views\\MdpLaptops\\Index.cshtml",
-              "ViewState": "AgIAACsAAAAAAAAAAAAUwLIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-18T09:13:09.4Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Views\\MDPHome\\Index.cshtml",
-              "RelativeDocumentMoniker": "MdpProject\\Views\\MDPHome\\Index.cshtml",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Views\\MDPHome\\Index.cshtml",
-              "RelativeToolTip": "MdpProject\\Views\\MDPHome\\Index.cshtml",
-              "ViewState": "AgIAAEQBAAAAAAAAAAAIwF8BAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-18T08:31:41.62Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "_ValidationScriptsPartial.cshtml",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
-              "RelativeDocumentMoniker": "MdpProject\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
-              "RelativeToolTip": "MdpProject\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-18T08:30:41.213Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
               "Title": "_MdpAdminLayout.cshtml",
               "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Views\\Shared\\_MdpAdminLayout.cshtml",
               "RelativeDocumentMoniker": "MdpProject\\Views\\Shared\\_MdpAdminLayout.cshtml",
               "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Views\\Shared\\_MdpAdminLayout.cshtml",
               "RelativeToolTip": "MdpProject\\Views\\Shared\\_MdpAdminLayout.cshtml",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAAAG0AAABzAAAAAAAAAA==",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAAAJEAAABpAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-18T06:23:49.984Z",
+              "WhenOpened": "2025-10-03T07:44:20.224Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpSanPhams\\Index.cshtml",
-              "RelativeDocumentMoniker": "MdpProject\\Views\\MdpSanPhams\\Index.cshtml",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpSanPhams\\Index.cshtml",
-              "RelativeToolTip": "MdpProject\\Views\\MdpSanPhams\\Index.cshtml",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAAAcAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-18T07:44:01.55Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpKhoHangs\\Index.cshtml",
-              "RelativeDocumentMoniker": "MdpProject\\Views\\MdpKhoHangs\\Index.cshtml",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpKhoHangs\\Index.cshtml",
-              "RelativeToolTip": "MdpProject\\Views\\MdpKhoHangs\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-18T07:48:26.038Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpKhuyenMais\\Index.cshtml",
-              "RelativeDocumentMoniker": "MdpProject\\Views\\MdpKhuyenMais\\Index.cshtml",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpKhuyenMais\\Index.cshtml",
-              "RelativeToolTip": "MdpProject\\Views\\MdpKhuyenMais\\Index.cshtml",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACEAAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-18T07:51:45.417Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpReviews\\Index.cshtml",
-              "RelativeDocumentMoniker": "MdpProject\\Views\\MdpReviews\\Index.cshtml",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpReviews\\Index.cshtml",
-              "RelativeToolTip": "MdpProject\\Views\\MdpReviews\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-18T08:02:18.708Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpChatSupports\\Index.cshtml",
-              "RelativeDocumentMoniker": "MdpProject\\Views\\MdpChatSupports\\Index.cshtml",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpChatSupports\\Index.cshtml",
-              "RelativeToolTip": "MdpProject\\Views\\MdpChatSupports\\Index.cshtml",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAwCwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-18T08:04:33.507Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "MdpChatSupportsController.cs",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Controllers\\MdpChatSupportsController.cs",
-              "RelativeDocumentMoniker": "MdpProject\\Controllers\\MdpChatSupportsController.cs",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Controllers\\MdpChatSupportsController.cs",
-              "RelativeToolTip": "MdpProject\\Controllers\\MdpChatSupportsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 7,
+              "Title": "MdpUser.cs",
+              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Models\\MdpUser.cs",
+              "RelativeDocumentMoniker": "MdpProject\\Models\\MdpUser.cs",
+              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Models\\MdpUser.cs",
+              "RelativeToolTip": "MdpProject\\Models\\MdpUser.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAywCsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-18T08:04:27.949Z",
+              "WhenOpened": "2025-10-03T07:38:54.132Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "MdpReviewsController.cs",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Controllers\\MdpReviewsController.cs",
-              "RelativeDocumentMoniker": "MdpProject\\Controllers\\MdpReviewsController.cs",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Controllers\\MdpReviewsController.cs",
-              "RelativeToolTip": "MdpProject\\Controllers\\MdpReviewsController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "MdpCart.cs",
+              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Models\\MdpCart.cs",
+              "RelativeDocumentMoniker": "MdpProject\\Models\\MdpCart.cs",
+              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Models\\MdpCart.cs",
+              "RelativeToolTip": "MdpProject\\Models\\MdpCart.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-18T07:59:20.293Z",
+              "WhenOpened": "2025-10-03T07:37:52.131Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "MdpSanPhamsController.cs",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Controllers\\MdpSanPhamsController.cs",
-              "RelativeDocumentMoniker": "MdpProject\\Controllers\\MdpSanPhamsController.cs",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Controllers\\MdpSanPhamsController.cs",
-              "RelativeToolTip": "MdpProject\\Controllers\\MdpSanPhamsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "MdpCartsController.cs",
+              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Controllers\\MdpCartsController.cs",
+              "RelativeDocumentMoniker": "MdpProject\\Controllers\\MdpCartsController.cs",
+              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Controllers\\MdpCartsController.cs",
+              "RelativeToolTip": "MdpProject\\Controllers\\MdpCartsController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABgAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-18T07:33:36.778Z",
+              "WhenOpened": "2025-10-03T07:34:26.309Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "MdpKhuyenMaisController.cs",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Controllers\\MdpKhuyenMaisController.cs",
-              "RelativeDocumentMoniker": "MdpProject\\Controllers\\MdpKhuyenMaisController.cs",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Controllers\\MdpKhuyenMaisController.cs",
-              "RelativeToolTip": "MdpProject\\Controllers\\MdpKhuyenMaisController.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-18T07:51:36.937Z",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpCarts\\Index.cshtml",
+              "RelativeDocumentMoniker": "MdpProject\\Views\\MdpCarts\\Index.cshtml",
+              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpCarts\\Index.cshtml",
+              "RelativeToolTip": "MdpProject\\Views\\MdpCarts\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-03T07:31:24.206Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "MdpKhoHangsController.cs",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Controllers\\MdpKhoHangsController.cs",
-              "RelativeDocumentMoniker": "MdpProject\\Controllers\\MdpKhoHangsController.cs",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Controllers\\MdpKhoHangsController.cs",
-              "RelativeToolTip": "MdpProject\\Controllers\\MdpKhoHangsController.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-18T07:47:59.19Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 3,
               "Title": "MdpAdminIndex.cshtml",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpLaptops\\MdpAdminIndex.cshtml",
-              "RelativeDocumentMoniker": "MdpProject\\Views\\MdpLaptops\\MdpAdminIndex.cshtml",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpLaptops\\MdpAdminIndex.cshtml",
-              "RelativeToolTip": "MdpProject\\Views\\MdpLaptops\\MdpAdminIndex.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAXAAAAAAAAAA==",
+              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpCarts\\MdpAdminIndex.cshtml",
+              "RelativeDocumentMoniker": "MdpProject\\Views\\MdpCarts\\MdpAdminIndex.cshtml",
+              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpCarts\\MdpAdminIndex.cshtml",
+              "RelativeToolTip": "MdpProject\\Views\\MdpCarts\\MdpAdminIndex.cshtml",
+              "ViewState": "AgIAABgAAAAAAAAAAAAwwCAAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-18T06:24:45.042Z",
+              "WhenOpened": "2025-10-03T07:31:21.558Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpCategories\\Index.cshtml",
-              "RelativeDocumentMoniker": "MdpProject\\Views\\MdpCategories\\Index.cshtml",
-              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Views\\MdpCategories\\Index.cshtml",
-              "RelativeToolTip": "MdpProject\\Views\\MdpCategories\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-18T07:36:30.438Z",
+              "DocumentIndex": 8,
+              "Title": "MdpChiTietHoaDonsController.cs",
+              "DocumentMoniker": "D:\\project2\\MdpProject\\MdpProject\\Controllers\\MdpChiTietHoaDonsController.cs",
+              "RelativeDocumentMoniker": "MdpProject\\Controllers\\MdpChiTietHoaDonsController.cs",
+              "ToolTip": "D:\\project2\\MdpProject\\MdpProject\\Controllers\\MdpChiTietHoaDonsController.cs",
+              "RelativeToolTip": "MdpProject\\Controllers\\MdpChiTietHoaDonsController.cs",
+              "ViewState": "AgIAAHYAAAAAAAAAAAAQwIIAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-03T07:23:21.356Z",
               "EditorCaption": ""
             }
           ]

@@ -1,96 +1,116 @@
 ﻿@model MdpProject.Models.MdpUser
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Chỉnh sửa người dùng";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
 }
 
-<h1>Edit</h1>
+<div class="container py-4">
+    <h2 class="fw-bold text-primary mb-4">✏️ Chỉnh sửa người dùng</h2>
 
-<h4>MdpUser</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="MdpUserId" />
-            <div class="form-group">
-                <label asp-for="MdpTenDangNhap" class="control-label"></label>
-                <input asp-for="MdpTenDangNhap" class="form-control" />
-                <span asp-validation-for="MdpTenDangNhap" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MdpMatKhau" class="control-label"></label>
-                <input asp-for="MdpMatKhau" class="form-control" />
-                <span asp-validation-for="MdpMatKhau" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MdpEmail" class="control-label"></label>
-                <input asp-for="MdpEmail" class="form-control" />
-                <span asp-validation-for="MdpEmail" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MdpHoTen" class="control-label"></label>
-                <input asp-for="MdpHoTen" class="form-control" />
-                <span asp-validation-for="MdpHoTen" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MdpSoDienThoai" class="control-label"></label>
-                <input asp-for="MdpSoDienThoai" class="form-control" />
-                <span asp-validation-for="MdpSoDienThoai" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MdpDiaChi" class="control-label"></label>
-                <input asp-for="MdpDiaChi" class="form-control" />
-                <span asp-validation-for="MdpDiaChi" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MdpRole" class="control-label"></label>
-                <input asp-for="MdpRole" class="form-control" />
-                <span asp-validation-for="MdpRole" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MdpNgaySinh" class="control-label"></label>
-                <input asp-for="MdpNgaySinh" class="form-control" />
-                <span asp-validation-for="MdpNgaySinh" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MdpGioiTinh" class="control-label"></label>
-                <input asp-for="MdpGioiTinh" class="form-control" />
-                <span asp-validation-for="MdpGioiTinh" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MdpAvatar" class="control-label"></label>
-                <input asp-for="MdpAvatar" class="form-control" />
-                <span asp-validation-for="MdpAvatar" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MdpTrangThai" class="control-label"></label>
-                <input asp-for="MdpTrangThai" class="form-control" />
-                <span asp-validation-for="MdpTrangThai" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MdpCreatedAt" class="control-label"></label>
-                <input asp-for="MdpCreatedAt" class="form-control" />
-                <span asp-validation-for="MdpCreatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MdpUpdatedAt" class="control-label"></label>
-                <input asp-for="MdpUpdatedAt" class="form-control" />
-                <span asp-validation-for="MdpUpdatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.Error
+        </div>
+    }
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <form asp-action="Edit">
+                <input type="hidden" asp-for="MdpUserId" />
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label asp-for="MdpTenDangNhap" class="form-label fw-semibold"></label>
+                        <input asp-for="MdpTenDangNhap" class="form-control" placeholder="Tên đăng nhập" />
+                        <span asp-validation-for="MdpTenDangNhap" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="MdpMatKhau" class="form-label fw-semibold"></label>
+                        <input asp-for="MdpMatKhau" type="password" class="form-control" placeholder="Mật khẩu" />
+                        <span asp-validation-for="MdpMatKhau" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="MdpEmail" class="form-label fw-semibold"></label>
+                        <input asp-for="MdpEmail" type="email" class="form-control" placeholder="Email" />
+                        <span asp-validation-for="MdpEmail" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="MdpHoTen" class="form-label fw-semibold"></label>
+                        <input asp-for="MdpHoTen" class="form-control" placeholder="Họ tên" />
+                        <span asp-validation-for="MdpHoTen" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="MdpSoDienThoai" class="form-label fw-semibold"></label>
+                        <input asp-for="MdpSoDienThoai" class="form-control" placeholder="Số điện thoại" />
+                        <span asp-validation-for="MdpSoDienThoai" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="MdpDiaChi" class="form-label fw-semibold"></label>
+                        <input asp-for="MdpDiaChi" class="form-control" placeholder="Địa chỉ" />
+                        <span asp-validation-for="MdpDiaChi" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="MdpRole" class="form-label fw-semibold"></label>
+                        <select asp-for="MdpRole" class="form-select">
+                            <option value="">-- Chọn vai trò --</option>
+                            <option value="User" selected="@Model.MdpRole == " User"">User</option>
+                            <option value="Manager" selected="@Model.MdpRole == " Manager"">Manager</option>
+                            <option value="Admin" selected="@Model.MdpRole == " Admin"">Admin</option>
+                        </select>
+                        <span asp-validation-for="MdpRole" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="MdpNgaySinh" class="form-label fw-semibold"></label>
+                        <input asp-for="MdpNgaySinh" type="date" class="form-control" />
+                        <span asp-validation-for="MdpNgaySinh" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="MdpGioiTinh" class="form-label fw-semibold"></label>
+                        <select asp-for="MdpGioiTinh" class="form-select">
+                            <option value="">-- Chọn giới tính --</option>
+                            <option value="Nam" selected="@Model.MdpGioiTinh == " Nam"">Nam</option>
+                            <option value="Nữ" selected="@Model.MdpGioiTinh == " Nữ"">Nữ</option>
+                            <option value="Khác" selected="@Model.MdpGioiTinh == " Khác"">Khác</option>
+                        </select>
+                        <span asp-validation-for="MdpGioiTinh" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label asp-for="MdpAvatar" class="form-label fw-semibold"></label>
+                        <input asp-for="MdpAvatar" class="form-control" placeholder="URL ảnh đại diện" />
+                        <span asp-validation-for="MdpAvatar" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="mt-4 d-flex justify-content-between">
+                    <a asp-action="MdpAdminIndex" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left-circle"></i> Quay lại
+                    </a>
+                    <button type="submit" class="btn btn-primary px-4">
+                        <i class="bi bi-save"></i> Lưu thay đổi
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }

@@ -1,0 +1,80 @@
+﻿@model MdpProject.Models.MdpCamera
+
+@{
+    ViewData["Title"] = Model?.MdpTenCamera ?? "Chi tiết Camera";
+
+    var defaultImg = Url.Content("~/images/camera/default.png");
+
+    // Giá gốc – sale – discount
+    Func<int, (decimal Orig, decimal Sale, int Discount)> GetPrice = id =>
+    {
+        var rnd = new Random(id);
+        var orig = rnd.Next(5_000_000, 15_000_000);
+        var discount = rnd.Next(10, 35);
+        var sale = (int)(orig * (100 - discount) / 100.0m);
+        return (Orig: orig, Sale: sale, Discount: discount);
+    };
+
+    var price = GetPrice(Model.MdpCameraId);
+}
+
+<div class="container py-4">
+
+    <div class="row g-4">
+        <!-- Ảnh lớn -->
+        <div class="col-md-5">
+            <div class="card shadow-sm">
+                <img src="@(!string.IsNullOrEmpty(Model.MdpAnh) ? Model.MdpAnh : defaultImg)"
+                     class="card-img-top" style="object-fit:cover; height:400px;"
+                     onerror="this.onerror=null;this.src='@defaultImg';" />
+            </div>
+        </div>
+
+        <!-- Thông tin chi tiết -->
+        <div class="col-md-7">
+            <div class="card shadow-sm p-4">
+                <h3 class="fw-bold">@Model.MdpTenCamera</h3>
+
+                <hr />
+
+                <div class="mb-3">
+                    <p class="text-muted mb-1"><strong>Độ phân giải:</strong> @Model.MdpDoPhanGiai</p>
+                    <p class="text-muted mb-1"><strong>Cảm biến:</strong> @Model.MdpCamBien</p>
+                    <p class="text-muted mb-1"><strong>Ống kính:</strong> @Model.MdpOngKinh</p>
+                    <p class="text-muted mb-1"><strong>Bộ nhớ:</strong> @Model.MdpBoNho</p>
+                    <p class="text-muted mb-1"><strong>Ngày tạo:</strong> @Model.MdpCreatedAt?.ToString("dd/MM/yyyy")</p>
+                    <p class="text-muted mb-1"><strong>Ngày cập nhật:</strong> @Model.MdpUpdatedAt?.ToString("dd/MM/yyyy")</p>
+                </div>
+
+                <div class="mb-3">
+                    <span class="text-muted text-decoration-line-through me-2">@price.Orig.ToString("N0") ₫</span>
+                    <span class="fw-bold text-primary">@price.Sale.ToString("N0") ₫</span>
+                    <span class="badge bg-success ms-2">-@(price.Discount)%</span>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <a href="@Url.Action("Index", "MdpProductVariants", new { sanPhamId = Model.MdpSanPhamId })"
+                       class="btn btn-success flex-fill"><i class="bi bi-cart-plus"></i> Mua ngay</a>
+                    <a asp-action="Index" class="btn btn-outline-secondary flex-fill">Quay lại</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 12px;
+    }
+
+    .btn-success:hover {
+        background: linear-gradient(45deg, #28a745, #20c997) !important;
+        border-color: transparent !important;
+    }
+
+    .btn-outline-secondary:hover {
+        background: #6c757d !important;
+        color: #fff !important;
+        border-color: transparent !important;
+    }
+</style>

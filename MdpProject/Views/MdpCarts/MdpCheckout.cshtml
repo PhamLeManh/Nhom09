@@ -1,0 +1,114 @@
+﻿@model IEnumerable<MdpProject.Models.MdpCart>
+@{
+    ViewData["Title"] = "Thanh toán";
+    var user = ViewBag.User as MdpProject.Models.MdpUser;
+    var total = (decimal)(Model?.Sum(x => (x.MdpVariant.MdpGia ?? 0) * x.MdpSoLuong) ?? 0);
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <!-- Form nhập thông tin -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-4">
+                    <h3 class="mb-4 text-primary fw-bold">Thông tin khách hàng</h3>
+                    <form asp-action="MdpCheckout" method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Họ tên</label>
+                            <input type="text" name="fullname" value="@user?.MdpHoTen" class="form-control rounded-3" required />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" name="email" value="@user?.MdpEmail" class="form-control rounded-3" required />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Địa chỉ</label>
+                            <input type="text" name="address" value="@user?.MdpDiaChi" class="form-control rounded-3" required />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Số điện thoại</label>
+                            <input type="text" name="phone" value="@user?.MdpSoDienThoai" class="form-control rounded-3" required />
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100 py-2 rounded-3 fw-bold">
+                            Xác nhận đặt hàng
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- QR Code -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-lg border-0 rounded-4 text-center">
+                <div class="card-body p-4">
+                    <h3 class="mb-3 text-primary fw-bold">Quét mã QR để thanh toán</h3>
+                    <img src="~/images/bankqr.jpg" alt="QR Code" class="img-fluid rounded-3 mb-3 shadow-sm" style="max-width: 650px;; height:450px;" />
+
+                    <h5 class="fw-bold">DO TUNG DUONG</h5>
+                    <p class="mb-1">SĐT: <span class="text-primary fw-semibold">0375526086</span></p>
+                    <p class="text-muted">💡 Nội dung chuyển khoản: <b>Thanh toán đơn hàng</b></p>
+
+                    <hr />
+                    <h4 class="fw-bold text-danger">Tổng tiền: @total.ToString("N0") ₫</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        <!-- Giỏ hàng -->
+        <div class="col-12">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-dark text-white fw-bold">
+                    🛍️ Sản phẩm trong giỏ hàng
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-hover table-bordered text-center align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Sản phẩm</th>
+                                <th>Phân loại</th>
+                                <th style="width:140px;">Số lượng</th>
+                                <th>Giá</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="fw-bold">@item.MdpVariant.MdpSanPham.MdpTenSanPham</td>
+                                    <td>@($"{item.MdpVariant.MdpMauSac?.MdpTenMau} - {item.MdpVariant.MdpDungLuong}")</td>
+                                    <td>
+                                        <input type="number"
+                                               name="qty_@item.MdpCartId"
+                                               value="@item.MdpSoLuong"
+                                               min="1"
+                                               class="form-control text-center" />
+                                    </td>
+                                    <td class="fw-bold text-danger">
+                                        @item.MdpVariant.MdpGia?.ToString("N0") ₫
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr class="table-secondary fw-bold">
+                                <td colspan="3" class="text-end">Tổng cộng:</td>
+                                <td class="text-danger">
+                                    @(((decimal)(Model?.Sum(x => (x.MdpVariant.MdpGia ?? 0) * x.MdpSoLuong) ?? 0))
+                                        .ToString("N0")) ₫
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nút xác nhận -->
+        <div class="col-12 text-center">
+            <button type="submit" class="btn btn-lg btn-gradient px-5 mt-4 fw-bold"
+                    style="background: linear-gradient(90deg,#007bff,#00c6ff); color:white;">
+                ✅ Xác nhận đặt hàng
+            </button>
+</div>

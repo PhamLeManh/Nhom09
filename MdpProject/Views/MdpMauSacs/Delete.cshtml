@@ -1,0 +1,56 @@
+﻿@model MdpProject.Models.MdpMauSac
+
+@{
+    ViewData["Title"] = "Xóa Màu Sắc";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+}
+
+<div class="container my-4">
+    <div class="card shadow-lg border-0 rounded-4 p-4">
+        <h2 class="text-danger fw-bold mb-3">
+            <i class="bi bi-trash"></i> @ViewData["Title"]
+        </h2>
+        <hr class="mb-4" />
+
+        <h5>Bạn có chắc chắn muốn xóa màu sắc này không?</h5>
+
+        <dl class="row">
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.MdpTenMau)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.MdpTenMau)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.MdpMaHex)</dt>
+            <dd class="col-sm-9 d-flex align-items-center gap-2">
+                @Html.DisplayFor(m => m.MdpMaHex)
+                <div style="width:30px;height:30px;border:1px solid #ccc;background:@Model.MdpMaHex;border-radius:5px;"></div>
+            </dd>
+        </dl>
+
+        <form asp-action="Delete" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="MdpMauSacId" />
+            <button type="submit" class="btn btn-danger">
+                <i class="bi bi-trash"></i> Xóa
+            </button>
+            <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+        </form>
+
+
+
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 12px;
+    }
+
+    .btn {
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+</style>

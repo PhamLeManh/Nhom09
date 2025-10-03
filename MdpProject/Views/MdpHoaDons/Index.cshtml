@@ -1,0 +1,77 @@
+﻿@model IEnumerable<MdpProject.Models.MdpHoaDon>
+
+@{
+    ViewData["Title"] = "Danh sách Hóa Đơn";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+}
+
+<div class="container-fluid my-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-primary"><i class="bi bi-receipt"></i> Danh sách Hóa Đơn</h2>
+        <!-- nút Thêm đã bị loại bỏ theo yêu cầu -->
+    </div>
+
+    <table class="table table-bordered table-striped shadow-sm align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Ngày xuất</th>
+                <th>Tổng tiền</th>
+                <th>Phương thức</th>
+                <th>Trạng thái</th>
+                <th>Đơn hàng</th>
+                <th class="text-center">Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                var stt = 1;
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@stt</td>
+                        <td>@item.MdpNgayXuat?.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>@item.MdpTongTien.ToString("N0") VNĐ</td>
+                        <td>@item.MdpPhuongThucThanhToan</td>
+                        <td>
+                            @if (item.MdpTrangThai == "Đã thanh toán")
+                            {
+                                <span class="badge bg-success">Đã thanh toán</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning text-dark">@item.MdpTrangThai</span>
+                            }
+                        </td>
+                        <td>
+                            <a asp-controller="MdpDonHangs" asp-action="Details" asp-route-id="@item.MdpDonHangId"
+                               class="text-decoration-none">
+                                #@item.MdpDonHangId
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <a asp-action="Details" asp-route-id="@item.MdpHoaDonId" class="btn btn-info btn-sm">
+                                <i class="bi bi-eye"></i> Xem
+                            </a>
+
+                            <!-- Sửa (Edit) đã bị loại bỏ -->
+                            <!-- Chỉ còn Hủy (Delete) -->
+                            <a asp-action="Delete" asp-route-id="@item.MdpHoaDonId" class="btn btn-danger btn-sm"
+                               title="Hủy hóa đơn">
+                                <i class="bi bi-x-circle"></i> Hủy
+                            </a>
+                        </td>
+                    </tr>
+                    stt++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="7" class="text-center text-muted">Không có hóa đơn nào</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

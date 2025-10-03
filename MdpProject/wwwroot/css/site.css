@@ -1,6 +1,6 @@
 ﻿/* =================== BASE =================== */
 body {
-    background-color: #eaeaea; /* nền xám nhẹ */
+    background-color: #eaeaea;
     color: #212529;
     font-family: 'Montserrat', sans-serif;
     margin: 0;
@@ -12,30 +12,34 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     background: #fff;
-    box-shadow: 0 0 25px rgba(0,0,0,0.2);
+    box-shadow: 0 0 25px rgba(0,0,0,0.15);
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 /* =================== CAROUSEL =================== */
 #heroCarousel img {
     width: 100%;
-    height: 500px;
+    min-height: 450px;
+    max-height: 600px;
     object-fit: cover;
+    border-radius: 12px;
 }
 
 /* =================== Banner Titles =================== */
 .banner-title {
     display: inline-block;
-    padding: 12px 30px;
-    font-size: 1.5rem;
-    font-weight: bold;
+    padding: 10px 28px;
+    font-size: 1.3rem;
+    font-weight: 700;
     color: #fff;
-    border-radius: 30px;
+    border-radius: 25px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 
-/* Màu riêng từng section */
+/* Gradient theo section */
 .section-categories .banner-title {
     background: linear-gradient(135deg, #4facfe, #00f2fe);
 }
@@ -63,18 +67,14 @@ body {
     border-radius: 12px;
     overflow: hidden;
     background: #fff;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
     .card img {
         height: 180px;
+        width: 100%;
         object-fit: cover;
     }
-
-.card-body {
-    background: transparent;
-    color: #212529;
-}
 
 .card-title {
     font-weight: 600;
@@ -83,17 +83,201 @@ body {
 }
 
 .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 /* =================== BUTTONS =================== */
 .btn {
     border-radius: 25px;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
     font-weight: 600;
 }
 
     .btn:hover {
-        transform: scale(1.05);
+        transform: scale(1.03);
+    }
+
+/* =================== SEARCH BAR =================== */
+.search-bar {
+    flex: 1;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+    .search-bar input {
+        border-radius: 30px 0 0 30px;
+        border: 2px solid #007bff;
+        padding: 12px 18px;
+        font-size: 1rem;
+        width: 100%;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .search-bar button {
+        border-radius: 0 30px 30px 0;
+        border: 2px solid #007bff;
+        border-left: none;
+        background-color: #007bff;
+        color: #fff;
+        padding: 12px 24px;
+        transition: all 0.25s ease;
+    }
+
+        .search-bar button:hover {
+            background-color: #0056b3;
+        }
+
+/* =================== HOVER BOX =================== */
+.hover-box {
+    transition: all 0.25s ease;
+}
+
+    .hover-box:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+
+/* =================== FEATURE: Danh mục nổi bật =================== */
+.section-categories {
+    padding: 60px 20px;
+    background: #f7f8fa;
+    border-radius: 20px;
+}
+
+/* Box chung */
+.category-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    transition: all 0.4s ease;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Icon wrapper */
+.icon-wrapper {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .icon-wrapper i {
+        font-size: 32px;
+        color: #fff;
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+/* Hover icon */
+.category-box:hover i {
+    transform: scale(1.2) rotate(10deg);
+    color: #fff;
+}
+
+/* Sparkle animation */
+.sparkle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 50%;
+    animation: sparkle 1.5s infinite;
+}
+
+@keyframes sparkle {
+    0%,100% {
+        transform: translate(0,0) scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translate(8px,-8px) scale(0.5);
+        opacity: 0.5;
+    }
+}
+
+/* Hover box */
+.category-box:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+}
+
+/* Text */
+.category-box p {
+    margin-top: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+/* Gradient màu riêng từng box */
+.bg-laptop {
+    background: linear-gradient(135deg,#4facfe,#00f2fe);
+}
+
+.bg-pc {
+    background: linear-gradient(135deg,#28a745,#71dd8a);
+}
+
+.bg-phone {
+    background: linear-gradient(135deg,#e83e8c,#ff6eb4);
+}
+
+.bg-vga {
+    background: linear-gradient(135deg,#6f42c1,#a58df0);
+}
+
+.bg-cpu {
+    background: linear-gradient(135deg,#fd7e14,#ffc107);
+}
+
+.bg-ssd {
+    background: linear-gradient(135deg,#dc3545,#ff6b6b);
+}
+
+.bg-accessory {
+    background: linear-gradient(135deg,#ffc107,#ffdd57);
+}
+
+.bg-mouse {
+    background: linear-gradient(135deg,#17a2b8,#4dd0e1);
+}
+
+.bg-speaker {
+    background: linear-gradient(135deg,#20c997,#63e6be);
+}
+
+.bg-camera {
+    background: linear-gradient(135deg,#343a40,#6c757d);
+}
+
+.bg-monitor {
+    background: linear-gradient(135deg,#6610f2,#a29bfe);
+}
+
+.bg-mainboard {
+    background: linear-gradient(135deg,#795548,#a1887f);
+}
+/* Loại bỏ gạch chân cho tất cả category-box */
+.category-box {
+    text-decoration: none; /* loại bỏ underline */
+    color: inherit; /* giữ màu chữ theo box hoặc icon */
+}
+
+    /* Nếu muốn logo/icon luôn trắng */
+    .category-box i {
+        color: #fff;
+    }
+
+    /* Nếu hover muốn đổi màu text */
+    .category-box:hover p {
+        color: #fff; /* giữ text màu trắng khi hover */
     }

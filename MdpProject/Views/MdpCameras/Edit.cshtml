@@ -1,0 +1,139 @@
+﻿@model MdpProject.Models.MdpCamera
+
+@{
+    ViewData["Title"] = "Chỉnh sửa Camera";
+    Layout = "~/Views/Shared/_MdpAdminLayout.cshtml";
+}
+
+<div class="container my-4">
+    <div class="card shadow-lg border-0 rounded-4 p-4">
+        <h2 class="text-primary fw-bold mb-3">
+            <i class="bi bi-pencil-square"></i> @ViewData["Title"]
+        </h2>
+        <hr class="mb-4" />
+
+        <form asp-action="Edit" asp-route-id="@Model.MdpCameraId" method="post">
+            <input type="hidden" asp-for="MdpCameraId" />
+
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger rounded-3"></div>
+
+            <div class="row g-4">
+                <!-- Danh mục sản phẩm -->
+                <div class="col-md-6">
+                    <label asp-for="MdpSanPhamId" class="form-label">Danh mục sản phẩm</label>
+                    <select asp-for="MdpSanPhamId" class="form-select" asp-items="ViewBag.MdpSanPhamId">
+                        <option value="">-- Chọn danh mục --</option>
+                    </select>
+                    <span asp-validation-for="MdpSanPhamId" class="text-danger small"></span>
+                </div>
+
+                <!-- Tên Camera -->
+                <div class="col-md-6">
+                    <label asp-for="MdpTenCamera" class="form-label">Tên Camera</label>
+                    <input asp-for="MdpTenCamera" class="form-control" placeholder="Nhập tên camera..." />
+                    <span asp-validation-for="MdpTenCamera" class="text-danger small"></span>
+                </div>
+
+                <!-- Độ phân giải -->
+                <div class="col-md-6">
+                    <label asp-for="MdpDoPhanGiai" class="form-label">Độ phân giải</label>
+                    <input asp-for="MdpDoPhanGiai" class="form-control" placeholder="Ví dụ: 1080p, 4K..." />
+                    <span asp-validation-for="MdpDoPhanGiai" class="text-danger small"></span>
+                </div>
+
+                <!-- Cảm biến -->
+                <div class="col-md-6">
+                    <label asp-for="MdpCamBien" class="form-label">Cảm biến</label>
+                    <input asp-for="MdpCamBien" class="form-control" placeholder="Loại cảm biến..." />
+                    <span asp-validation-for="MdpCamBien" class="text-danger small"></span>
+                </div>
+
+                <!-- Ống kính -->
+                <div class="col-md-6">
+                    <label asp-for="MdpOngKinh" class="form-label">Ống kính</label>
+                    <input asp-for="MdpOngKinh" class="form-control" placeholder="Thông số ống kính..." />
+                    <span asp-validation-for="MdpOngKinh" class="text-danger small"></span>
+                </div>
+
+                <!-- Bộ nhớ -->
+                <div class="col-md-6">
+                    <label asp-for="MdpBoNho" class="form-label">Bộ nhớ</label>
+                    <input asp-for="MdpBoNho" class="form-control" placeholder="Dung lượng bộ nhớ..." />
+                    <span asp-validation-for="MdpBoNho" class="text-danger small"></span>
+                </div>
+
+                <!-- URL Ảnh Camera -->
+                <div class="col-md-12">
+                    <label asp-for="MdpAnh" class="form-label">URL Ảnh Camera</label>
+                    <input asp-for="MdpAnh" id="imageUrlInput" class="form-control" placeholder="Dán link ảnh vào đây..." />
+                    <span asp-validation-for="MdpAnh" class="text-danger small"></span>
+
+                    <div class="mt-3 text-center">
+                        <img id="imagePreview" src="@Model.MdpAnh" alt="@Model.MdpTenCamera"
+                             class="img-thumbnail shadow-sm" style="max-height:180px; border-radius:12px;"
+                        @(string.IsNullOrEmpty(Model.MdpAnh) ? "style='display:none;'" : "") />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="mt-5 d-flex gap-3">
+                <button type="submit" class="btn btn-primary px-4 flex-fill fw-semibold">
+                    <i class="bi bi-save"></i> Cập nhật
+                </button>
+                <a asp-action="MdpAdminIndex" class="btn btn-outline-secondary px-4 flex-fill fw-semibold">
+                    <i class="bi bi-arrow-left"></i> Quay lại
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+    <script>
+        const input = document.getElementById('imageUrlInput');
+        const preview = document.getElementById('imagePreview');
+
+        input.addEventListener('input', function () {
+            if (this.value.trim() === '') {
+                preview.style.display = 'none';
+                preview.src = '';
+            } else {
+                preview.src = this.value.trim();
+                preview.style.display = 'block';
+            }
+        });
+    </script>
+}
+
+<style>
+    .form-label {
+        font-weight: 600;
+    }
+
+    .form-control, .form-select {
+        border-radius: 10px;
+        padding: 10px 12px;
+    }
+
+    .btn {
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+    .card {
+        background: #fff;
+    }
+
+    .img-thumbnail {
+        border-radius: 12px;
+        border: 1px solid #ddd;
+    }
+</style>
